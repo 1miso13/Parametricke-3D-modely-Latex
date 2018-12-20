@@ -1,37 +1,4 @@
 \usepackage{todonotes}
-
-
-\chapter{Úvod}
-úvod
-
-\chapter{Parametrické 3d modely}
-Hlavná výhoda parametrických modelov voči priamemu  s
-
-
-
-\chapter{Geometrické tvary}
-\label{chapt:Geometrické_tvary}
-štruktúra objektov
-
-
-
-\chapter{Geometrické operácie}
-Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá pomocou nich vytvoriť. Sú to operácie bodové, úsečkové, plošné a priestorové. Na vytváranie zložitejších objektov je potrebné využívať jednoduchšie geometrické objekty. 
-
-\todo{je mozne vyuzit geometricke operacie v textovej podobe + ukážka + uviest u kazdej operacii }
-
-Ako príklad uvediem vytvorenie ihlana s kruhovou podstavou s polomerom 5 a výškou 10. Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
-\begin{lstlisting}
-    Point(bod podstavy, 1, 2, 3 ,0);
-\end{lstlisting}
-Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
-
-\begin{equation}
-    \overrightarrow{normal}=
-    \frac{end\_point - begin\_point}{
-    \left \|  end\_point - begin\_point \right \|}
-\label{eq:normalizacia_usecky}
-\end{equation}
 \lstset{
      literate=%
          {á}{{\'a}}1
@@ -65,20 +32,62 @@ Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako norm�
          {Ň}{{\v{N}}}1                
          {Ů}{{\r{U}}}1    
 }
-\begin{lstlisting}
-    Point(počiatočný bod, 0, 0, 0, 0);
-    Point(koncový bod, 1, 1, 1, 0);
-    Line(normála, počiatočný bod, koncový bod, 0);
-\end{lstlisting}
-Keď už je normála vytvorená, je možné vytvoriť kruh s polomerom 5.
-\begin{lstlisting}
-    Circle(podstava, bod podstavy, 5, normála, 0) 
-\end{lstlisting}
-Ostáva vytvoriť samotný ihlan s výškou 10.
-\begin{lstlisting}
-    Pyramid(ihlan s kruhovou podstavou, podstava, 10, 1)
-\end{lstlisting}
 
+\chapter{Úvod}
+úvod
+
+\chapter{Parametrické 3d modely}
+Hlavná výhoda parametrických modelov voči priamemu  s
+
+
+
+\chapter{Geometrické tvary}
+\label{chapt:Geometrické_tvary}
+štruktúra objektov
+
+
+
+\chapter{Geometrické operácie}
+Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá pomocou nich vytvoriť. Sú to operácie bodové, úsečkové, plošné a priestorové. Na vytváranie zložitejších objektov je potrebné využívať jednoduchšie geometrické objekty. 
+
+Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. Tento textový zápis operácii je taktiež uvedený pri jednotlivých operáciach nižšie. 
+Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie nasledovaný parametrami uvedenými v zátvorkách \( a \), oddelenými znakom ','.  U jednotlivých parametrov sa počiatočné a koncové whitespace znaky ignorujú.
+Pri parametroch tymu $Float$ je možné vytvoriť názov, podľa ktorého sa bude dať na daný parameter neskôr pristupovať. 
+Tento názov sa zadáva po parametre 
+Parametre jednotlivých geometrických operácii sú zadané nižšie. 
+Jednotlivé operácie sa oddelujú bodkočiarkou ';'. 
+Táto textová podoba geometrických operácii sa používa aj pre uloženie do súboru a jeho neskoršie načítanie. 
+
+Ako príklad uvádzam vytvorenie ihlana s kruhovou podstavou s polomerom 5 a výškou 10:
+
+\begin{itemization}
+	\item{ Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
+	\begin{lstlisting}
+		Point(bod podstavy, 1, 2, 3 ,0);
+	\end{lstlisting}
+	Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
+
+	\begin{equation}
+		\overrightarrow{normal\_vector}=
+		\frac{end\_point - begin\_point}{
+		\left \|  end\_point - begin\_point \right \|}
+	\label{eq:normalizacia_usecky}
+	\end{equation}
+
+	\begin{lstlisting}
+		Point(počiatočný bod, 0, 0, 0, 0);
+		Point(koncový bod, 1, 1, 1, 0);
+		Line(normála, počiatočný bod, koncový bod, 0);
+	\end{lstlisting}
+	Keď už je normála vytvorená, je možné vytvoriť kruh s polomerom 5.
+	\begin{lstlisting}
+		Circle(podstava, bod podstavy, 5, normála, 0) 
+	\end{lstlisting}
+	Ostáva vytvoriť samotný ihlan s výškou 10.
+	\begin{lstlisting}
+		Pyramid(ihlan s kruhovou podstavou, podstava, 10, 1)
+	\end{lstlisting}
+\end{itemization}
 
 \todo{ako vyzerá tento sled operácii pomocou graphviz a v 3D}
 
@@ -102,6 +111,9 @@ Základná stavebná jednotka každého objektu. Na vytvorenie bodu je potrebné
 \end{figure}
 
 \subsection{Lineárna interpolácia}
+Výsledná pozícia bodu závisí od zadanej vzdialenosti od počiatočného bodu. Táto vzdialenosť môže byť zadaná dĺžkou alebo percentuálne, kde 50% vytvorí bod uprostred počiatočného a koncového bodu. 
+Keďže percentá sa zadávajú tiež vo formáte desatinného čísla ($Float$), bolo potrebné tieto operácie rozlíšiť. Pre zadanie vzdialenosti podľa dĺžky, sa zadáva operácia \texttt{LinearInterpolationDist}, 
+pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationDist}.
 \begin{lstlisting}
     LinearInterpolationDist(string name, Point fromPoint,Point toPoint,
         float distance,float visibility)
@@ -129,7 +141,7 @@ Základná stavebná jednotka každého objektu. Na vytvorenie bodu je potrebné
 	\label{fig:1}
 \end{figure}
 
-\subsection{Intersection\_Plane\_Line}
+\subsection{Priesečník plochy a úsečky}
 		Intersection\_Plane\_Line,//(string name, Line lineName, Sufrace surfaceName, bool visible = true)
 		//	Alternative:
 		//	Intersection(string name, Line lineName, Sufrace surfaceName)
