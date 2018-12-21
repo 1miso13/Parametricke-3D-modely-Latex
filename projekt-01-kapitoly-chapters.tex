@@ -1,4 +1,4 @@
-\usepackage{todonotes}
+
 \lstset{
      literate=%
          {á}{{\'a}}1
@@ -59,13 +59,12 @@ Jednotlivé operácie sa oddelujú bodkočiarkou ';'.
 Táto textová podoba geometrických operácii sa používa aj pre uloženie do súboru a jeho neskoršie načítanie. 
 
 Ako príklad uvádzam vytvorenie ihlana s kruhovou podstavou s polomerom 5 a výškou 10:
-
-\begin{itemization}
-	\item{ Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
+\begin{itemize}
+    \item Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
 	\begin{lstlisting}
-		Point(bod podstavy, 1, 2, 3 ,0);
+	Point(bod podstavy, 1, 2, 3 ,0);
 	\end{lstlisting}
-	Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
+	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
 
 	\begin{equation}
 		\overrightarrow{normal\_vector}=
@@ -75,19 +74,19 @@ Ako príklad uvádzam vytvorenie ihlana s kruhovou podstavou s polomerom 5 a vý
 	\end{equation}
 
 	\begin{lstlisting}
-		Point(počiatočný bod, 0, 0, 0, 0);
-		Point(koncový bod, 1, 1, 1, 0);
-		Line(normála, počiatočný bod, koncový bod, 0);
+	Point(počiatočný bod, 0, 0, 0, 0);
+	Point(koncový bod, 1, 1, 1, 0);
+	Line(normála, počiatočný bod, koncový bod, 0);
 	\end{lstlisting}
-	Keď už je normála vytvorená, je možné vytvoriť kruh s polomerom 5.
+	\item Keď už je normála vytvorená, je možné vytvoriť kruh s polomerom 5.
 	\begin{lstlisting}
-		Circle(podstava, bod podstavy, 5, normála, 0) 
+	Circle(podstava, bod podstavy, 5, normála, 0) 
 	\end{lstlisting}
-	Ostáva vytvoriť samotný ihlan s výškou 10.
+	\item Ostáva vytvoriť samotný ihlan s výškou 10.
 	\begin{lstlisting}
-		Pyramid(ihlan s kruhovou podstavou, podstava, 10, 1)
+	Pyramid(ihlan s kruhovou podstavou, podstava, 10, 1)
 	\end{lstlisting}
-\end{itemization}
+\end{itemize}
 
 \todo{ako vyzerá tento sled operácii pomocou graphviz a v 3D}
 
@@ -113,7 +112,7 @@ Základná stavebná jednotka každého objektu. Na vytvorenie bodu je potrebné
 \subsection{Lineárna interpolácia}
 Výsledná pozícia bodu závisí od zadanej vzdialenosti od počiatočného bodu. Táto vzdialenosť môže byť zadaná dĺžkou alebo percentuálne, kde 50% vytvorí bod uprostred počiatočného a koncového bodu. 
 Keďže percentá sa zadávajú tiež vo formáte desatinného čísla ($Float$), bolo potrebné tieto operácie rozlíšiť. Pre zadanie vzdialenosti podľa dĺžky, sa zadáva operácia \texttt{LinearInterpolationDist}, 
-pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationDist}.
+pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationPerc}.
 \begin{lstlisting}
     LinearInterpolationDist(string name, Point fromPoint,Point toPoint,
         float distance,float visibility)
@@ -123,30 +122,68 @@ pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationDist}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[width=0.4\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[width=0.4\textwidth]{obrazky-figures/placeholder.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\todo{equation na linearnu interpolaciu}
 
-		//		LinearInterpolation(PointName, FromPoint, ToPoint, 50%)	//- Create Point in middle of entered points
-		//		LinearInterpolation(PointName, FromPoint, ToPoint, 25%)	//- Create Point on position with distance 20% of first point and 80% of second point
-		//		LinearInterpolation(PointName, FromPoint, ToPoint, 100)	//- Create Point on position with distance 100 from first point in angle to second point 
+\begin{equation}
+\begin{split}
+    Vector3 normal = (p2.Position - p1.Position).Normalize();
+    \\
+	Point ReturnPoint = p1 + normal * distance;
+	\label{eq:LiearnInterpolationDist}
+\end{split}
+\end{equation}
+\begin{equation}
+    Point ReturnPoint = p1 + percentage * (p2 - p1);
+    \textbf{N} \cdot (\textbf{P} - \textbf{P3}) = 0
+	\label{eq:LiearnInterpolationPerc}
+\end{equation}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
-	\caption{text}
-	\label{fig:1}
-\end{figure}
 
 \subsection{Priesečník plochy a úsečky}
-		Intersection\_Plane\_Line,//(string name, Line lineName, Sufrace surfaceName, bool visible = true)
-		//	Alternative:
-		//	Intersection(string name, Line lineName, Sufrace surfaceName)
-		//	Example:
-		//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
+http://paulbourke.net/geometry/pointlineplane/
+
+Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úsečka ako priamka. Táto geometrická operácia vytvorí bod v mieste, kde sa priamka pretína s rovinou. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\caption{text}
+	\label{fig:GraphIntersection_Plane_Line}
+\end{figure}
+
+
+Rovnica pre rovinu, ktorá je tvorená bodom \texttt{P\textsubscript{3}} nachádzajúcom sa na rovine a normálou N, je \ref{eq:rovnicaPlochy_intersection}. 
+\begin{equation}
+    \textbf{N} \cdot (\textbf{P} - \textbf{P3}) = 0
+	\label{eq:rovnicaPlochy_intersection}
+\end{equation}
+
+Rovnica pre priamku, ktorá je určená bodmi \texttt{P\textsubscript{1}} a \texttt{P\textsubscript{2}}
+\ref{eq:rovnicaPriamky_intersection}
+\begin{equation}
+	\textup{P}=\textbf{P1}+u (\textbf{P2}-\textbf{P1})
+    \label{eq:rovnicaPriamky_intersection}
+\end{equation}
+	
+Bod \texttt{P} označuje priesečník medzi rovinou a priamkou. Pomocou substitúcie získame rovnicu \ref{eq:rovnicaPriesecniku}.
+
+\begin{equation}
+	\textbf{N} \cdot (\textbf{P1}+u(\textbf{P2}-\textbf{P1}))) = \textbf{N} \cdot \textbf{P3}
+    \label{eq:rovnicaPriesecniku}
+\end{equation}
+
+Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}. Výslednú pozíciu bodu dostaneme dosadením $u$ do rovnice pre  priamku \ref{eq:rovnicaPriamky_intersection}.
+\begin{equation}
+	u=\frac
+{\textbf{N} \cdot (\textbf{P3}-\textbf{P1})}
+{\textbf{N} \cdot (\textbf{P2}-\textbf{P1})}
+    \label{eq:rovnicaPriesecnikuSolved}
+\end{equation}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
@@ -154,13 +191,29 @@ pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationDist}.
 	\label{fig:1}
 \end{figure}
 
+
+
+\begin{lstlisting}
+	Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, bool visible = true)
+	//	Alternative:
+	//	Intersection(string name, Line lineName, Sufrace surfaceName)
+	//	Example:
+	//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
+
+\end{lstlisting}
+
 \subsection{SurfaceMiddle}
-		SurfaceMiddle,//(string name, Surface surfaceName, bool visible = true) //Create point on position of middle of entered surface
-		//	Example:
-		//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
-		//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
-		//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
-		//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
+
+
+\begin{lstlisting}
+	SurfaceMiddle(string name, Surface surfaceName, bool visible = true) //Create point on position of middle of entered surface
+	//	Example:
+	//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
+	//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
+	//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
+	//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
+\end{lstlisting}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
@@ -169,8 +222,11 @@ pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationDist}.
 \end{figure}
 
 \subsection{Stred objektu}
-Implementoval som dva spôsoby ako získať stred objektu
-\subsubsection{ObjectMiddle}
+https://www.gamedev.net/forums/topic/468405-center-of-a-3d-object/
+
+Existuje množstvo možností ako získať stred 3D objektu. Do tejto práce som implementoval 2 z nich. 
+\subsubsection{Stred ohraničujúceho kvádra}
+Prejde všetky body a zoberie maximálnu a minimálnu hodnotu v osiach X, Y a Z. Takto dostaneme ohraničujúci kváder (Bounding box) a ako výsledný bod sa zoberie stred tohoto kvádra.
 
 		ObjectMiddle,//(string name, Object3D ObjectName, bool visible = true) //Create point on position of middle of entered object
 		
@@ -181,7 +237,8 @@ Implementoval som dva spôsoby ako získať stred objektu
 	\label{fig:1}
 \end{figure}
 
-\subsubsection{ObjectCenter}
+\subsubsection{Priemerný stred všetkých bodov} 
+Pri tejto operácii sa spočítajú koordináty všetkých bodov. To vytvorí tri veľké čísla, ktoré sa následne vydelia počtom bodov.
 		ObjectCenter,//(string name, Object3D ObjectName, bool visible = true) //Create point on position of center of entered object
 
 \begin{figure}[H]
@@ -192,10 +249,16 @@ Implementoval som dva spôsoby ako získať stred objektu
 \end{figure}
 
 \subsection{Začiatok a koniec úsečky}
+Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril som operácie \texttt{LineFirstPoint} a \textt{LineSecondPoint}.
 \label{sec:begandendofline}
 
-		LineFirstPoint,//(string name, Line lineName, bool visible = true)
-		LineSecondPoint,//(string name, Line lineName, bool visible = true)
+\begin{lstlisting}
+    LineFirstPoint(string name, Line lineName, bool visible = true)
+	LineSecondPoint(string name, Line lineName, bool visible = true)
+	\label{eq:LINEBegAndEnd}
+\end{lstlisting}
+		
+		
 
 
 \begin{figure}[H]
@@ -220,7 +283,7 @@ Implementoval som dva spôsoby ako získať stred objektu
 \subsection{Úsečka}
 Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru. Každá úsečka s začína počiatočným bodo a končí koncvým bodom. Pre získanie počiatočného a koncového bodu je operácia \ref{sec:begandendofline}.
 
-		Line,//(string lineName, Point p1, Point p2, bool visible = true) //create line, where p1 is start point and p2 is end point
+		Line(string lineName, Point p1, Point p2, bool visible = true) //create line, where p1 is start point and p2 is end point
 
 \begin{figure}[H]
 	\centering
