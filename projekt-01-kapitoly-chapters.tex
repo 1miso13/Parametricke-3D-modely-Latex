@@ -102,9 +102,18 @@ Základná stavebná jednotka každého objektu. Na vytvorenie bodu je potrebné
     Point(string name, float X, float Y, float Z,Point Parent,
         float visibility)
 \end{lstlisting}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - Point.pdf}
+	\caption{text}
+	\label{fig:1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -119,11 +128,12 @@ pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationPerc}.
     LinearInterpolationPerc(string name, Point fromPoint,Point toPoint,
         float percentage,float visibility)
 \end{lstlisting}
+%\usepackage{subfig}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{obrazky-figures/placeholder.pdf}
-	\includegraphics[width=0.4\textwidth]{obrazky-figures/placeholder.pdf}
+	\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
+	\subfloat{\includegraphics[]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointLinearInterpolation.pdf}}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -148,11 +158,14 @@ pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationPerc}.
 http://paulbourke.net/geometry/pointlineplane/
 
 Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úsečka ako priamka. Táto geometrická operácia vytvorí bod v mieste, kde sa priamka pretína s rovinou. 
+
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/placeholder.pdf}
 	\caption{text}
-	\label{fig:GraphIntersection_Plane_Line}
+	\label{fig:1}
 \end{figure}
 
 
@@ -184,14 +197,6 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
     \label{eq:rovnicaPriesecnikuSolved}
 \end{equation}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
-	\caption{text}
-	\label{fig:1}
-\end{figure}
-
-
 
 \begin{lstlisting}
 	Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, bool visible = true)
@@ -201,6 +206,14 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
 	//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
 
 \end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointIntersection PlaneLine.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointIntersectionPlaneLine.pdf}
+	\caption{text}
+	\label{fig:GraphIntersection_Plane_Line}
+\end{figure}
 
 \subsection{SurfaceMiddle}
 
@@ -216,7 +229,8 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -232,7 +246,8 @@ Prejde všetky body a zoberie maximálnu a minimálnu hodnotu v osiach X, Y a Z.
 		
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointMiddle of 3D object.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointMiddle of 3D object.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -243,7 +258,8 @@ Pri tejto operácii sa spočítajú koordináty všetkých bodov. To vytvorí tr
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointCenter of 3D object.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointCenter of 3D object.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -263,7 +279,18 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointFirst POINT of LINE.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointFirstPointOfLine.pdf}
+	\caption{text}
+	\label{fig:1}
+\end{figure}
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointSecond POINT of LINE.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointSecondPointOfLine.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -287,7 +314,8 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -297,7 +325,8 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -308,101 +337,99 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{MinLineBetweenLineAndLine}
 
 		// these commands are based on page http://paulbourke.net/geometry/pointlineplane/
 		MinLineBetweenLineAndLine,//(string lineName, Line l1, Line l2, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Lineárna interpolácia}
+\subsection{MinLineBetweenPointAndLine}
 		MinLineBetweenPointAndLine,//(string lineName, Point p, Line l, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Lineárna interpolácia}
+\subsection{MinLineBetweenPointAndSurface}
 		MinLineBetweenPointAndSurface,//(string lineName, Point p, Surface s, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{MinLine}
 		///Alternative:
 		MinLine,//(string lineName, Object o1, Object o2, bool visible = true) //Supported are only : [Line,Line], [Point,Line], [Point, Surface]
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Lineárna interpolácia}
+\subsection{SurfaceNormal}
 		SurfaceNormal,//(string lineName, Surface s, bool visible = true) // return normal vector of surface
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Lineárna interpolácia}
+\subsection{LineRelocationByPoint}
 		LineRelocationByPoint,//(string lineName, Line l, Point p, bool visible = true)
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
-	\caption{text}
-	\label{fig:1}
-\end{figure}
-
-\subsection{Lineárna interpolácia}
-		//OrthogonalLeastSquares,//(string lineName, Point p1, Point p2, Point p3, ..., bool visible = true) //min 3
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
-		//CrossProductLP,//(string lineName, Line l, Point p, bool visible = true)
+
+\subsection{CrossProduct}
 		CrossProduct,//(string lineName, Line l1, Line l2, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -414,7 +441,7 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \section{Plošné operácie}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{AddWidthToLine}
 	AddWidthToLine,//(string surfaceName, Line l, float width, Point surfacePoint, short type, bool visible = true)
 	//AddWidthToLine(string surfaceName, Line l, float width, Vector3 normalVector, short type, bool visible = true)
 //create Rectangle from Line l
@@ -429,75 +456,82 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Lineárna interpolácia}
+\subsection{Circle}
 	Circle,//(string surfaceName, Point center, float radius, Line lineNormal, bool visible = true)
 	//Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Triangle}
 	Triangle,//(string surfaceName, Line l, Point p, bool visible = true)
 	//Triangle(string surfaceName, Point p1, Point p2, Point p3, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Rectangle}
 	//rectangle
 	Rectangle,//(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Shape}
 	Shape,//(string surfaceName, Point p1, Point p2, Point p3, ..., bool visible = true)//minimum 3 points 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Circumscribed}
 	Circumscribed,//(string surfaceName, Triangle t, bool visible = true) //Create circle over triangle
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Lineárna interpolácia}
+\subsection{Inscribed}
 	Inscribed,//(string surfaceName, Triangle t, bool visible = true)		//Create circle in triangle
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
@@ -511,47 +545,51 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \section{Priestorové operácie}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Pyramid}
 Pyramid,//(string objectName, Surface s, float distance, bool visible = true) //Create Pyramid by distance from center
 //Pyramid(string objectName, Surface s, Point p, bool visible = true) //Create Pyramid by Point
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Extrude} \todo{Najst lepsi nazov}
 To3D,//(string objectName, Surface s, float distance, bool visible = true) //add width to 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Lineárna interpolácia}
+\subsection{SpericalCurvedSurface}
 SpericalCurvedSurface,//(string objectName, Surface s, float distance, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Lineárna interpolácia}
+\subsection{Cylinder}
 Cylinder,//(string objectName, Line l, float radius, bool visible = true)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{obrazky-figures/placeholder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
