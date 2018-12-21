@@ -1091,7 +1091,9 @@ Management}{\@fit@EN}%
 % Left aligned column with a fixed width
 \newcolumntype{L}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
-
+\usepackage{todonotes}
+\usepackage{amssymb}
+\usepackage{grffile}
 \endinput
 %%
 %% End of file `fitthesis.cls'.
