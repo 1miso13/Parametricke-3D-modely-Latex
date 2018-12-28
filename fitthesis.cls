@@ -1094,6 +1094,7 @@ Management}{\@fit@EN}%
 \usepackage{todonotes}
 \usepackage{amssymb}
 \usepackage{grffile}
+\usepackage{url}
 \endinput
 %%
 %% End of file `fitthesis.cls'.

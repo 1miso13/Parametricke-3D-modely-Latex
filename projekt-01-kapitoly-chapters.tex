@@ -34,10 +34,69 @@
 }
 
 \chapter{Úvod}
-úvod
+Úlohou tejto práce je vytvoriť aplikáciu na tvorbu parametrických 3D modelov. Tieto modely sú tvorené pomocou geometrických operácii. Aplikácia by mala umožňovať prácu pomocou dvoch rozhraní, grafického a programátorského. Grafické rozhranie musí umožniť návrhárovi jednoduchú tvorbu modelov. Programátorské rozhranie umožní používať  Hodnota u parametrov sa dá ľubovolne meniť  
+
+Druhá kapitola sa zaoberá parametrickými modelmi, ich tvorbou a ich históriou. V tejto kapitole tiež popisujem existujúce programy pre tvorbu parametrických modelov.
+
+Tretia kapitola sa zaoberá štruktúrami pre objekty.
+
+V štvrtej kapitole je výpis použitých geometrických operácii. Tieto operácie sú rozdelené na štyri druhy, podľa toho aký typ objektu vytvárajú. Sú to bodové geometrické operácie, úsečkové, plošné a objemové. U jednotlivých geometrických operácii je uvedené ako dané objekty vytvárajú, parametre ktoré jednotlivé operácie potrebujú a formát zápisu, ktorý sa používa na ich vytvorenie a v ktorom sa tiež ukladajú. Parametre typu $Float$ (desatinné čísla) je možné pomenovať, a tak na ne vytvoriť odkaz pre nastavovanie parametrov. 
+
+V piatej kapitole je opísané grafické užívateľské rozhranie, ktoré umožňuje jednoduchý návrh geometrických modelov. Grafické užívateľské rozhranie umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácii a pri geometrickej operácii ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený), upozorní užívateľa. Grafické užívateľské rozhranie pozostáva z dvoch okien. Jedno pre správu geometrických operácii, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
 
 \chapter{Parametrické 3d modely}
-Hlavná výhoda parametrických modelov voči priamemu  s
+Typickým návrhovým médiom je ceruzka a papier. Presnejšie ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idei. Dizajnéri musia pridávať a odoberať značky a spájať ich \cite{woodbury2010elements}.
+
+Konvenčné návrhové systémy fungujú práve na tomto princípe. Parametrické modelovanie predstavuje zásadnú zmenu. Značky ktoré sú základom návrhu spolu súvisia a vzájomne menia svoju pozíciu. Dizajnéri už nemusia iba pridávať a odoberať, ale môžu vytvárať medzi bodmi vzťahy a upravovať model, aby aj po zmazaní, časti závisiace od zmazaných častí mohli závisieť od častí ktoré zostali \cite{woodbury2010elements}. 
+
+Vďaka tomu, že sú parametrické modely vytvárané pomocou geometrických operácii. Keďže operácie sú závislé na výsledku inej operácie, pri zmene niektorého z parametrov je potrebné model znova vytvoriť. Pre skrátenie času pre vytvorenie operácie je možné upravovať len operácie, ktoré boli touto zmenou dotknuté.
+
+
+\todo{TODO}\\
+https://onlinelibrary.wiley.com/doi/pdf/10.1002/ad.2019\\
+https://onlinelibrary.wiley.com/doi/epdf/10.1002/ad.2020\\
+
+
+%https://en.wikipedia.org/wiki/Parametric_design#cite_note-Frazer-3
+%https://en.wikipedia.org/wiki/Antoni_Gaud%C3%AD
+
+
+
+\section{História parametrických modelov}
+Pôvod slova \texts{parameter} pochádza z matematiky, kde popisuje matematickú metódu, ktorá používa nezávislé premenné, zvané parametre. Debatuje sa ale ohľadom toho, kedy začali dizajnéry používať toto slovo \cite{davis_2013}. David Gerber v svojej doktorskej práci \textit{Parametric Practice} (2007) pripisoval Maurice Reiter prvé použitie tohoto slova na papieri s názvom \textit{Parametric Design} z roku 1988. V roku 1988 bol tiež vydaný prvý komerčne úspečný softvér pre parametrické modelovanie \textsf{Pro/ENGINEER} firmou Parametric Technology Corporation založenou matematikom Samuelom Geisbergom v roku 1985.
+
+Robert Stiles ale dokázal, že skutočný pôvod tohoto slova bol už o niekoľko dekád skôr pomocou zápisov architekta Luigi Morettiho z rokov 1940.  Moretti písal o parametrickej architektúre, ktorú definoval ako architektonické systémy s cieľom 
+definovať vzťahy medzi rozmermi závislými od rôznych parametrov.
+Moretti v roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadion}, kde vysvetlil, ako sa môže štadión meniť pomocou devätnástich parametrov, ktoré zahŕňali pozorovacie uhli a cenové náklady na betón. Tento model vytvoril už za pomoci počítača 610 od spoločnosti IBM\cite{doi:10.1002/ad.2019}. O pár rokov neskôr Moretti navrhol Watergate Complex \ref{fig:Watergate}, ktorý je prvou veľkou stavebnou prácou na ktorú boli využité počítače \cite{davis_2013}. 
+
+
+\afterpage{
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \linewidth]{obrazky-figures/moretti_1.jpg}
+    \caption{Model štadióna N od Luigi Moretti. Tento model bol vystavený na výstave parametrickej architektúry v Twelfth Milan Triennial v roku 1960. Parametrický model pozostávajúci z devätnástich parametrov. Zdroj:  \footnotemark}
+    \label{fig:morretiStadion}
+\end{figure}
+\footnotetext{http://www.danieldavis.com/thesis-ch2/}
+
+}
+
+\afterpage{
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \linewidth]{obrazky-figures/watergate-complex.jpg}
+    \caption{Watergate Complex navrhnutý Luigi Morettim. Prvý veľký stavebný projekt, na ktorý boli využité parametrické modely. Zdroj: \footnotemark}
+    \label{fig:Watergate}
+\end{figure}
+\footnotetext{https://seanmunger.com/2015/06/17/earth-the-watergate-complex-famous-for-more-than-just-burglars-and-tapes/}
+
+}
+
+
+
+
+
+
 
 
 
@@ -51,20 +110,23 @@ Hlavná výhoda parametrických modelov voči priamemu  s
 Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá pomocou nich vytvoriť. Sú to operácie bodové, úsečkové, plošné a priestorové. Na vytváranie zložitejších objektov je potrebné využívať jednoduchšie geometrické objekty. 
 
 Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. Tento textový zápis operácii je taktiež uvedený pri jednotlivých operáciach nižšie. 
-Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie nasledovaný parametrami uvedenými v zátvorkách \( a \), oddelenými znakom ','.  U jednotlivých parametrov sa počiatočné a koncové whitespace znaky ignorujú.
-Pri parametroch tymu $Float$ je možné vytvoriť názov, podľa ktorého sa bude dať na daný parameter neskôr pristupovať. 
-Tento názov sa zadáva po parametre 
-Parametre jednotlivých geometrických operácii sú zadané nižšie. 
-Jednotlivé operácie sa oddelujú bodkočiarkou ';'. 
+Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie a parametrami uvedenými v zátvorkách ( a ), oddelenými znakom \texttt{','}.  U jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
+
+Pri parametroch typu $Float$ sa požaduje desatinné číslo, pri ostatných parametroch je potrebné uviesť názov existujúceho objektu, ktorý je rovnakého typu alebo podtypu aký je vyžadovaný. Požadované parametre pre jednotlivé geometrické operácie sú uvedené nižšie. 
+
+Parametrom typu $Float$ je možné vytvoriť názov, pomocou ktorého sa bude dať na daný parameter neskôr pristupovať. 
+Tento názov sa zadáva za hodnotou parametra oddelený znakom \texttt{';'}.
+
+Jednotlivé operácie sa oddeľujú bodkočiarkou \texttt{';'}. 
 Táto textová podoba geometrických operácii sa používa aj pre uloženie do súboru a jeho neskoršie načítanie. 
 
-Ako príklad uvádzam vytvorenie ihlana s kruhovou podstavou s polomerom 5 a výškou 10:
+Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvorenie ihlana s kruhovou podstavou s polomerom 5 a výškou 10:
 \begin{itemize}
     \item Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
 	\begin{lstlisting}
 	Point(bod podstavy, 1, 2, 3 ,0);
 	\end{lstlisting}
-	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
+	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu, je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadnu úsečku vytvorenú nemáme, je potrebné ju vytvoriť. Úsečka sa skladá z dvoch bodov a to počiatočného a koncového. Ako normála, sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
 
 	\begin{equation}
 		\overrightarrow{normal\_vector}=
@@ -105,52 +167,43 @@ Základná stavebná jednotka každého objektu. Na vytvorenie bodu je potrebné
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - Point.pdf}
-	\caption{text}
+	\caption{Vytvorenie bodu na absolútnej pozícii}
 	\label{fig:1}
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point2.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\caption{Vytvorenie bodu na relatívnej pozícii od iného bodu}
 	\label{fig:1}
 \end{figure}
 
 \subsection{Lineárna interpolácia}
-Výsledná pozícia bodu závisí od zadanej vzdialenosti od počiatočného bodu. Táto vzdialenosť môže byť zadaná dĺžkou alebo percentuálne, kde 50% vytvorí bod uprostred počiatočného a koncového bodu. 
+Výsledná pozícia bodu závisí od zadanej vzdia\-le\-nos\-ti od počiatočného bodu. Táto vzdia\-le\-nosť môže byť zadaná dĺžkou alebo percentuálne, kde 50\% vytvorí bod uprostred počiatočného a koncového bodu. 
 Keďže percentá sa zadávajú tiež vo formáte desatinného čísla ($Float$), bolo potrebné tieto operácie rozlíšiť. Pre zadanie vzdialenosti podľa dĺžky, sa zadáva operácia \texttt{LinearInterpolationDist}, 
 pre percentuálnu vzdialenosť je operácia \texttt{LinearInterpolationPerc}.
 \begin{lstlisting}
-    LinearInterpolationDist(string name, Point fromPoint,Point toPoint,
-        float distance,float visibility)
-    LinearInterpolationPerc(string name, Point fromPoint,Point toPoint,
-        float percentage,float visibility)
+    LinearInterpolationDist(string name, Point fromPoint, Point toPoint,
+        float distance, float visibility)
+    LinearInterpolationPerc(string name, Point fromPoint, Point toPoint,
+        float percentage, float visibility)
 \end{lstlisting}
-%\usepackage{subfig}
+
 
 \begin{figure}[H]
 	\centering
-	\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
+	\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
 	\subfloat{\includegraphics[]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointLinearInterpolation.pdf}}
-	\caption{text}
+	\caption{Lineárna interpolácia}
 	\label{fig:1}
 \end{figure}
 
-
+Ak je zadaná vzdialenosť pomocou dĺžky, použije sa vzorec \ref{eq:LiearnInterpolation}. Pri percentuálnej vzdialenosti sa použije obdobný vzorec, ale vektor medzi bodmi bod1 a bod2 sa nenormalizuje.
 \begin{equation}
-\begin{split}
-    Vector3 normal = (p2.Position - p1.Position).Normalize();
-    \\
-	Point ReturnPoint = p1 + normal * distance;
-	\label{eq:LiearnInterpolationDist}
-\end{split}
-\end{equation}
-\begin{equation}
-    Point ReturnPoint = p1 + percentage * (p2 - p1);
-    \textbf{N} \cdot (\textbf{P} - \textbf{P3}) = 0
-	\label{eq:LiearnInterpolationPerc}
+    bod = bod1 + norm(bod2 - bod1) * vzdialenos\check{t};
+	\label{eq:LiearnInterpolation}
 \end{equation}
 
 
@@ -162,14 +215,13 @@ Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úseč
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/placeholder.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/placeholder.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/DP Navrh operacii-Intersection.pdf}
+	\caption{Pretnutie plochy priamkou}
 	\label{fig:1}
 \end{figure}
 
 
-Rovnica pre rovinu, ktorá je tvorená bodom \texttt{P\textsubscript{3}} nachádzajúcom sa na rovine a normálou N, je \ref{eq:rovnicaPlochy_intersection}. 
+Rovnica pre rovinu, ktorá je tvorená bodom \texttt{P\textsubscript{3}} nachádzajúcom sa na rovine a normálou N, sa dá zapísať ako \ref{eq:rovnicaPlochy_intersection}. 
 \begin{equation}
     \textbf{N} \cdot (\textbf{P} - \textbf{P3}) = 0
 	\label{eq:rovnicaPlochy_intersection}
@@ -199,66 +251,174 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
 
 
 \begin{lstlisting}
-	Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, bool visible = true)
-	//	Alternative:
-	//	Intersection(string name, Line lineName, Sufrace surfaceName)
-	//	Example:
-	//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
-
+	Intersection_Plane_Line(string name, Line lineName, Sufrace surfaceName,
+	    float visibility)
 \end{lstlisting}
+
+Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto operácie sa vytvorí bod aj mimo zadaných objektov. Problém nastáva, ak je zadaná úsečka paralelná s plochou a teda je kolmá na normálu plochy $N$. Skalárny súčin v menovateli je potom rovný 0. V tomto prípade nieje možné nájsť priesečník.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointIntersection PlaneLine.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointIntersection PlaneLine.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointIntersectionPlaneLine.pdf}
-	\caption{text}
+	\caption{Priesečník plochy a priamky.}
 	\label{fig:GraphIntersection_Plane_Line}
 \end{figure}
 
-\subsection{SurfaceMiddle}
+\subsection{Stred plochy}
+Existuje množstvo možností ako získať stred objektu. Do tejto práce som vybral dve, metódu minimálneho štvorca a priemer všetkých bodov. Pri týchto operáciach sa prevádza 
+zadaná plocha z trojrozmerného priestoru  do dvojrozmerného.
+
+
+\subsubsection{Minimálny štvorec}
+Pri tejto operácii sa prejdú všetky body a zistí sa maximálna a minimálna hodnota v jednotlivých osiach a výsledný bod sa nachádza uprostred nich.
 
 
 \begin{lstlisting}
-	SurfaceMiddle(string name, Surface surfaceName, bool visible = true) //Create point on position of middle of entered surface
-	//	Example:
-	//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
-	//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
-	//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
-	//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
+	SurfaceCenterMinimalSquare(string name, Surface surfaceName, float visibility)
 \end{lstlisting}
+%//Create point on position of middle of entered surface
+%	//	Example:
+%	//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
+%	//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
+%	//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
+%	//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointMiddle of surface.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointMiddle of surface.pdf}
+	\caption{Stred plochy pomocou minimálneho štvorca }
+	\label{fig:1}
+\end{figure}
+
+
+
+\subsubsection{Priemer všetkých bodov}
+Nájde aritmetický priemer všetkých bodov polygónu.
+
+\begin{equation}
+    \frac{1}{n} \sum_{i=0}^{n} p_i   
+    \label{eq:aritPriemer}
+\end{equation}
+\begin{lstlisting}
+	SurfaceCenterAverage(string name, Surface surfaceName, float visibility)
+\end{lstlisting}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointCenter of surface.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointCenter of surface.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
+\subsubsection{Stred trojuholníku}
+Pre stred trojuholníka existuje v súčastnosti, podľa encyklopédie stredov trojuholníkov, až 30 483 trojuholníkových centier \cite{http://faculty.evansville.edu/ck6/encyclopedia/ETC.html}. Tento počet každým dňom narastá. Pre porovnanie, v decembri 2004 bolo známych 3053 \cite{http://mathworld.wolfram.com/KimberlingCenter.html}. Medzi najznámejšie patria ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N). Tieto body sú zaznačené na obrázku \ref{fig:TriangleCenters}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{obrazky-figures/Trigonometric_centres.png}
+	\caption{Najznámejšie stredy trojuholníka sú ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N)}
+	\label{fig:TriangleCenters}
+\end{figure}
+
+
+\paragraph{Ťažisko (Centroid)}\mbox{} \\
+
+Ťažisko trojuholníku sa nachádza v priesečníku troch mediánov trojuholníka. Na nájdenie jeho pozície stačí vypočítať aritmetický priemer vrcholov trojuholníka v jednotlivých osiach \ref{eq:triangleCentroid} \cite{https://brilliant.org/wiki/triangles-centroid/}.
+
+
+
+\begin{equation}
+    \frac{A+B+C}{3}
+    \label{eq:triangleCentroid}
+\end{equation}
+
+\paragraph{Stred vpísanej kružnice (Incenter)}\mbox{} \\
+
+Z každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách priam\-ky boli rovnaké. Táto priamka sa nazýva tiež bisektor \cite{https://www.tutorvista.com/math/angle-bisector-theorem}. Stred vpísanej kružnice je na priesečníku týchto priamok.
+
+
+
+
+Stred vpísanej kružnice sa dá vypočítať aj pomocou vzorca \ref{eq:Incenter} \cite{https://www.mathopenref.com/coordincenter.html}.
+\begin{equation}
+O = \frac{a\ast A+b\ast  B +c \ast C}{a + b + c}
+    \label{eq:Incenter}
+\end{equation}
+kde  $A$, $B$, $C$ sú vrcholy trojuholníka a $a$, $b$, $c$ sú dĺžky strán protiľahlých k vrcholom $A$, $B$, $C$.
+
+\paragraph{Stred opísanej kružnice (Circumcenter)}\mbox{} \\
+
+U jednotlivých strán trojuholníka zistíme stred a z tohoto bodu urobíme kolmice. Kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k ľubovolnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
+
+
+\paragraph{Ortocentrum (Orthocenter)}\mbox{} \\
+
+Ortocentrum sa nachádza na priesečníku kolmíc, ktoré prechádzajú cez protiľahlí vrchol. Tieto kolmice sa tiež nazývajú výškou trojuholníka. 
+Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je trojuholník v niektorom vrchole kolmý, nachádza sa v takomto vrchole aj ortocentrum trojuholníka.
+
+Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v mieste, kde sa tieto kolmice pretínajú. 
+
+
+\paragraph{Stred kružnice deviatich bodov (NinePointCenter)}\mbox{} \\
+
+Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej a pripísaných kružníc \cite{NinePointTheorem} 
+
+
+\newtheorem{theorem}{Teorém}
+ 
+\begin{theorem}[{\cite{https://lms.umb.sk/mod/book/tool/print/index.php?id=76930&chapterid=1746} Teorém kružnice deviatich bodov}]
+Nech ABC je všeobecný trojuholník, P,Q,R nech sú päty jeho výšok, K,L,M nech sú stredy jeho strán, O nech je priesečník výšok a T,U,V nech sú postupne stredy úsečiek AO,BO,CO. Potom 9 bodov P,Q,R,K,L,M,T,U,V leží na jednej (tzv. Feuerbachovej) kružnici. \todo{Ako citovať? https://lms.umb.sk/mod/book/tool/print/index.php?id=76930&chapterid=1746}
+
+\end{theorem}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{obrazky-figures/NinePointCircle.png}
+	\caption{text}
+	\label{fig:TriangleCenters}
+\end{figure}
+
+
+
 \subsection{Stred objektu}
 https://www.gamedev.net/forums/topic/468405-center-of-a-3d-object/
 
-Existuje množstvo možností ako získať stred 3D objektu. Do tejto práce som implementoval 2 z nich. 
-\subsubsection{Stred ohraničujúceho kvádra}
+Rovnako ako pri 2D objektoch, aj u 3D objektoch je viacero variant získania stredu objektu. Vybral som metódu ohraničujúceho kvádra a metódu priemerného stredu všetkých bodov.
+
+
+\subsubsection{Stred pomocou ohraničujúceho kvádra}
 Prejde všetky body a zoberie maximálnu a minimálnu hodnotu v osiach X, Y a Z. Takto dostaneme ohraničujúci kváder (Bounding box) a ako výsledný bod sa zoberie stred tohoto kvádra.
 
-		ObjectMiddle,//(string name, Object3D ObjectName, bool visible = true) //Create point on position of middle of entered object
+\begin{lstlisting}
+	ObjectCenterBoundingBox(string name, Object3D ObjectName, 
+		float visibility)
+\end{lstlisting}
 		
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointMiddle of 3D object.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointMiddle of 3D object.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointMiddle of 3D object.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
-\subsubsection{Priemerný stred všetkých bodov} 
+\subsubsection{Priemer všetkých bodov} 
 Pri tejto operácii sa spočítajú koordináty všetkých bodov. To vytvorí tri veľké čísla, ktoré sa následne vydelia počtom bodov.
-		ObjectCenter,//(string name, Object3D ObjectName, bool visible = true) //Create point on position of center of entered object
+
+\begin{lstlisting}
+	ObjectCenterAverage(string name, Object3D ObjectName,
+		float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointCenter of 3D object.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointCenter of 3D object.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointCenter of 3D object.pdf}
 	\caption{text}
 	\label{fig:1}
@@ -269,8 +429,8 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \label{sec:begandendofline}
 
 \begin{lstlisting}
-    LineFirstPoint(string name, Line lineName, bool visible = true)
-    LineSecondPoint(string name, Line lineName, bool visible = true)
+    LineFirstPoint(string name, Line lineName, float visibility)
+    LineSecondPoint(string name, Line lineName, float visibility)
 \end{lstlisting}
 		
 		
@@ -278,7 +438,7 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointFirst POINT of LINE.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointFirst POINT of LINE.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointFirstPointOfLine.pdf}
 	\caption{text}
 	\label{fig:1}
@@ -288,7 +448,7 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - PointSecond POINT of LINE.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointSecond POINT of LINE.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointSecondPointOfLine.pdf}
 	\caption{text}
 	\label{fig:1}
@@ -304,12 +464,14 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 
 
 \section{Úsečkové operácie}
-
+Geometrické operácie vytvárajúce úsečky. 
 
 \subsection{Úsečka}
-Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru. Každá úsečka s začína počiatočným bodo a končí koncvým bodom. Pre získanie počiatočného a koncového bodu je operácia \ref{sec:begandendofline}.
+Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru. Každá úsečka sa začína počiatočným bodom a končí koncovým bodom. Pre získanie počiatočného a koncového bodu sú operácie \ref{sec:begandendofline}.
 
-		Line(string lineName, Point p1, Point p2, bool visible = true) //create line, where p1 is start point and p2 is end point
+\begin{lstlisting}
+	Line(string lineName, Point počiatočný_bod, Point koncový_bod, float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -320,7 +482,10 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \end{figure}
 
 \subsection{Normalizovanie veľkosti úsečky}
-		LineNormalize,//(string lineName, Line l, bool visible = true)
+Táto operácia vytvorí úsečku s dĺžkou 1 v rovnakom smere ako pôvodná a s rovnakým počiatočným bodom.
+\begin{lstlisting}
+	LineNormalize(string lineName, Line l, float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -331,8 +496,13 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \end{figure}
 
 \subsection{Zmena dĺžky úsečky}
-		LineChangeLengthDist,//(string lineName, Line l, float distance, bool visible = true)
-		LineChangeLengthPerc,//(string lineName, Line l, float percent, bool visible = true) //percent = (0;1>
+Vytvorenie úsečky so zadanou dĺžkou. Dĺžka môže byť zadaná vzdialenosťou alebo percentuálne od veľkosti zadanej úsečky. Výsledná úsečka je v rovnakom smere a začína v rovnakom bode ako zadaná úsečka.
+\begin{lstlisting}
+	LineChangeLengthDist(string lineName, Line l, float distance, 
+	    float visibility)
+	LineChangeLengthPerc(string lineName, Line l, float percent, 
+	    float visibility) 
+\end{lstlisting}%//percent = (0;100>
 
 \begin{figure}[H]
 	\centering
@@ -342,22 +512,48 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 	\label{fig:1}
 \end{figure}
 
+\subsection{Najkratšia úsečka medzi bodom a priamkou}\label{sec:najkratsiauseckaBP}
+Priamka je definovaná dvoma bodmi, bodom $P1(x1-y1)$ a bodom $P2(x2,y2)$. 
+Rovnica priamky je 
+\begin{equation}
+    P = P1 + u(P2-P1)
+    \label{eq:MinlinePointLine_LineEq}
+\end{equation}. 
 
-\subsection{MinLineBetweenLineAndLine}
+Na získanie najkratšej vzdialenosti je potrebné nájsť kolmicu od bodu $P3(x3,y3)$ na priamku. Z toho vyplýva, že skalárny súčin medzi nimi musí byť rovný 0, tento vzťah je vidieť v rovnici \ref{eq:MinlinePointLine_LinesEq}.
 
-		// these commands are based on page http://paulbourke.net/geometry/pointlineplane/
-		MinLineBetweenLineAndLine,//(string lineName, Line l1, Line l2, bool visible = true)
+\begin{equation}
+    (P3-P)\cdot(P2-P1) =0 
+    \label{eq:MinlinePointLine_LinesEq}
+\end{equation}
+Bod P označuje najbližší bod na priamke k bodu $P3$.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Line/DP Navrh operacii-1D - LineMinLL.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/2Line/DP Navrh operacii-1D - LineMinLL.pdf}
-	\caption{text}
-	\label{fig:1}
-\end{figure}
+Substitúciou rovníc \ref{eq:MinlinePointLine_LineEq} a \ref{eq:MinlinePointLine_LinesEq} získame rovnicu \ref{eq:MinlinePointLine_subs}.
 
-\subsection{MinLineBetweenPointAndLine}
-		MinLineBetweenPointAndLine,//(string lineName, Point p, Line l, bool visible = true)
+\begin{equation}
+[P3 - P1 - u(P2-P1)] \cdot (P2 - P1) = 0
+    \label{eq:MinlinePointLine_subs}
+\end{equation}
+
+Vyriešením tejto rovnice získame rovnicu \ref{eq:MinlinePointLine_subsSolved}, ktorú následne môžeme dosadiť do rovnice pre priamku \ref{eq:MinlinePointLine_LineEq} a získať pozíciu bodu $P$. Ak by sme chceli, aby sa bod vytváral iba na úsečke a nie mimo nej, bolo by potrebné testovať vzdialenosť $u$ na rozmedzie (0,1). Ak je hodnota $u$ záporná alebo väčšia ako jedna,  najbližší bod na priamke k bodu $P3$ sa nachádza mimo zadanej úsečky. 
+\begin{equation}
+u= \frac
+{\left (x3 -x1  \right )\left (x2-x1  \right )
++\left (y3-y1  \right )\left (y2-y1  \right )
++\left (z3-z1  \right )\left (z2-z1  \right )}
+{\left \| P2-P1 \right \|^{2}}
+    \label{eq:MinlinePointLine_subsSolved}
+\end{equation}
+
+
+Výsledná úsečka je tvorená počiatočným bodom $P$ a koncovým bodom $P3$.
+Pre získanie bodu na priamke, ktorý je najbližšie k bodu $P3$ je možné následne použiť operáciu pre získanie počiatočného bodu úsečky \ref{sec:begandendofline}.
+
+
+\begin{lstlisting}
+	MinLineBetweenPointAndLine(string lineName, Point p, Line l,
+	float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -367,8 +563,129 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 	\label{fig:1}
 \end{figure}
 
-\subsection{MinLineBetweenPointAndSurface}
-		MinLineBetweenPointAndSurface,//(string lineName, Point p, Surface s, bool visible = true)
+\subsection{Najkratšia úsečka medzi dvomi priamkami}
+Keďže v trojrozmernom priestore často nenastáva pretnutie dvoch úsečiek práve v jednom bode, je práve najkratšia úsečka medzi dvoma priamkami používaná ako priesečník priamok v trojrozmernom priestore.
+
+
+Hľadáme najkratšiu úsečku s bodmi $P_a$ a $P_b$, kde $P_a$ leží na priamke definovanou bodmi $P_1$ a $P_2$, a $P_b$ leží na priamke ktorá je definovaná bodmi $P_3$ a $P_4$.
+
+Pre bod $P_a$ môžeme napísať rovnicu  \ref{eq:MinlineLL_Pa}.
+\begin{equation}
+P_a=P_1 + u_a(P_2-P_1)
+    \label{eq:MinlineLL_Pa}
+\end{equation}
+
+Podobne pre bod $P_b$ rovnicu \ref{eq:MinlineLL_Pb}.
+\begin{equation}
+P_b=P_3 + u_b(P_4-P_3)
+    \label{eq:MinlineLL_Pb}
+\end{equation}
+
+Pri hľadaní najkratšej úsečky medzi týmito priamkami si stačí uvedomiť, že najkratšia úsečka bude na tieto priamky kolmá, čo nám umožňuje zapísať následovné rovnice  \ref{eq:MinlineLL_dotab}.
+
+\begin{equation}
+\begin{aligned}
+(P_a-P_b) \cdot (P_2-P_1) =0\\
+(P_a-P_b) \cdot (P_4-P_3) =0
+\end{aligned}
+    \label{eq:MinlineLL_dotab}
+\end{equation}
+
+Po doplnení  $P_a$ a $P_b$ do týchto rovníc získame rovnice \ref{eq:MinlineLL_dotabExp}.
+
+
+\begin{equation}
+\begin{aligned}
+((P_1 + u_a(P_2-P_1))-(P_3 + u_b(P_4-P_3))) \cdot (P_2-P_1) =0\\
+((P_1 + u_a(P_2-P_1))-(P_3 + u_b(P_4-P_3))) \cdot (P_4-P_3) =0
+\end{aligned}
+    \label{eq:MinlineLL_dotabExp}
+\end{equation}
+
+Keďže by tieto rovnice boli veľmi rozsiahle, je vhodné si pre riešenie tejto rovnice definovať nasledovnú substitúciu \ref{eq:MinlineLL_subsdmnop}.
+
+\begin{equation}
+d_{mnop}=(x_m - x_n)(x_o-x_p)+(y_m - y_n)(y_o-y_p)+(z_m - z_n)(z_o-z_p)
+    \label{eq:MinlineLL_subsdmnop}
+\end{equation}
+
+
+Pomocou tejto substitúcie sa dajú rovnice \ref{eq:MinlineLL_dotabExp} zapísať v nasledovne \ref{eq:MinlineLL_dotabExpshort}.
+
+
+\begin{equation}
+\begin{aligned}
+d_{1321} + u_a d_{2121} - u_b d_{4321} = 0\\
+d_{1343} + u_a d_{2143} - u_b d_{4343} = 0
+\end{aligned}
+    \label{eq:MinlineLL_dotabExpshort}
+\end{equation}
+
+Vyriešením týchto rovníc pre $u_a$ získame rovnicu \ref{eq:MinlineLL_dotabExpshortSolving}.
+\begin{equation}
+ u_a= \frac
+ {d_{1343} d_{4321} - d_{1321} d_{4343} }
+ {d_{2121} d_{4343} - d_{2143} d_{2143} }
+    \label{eq:MinlineLL_dotabExpshortSolving}
+\end{equation}
+
+Keď už poznáme $u_a$, pomocou dosadenia do rovnice \ref{eq:MinlineLL_dotabExpshortSolved_ub} získame $u_b$ 
+
+\begin{equation}
+\begin{aligned}
+u_b  = \frac{d_{1321} + u_a d_{2121}}{d_{4321}}
+\end{aligned}
+    \label{eq:MinlineLL_dotabExpshortSolved_ub}
+\end{equation}
+
+
+http://paulbourke.net/geometry/pointlineplane/
+\begin{lstlisting}
+	MinLineBetweenLineAndLine(string lineName, Line l1, Line l2, float visibility)
+\end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Line/DP Navrh operacii-1D - LineMinLL.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/2Line/DP Navrh operacii-1D - LineMinLL.pdf}
+	\caption{text}
+	\label{fig:1}
+\end{figure}
+
+
+\subsection{Najkratšia úsečka medzi plochou a bodom}
+http://paulbourke.net/geometry/pointlineplane/
+
+
+Rovina je definovaná pomocou normáli $\overrightarrow{N}=(A, B, C)$ a bodom na nej ležiacom $P_a=(x_a,y_a,z_a)$.
+Hľadaná úsečka má rovnaký smer ako normála plochy.
+Vzdialenosť medzi touto rovinou a bodom $P_b=(x_b,y_b,z_b)$ dostaneme pomocou vzorca \ref{eq:minlineSP}, kde premietneme vektor medzi bodom $P_b$ a bodom $P_a$ na normálu roviny $\overrightarrow{N}$ pomocou skalárneho súčinu. 
+\begin{equation}
+ distance = (P_b - P_a) \cdot \overrightarrow{N}
+    \label{eq:minlineSP}
+\end{equation}
+
+Bod $P$ získame vynásobením vektora $\overrightarrow{N}$ touto vzdialenosťou a následným odčítaním od bodu $P_b$ \ref{eq:minlineSP_P}.
+\begin{equation}
+ P = P_b - (\overrightarrow{N} * distance)
+    \label{eq:minlineSP_P}
+\end{equation}
+
+Výsledná úsečka má počiatočný bod na ploche a koncový bod $P_b$ 
+
+%Každý bod $P=(x,y,z)$ leží na rovine, ak splňuje \ref{eq:rovnicaPlochySP}.
+%\begin{equation}
+%Ax+By+Cz+D = 0
+%    \label{eq:rovnicaPlochySP}
+%\end{equation}
+
+
+
+
+\begin{lstlisting}
+	MinLineBetweenPointAndSurface(string lineName, Point p, Surface s,
+	    float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -379,15 +696,50 @@ Aby sa dalo pristupovať k začiatočnému a koncovému bodu úsečky, vytvoril 
 \end{figure}
 
 
-\subsection{MinLine}
-Alternatíva k predchádzajúcim operáciám.
-		///Alternative:
-		MinLine,//(string lineName, Object o1, Object o2, bool visible = true) //Supported are only : [Line,Line], [Point,Line], [Point, Surface]
+\subsection{Najkratšia úsečka}
+Aby bolo možné jednoduchšie pristupovať k predchádzajúcim operáciam, vytvoril som pre ne aj alternatívny zápis, ktorý identifikuje aké parametre dostal a podľa nich zvolí pomocou ktorej operácie má riešiť, teda najkratšia úsečka medzi bodom a priamkou, bodom a plochou alebo dvomi priamkami.
+
+\begin{lstlisting}
+	MinLine(string lineName, Line l, Point p, float visibility)
+	MinLine(string lineName, Line l1, Line l2, float visibility)
+	MinLine(string lineName, Surface s, point p, float visibility)
+\end{lstlisting}
 
 
 
-\subsection{SurfaceNormal}
-		SurfaceNormal,//(string lineName, Surface s, bool visible = true) // return normal vector of surface
+
+\subsection{Vektorový súčin}\label{subsec:crossproduct}
+Vytvára úsečku, ktorá je kolmá na zadané úsečky (priamky). Zadané úsečky sa najprv prevedú na vektory ($koncov\acute{y}\_bod - za\check{c}iato\check{c}n\acute{y}\_bod$).
+Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla ktorý zvierajú. 
+
+\begin{equation}
+ L_1 \times L_2 =  \{
+ y_{l1} z_{l2} + y_{l2} z_{l1} ,
+ z_{l1} x_{l2} + z_{l2} x_{l1} ,
+ x_{l1} y_{l2} + x_{l2} y_{l1}\}
+    \label{eq:cross}
+\end{equation}
+
+
+\begin{lstlisting}
+	CrossProduct(string lineName, Line l1, Line l2, float visibility)
+\end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Line/DP Navrh operacii-1D - LineCross.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/2Line/DP Navrh operacii-1D - LineCross.pdf}
+	\caption{text}
+	\label{fig:1}
+\end{figure}
+
+\subsection{Normála roviny}
+Normála plochy sa pri väčšine plošných objektov predvypočítava už pri vytváraní. Ak objekt nebol vytváraný už priamo so zadanou normálou, je potrebné ju vypočítať. Výpočet normály sa robí pomocou vektorového súčinu \ref{subsec:crossproduct}, ktorého výsledný vektor je potrebné normalizovať, teda vydeliť jeho dĺžkou.
+
+
+\begin{lstlisting}
+	SurfaceNormal(string lineName, Surface s, float visibility)
+\end{lstlisting}
 
 
 \begin{figure}[H]
@@ -400,8 +752,19 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 
-\subsection{LineRelocationByPoint}
-		LineRelocationByPoint,//(string lineName, Line l, Point p, bool visible = true)
+\subsection{Presun úsečky}
+Táto operácia umožňuje vytvoriť úsečku v rovnakom smere a rovnakej dĺžke ako zadaná úsečka $L$, ale počiatočný bod bude na pozícii zadaného bodu $P$. 
+Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}. 
+
+\begin{equation}
+    P2 = P + (P_{2L}-P_{1L})
+    \label{eq:LineReloc}
+\end{equation}
+
+
+\begin{lstlisting}
+	LineRelocationByPoint(string lineName, Line l, Point p, float visibility)
+\end{lstlisting}
 
 
 \begin{figure}[H]
@@ -414,18 +777,6 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 
-\subsection{CrossProduct}
-		CrossProduct,//(string lineName, Line l1, Line l2, bool visible = true)
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Line/DP Navrh operacii-1D - LineCross.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/2Line/DP Navrh operacii-1D - LineCross.pdf}
-	\caption{text}
-	\label{fig:1}
-\end{figure}
-
-
 
 
 
@@ -433,8 +784,10 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{AddWidthToLine}
-	AddWidthToLine,//(string surfaceName, Line l, float width, Point surfacePoint, short type, bool visible = true)
-	//AddWidthToLine(string surfaceName, Line l, float width, Vector3 normalVector, short type, bool visible = true)
+\begin{lstlisting}
+	AddWidthToLine(string surfaceName, Line l, float width, Point surfacePoint, short type, float visibility)
+	//AddWidthToLine(string surfaceName, Line l, float width, Vector3 normalVector, short type, float visibility)
+\end{lstlisting}
 //create Rectangle from Line l
 /*type:
 	0 - width/2 to left, width/2 to right
@@ -454,8 +807,11 @@ Alternatíva k predchádzajúcim operáciám.
 \end{figure}
 
 \subsection{Circle}
-	Circle,//(string surfaceName, Point center, float radius, Line lineNormal, bool visible = true)
-	//Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, bool visible = true)
+\begin{lstlisting}
+	Circle(string surfaceName, Point center, float radius, Line lineNormal, float visibility)
+	Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, 
+	    float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -467,8 +823,10 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{Triangle}
-	Triangle,//(string surfaceName, Line l, Point p, bool visible = true)
-	//Triangle(string surfaceName, Point p1, Point p2, Point p3, bool visible = true)
+\begin{lstlisting}
+	Triangle(string surfaceName, Line l, Point p, float visibility)
+	Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -480,9 +838,9 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{Rectangle}
-	//rectangle
-	Rectangle,//(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, bool visible = true)
-
+\begin{lstlisting}
+	Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
+\end{lstlisting}
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
@@ -493,7 +851,9 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{Shape}
-	Shape,//(string surfaceName, Point p1, Point p2, Point p3, ..., bool visible = true)//minimum 3 points 
+\begin{lstlisting}
+	Shape(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)//minimum 3 points
+\end{lstlisting} 
 
 \begin{figure}[H]
 	\centering
@@ -506,7 +866,9 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{Circumscribed}
-	Circumscribed,//(string surfaceName, Triangle t, bool visible = true) //Create circle over triangle
+\begin{lstlisting}
+	Circumscribed(string surfaceName, Triangle t, float visibility)
+\end{lstlisting} //Create circle over triangle
 
 \begin{figure}[H]
 	\centering
@@ -517,7 +879,9 @@ Alternatíva k predchádzajúcim operáciám.
 \end{figure}
 
 \subsection{Inscribed}
-	Inscribed,//(string surfaceName, Triangle t, bool visible = true)		//Create circle in triangle
+\begin{lstlisting}
+	Inscribed(string surfaceName, Triangle t, float visibility)
+\end{lstlisting}		//Create circle in triangle
 
 \begin{figure}[H]
 	\centering
@@ -537,8 +901,10 @@ Alternatíva k predchádzajúcim operáciám.
 
 
 \subsection{Pyramid}
-Pyramid,//(string objectName, Surface s, float distance, bool visible = true) //Create Pyramid by distance from center
-//Pyramid(string objectName, Surface s, Point p, bool visible = true) //Create Pyramid by Point
+\begin{lstlisting}
+    Pyramid(string objectName, Surface s, float distance, float visibility) //Create Pyramid by     distance from center
+    Pyramid(string objectName, Surface s, Point p, float visibility) //Create Pyramid by Point
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -549,8 +915,10 @@ Pyramid,//(string objectName, Surface s, float distance, bool visible = true) //
 \end{figure}
 
 
-\subsection{Extrude} \todo{Najst lepsi nazov}
-To3D,//(string objectName, Surface s, float distance, bool visible = true) //add width to 
+\subsection{Extrude} 
+\begin{lstlisting}
+    To3D(string objectName, Surface s, float distance, float visibility) //add width to 
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -562,7 +930,9 @@ To3D,//(string objectName, Surface s, float distance, bool visible = true) //add
 
 
 \subsection{SpericalCurvedSurface}
-SpericalCurvedSurface,//(string objectName, Surface s, float distance, bool visible = true)
+\begin{lstlisting}
+    SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -575,7 +945,9 @@ SpericalCurvedSurface,//(string objectName, Surface s, float distance, bool visi
 
 
 \subsection{Cylinder}
-Cylinder,//(string objectName, Line l, float radius, bool visible = true)
+\begin{lstlisting}
+Cylinder(string objectName, Line l, float radius, float visibility)
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -589,7 +961,7 @@ Cylinder,//(string objectName, Line l, float radius, bool visible = true)
 
 
 \chapter{Grafické rozhranie}
-Okrem programátorského rozhrania, som vytvoril aj jednoduché grafické užívateľské rozhranie pomocou knižnice QT. Toto grafické rozhranie umožňuje užívateľovi jednoduchšie správu tvorby geometrických objektov a to aj vďaka prehľadnému zoznamu použitých geometrických operácii a zoznamu referencovaných premenných. 
+Okrem programátorského rozhrania, som vytvoril aj jednoduché grafické užívateľské rozhranie pomocou knižnice QT. Toto grafické rozhranie umožňuje užívateľovi jednoduchšiu správu tvorby geometrických objektov a to aj vďaka prehľadnému zoznamu použitých geometrických operácii a zoznamu referencovaných premenných. 
 
 \section{Zoznam geometrických operácii}
 Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geometrické operácie pridať, upraviť, mazať a aj vložiť na ľubovoľné miesto. Tieto operácie je tiež možné ľubovolne presúvať. Keďže parametre operácii môžu odkazovať iba na predchádzajúce objekty, je nutné pri upravovaní, presúvaní a mazaní tieto parametre kontrolovať. Grafické rozhranie následne zobrazí, u ktorých operácii sa nachádzajú nevyhovujúce parametre a tieto objekty (a objekty na nich závislé) sa nebudú vykresľovať.
@@ -602,7 +974,7 @@ Dialógové okno umožňuje výber operácie,  ktorá sa má použiť, zo zoznam
 Po vybraní operácie zo zoznamu, sa zobrazia v pravej časti dialógového okna parametre vybranej operácie. Ak je dialógové okno v režime úpravy (okno sa zobrazilo po dvojkliku na zozname geometrických operácii), sú pri vybraní rovnakého typu operácie tieto parametre už predvyplnené hodnotami zvolenej operácie na úpravu.
 
 Ako prvý parameter je názov takto vytvoreného objektu, ktorý je pri novo vytváraných objektoch (režim okna pridanie alebo vloženie) predvyplnený, ale je možné ho upraviť na ľubovolnú hodnotu.  
-Po názve objektu nasleduje viditeľnosť objektu, ktorá určuje, ako bude takto vytvorený objekt viditeľný. Pri hodnote viditeľnosti na $<=0$ je objekt neviditeľný a pri hodnote $>=1$ je objekt plne viditeľný. Ak je táto hodnota v rozmedzí (0-1) je tento objekt priehľadný. 
+Po názve objektu nasleduje viditeľnosť objektu, ktorá určuje, ako bude takto vytvorený objekt viditeľný. Pri hodnote viditeľnosti $\leq0$ je objekt neviditeľný a pri hodnote $\geq1$ je objekt plne viditeľný. Ak je táto hodnota v rozmedzí (0-1) je tento objekt priehľadný. 
 Ďalej nasledujú samotné parametre operácie typu $Float,  Point, Line, Surface$ a ďalšie. Parametrom typu $Float$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nieje povinný a pre nereferencované parametre stačí nechať políčko prázdne. Parametre typu $Float$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v zozname referencovaných parametrov.
 V poslednom stĺpci sa nachádza nápoveda k danému parametru.
 
@@ -612,20 +984,33 @@ Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označe
 \begin{figure}[hbt]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Dialog.png}
-	\caption{Dialógové okno na pridanie, vloženie a úpravu operácii}
+	\caption{Dialógové okno na pridanie, vloženie a úpravu operácii. Ukážka úpravy bodu s názvom $p3$ s jednou chybne zadanou hodnotou }
 	\label{fig:dialogWindow}
 \end{figure}
 
 \chapter{Ostáva spracovať}
 
+\section{Boolovské operácie nad objemovými telesami}
+Vo výsledku by sa malo dať vytvárať nad objektami boolovské operácie ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Keďže je táto operácia náročná na spracovanie, rozhodol som sa využiť niektorú z voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z nich je \texttt{libigl}\cite{libigl} ale na integráciu do aplikácie zatiaľ nie sú dostatočne spracované objemové objekty.
+%https://stackoverflow.com/questions/24694845/c-library-for-mesh-to-mesh-intersection-what-is-available
+%https://libigl.github.io/tutorial/#boolean-operations-on-meshes
+
+libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
+Obľúbená je hlavne pre svoju jednoduchosť. Tvorba booluvských operácii nad mesh stačí zavolať funkciu: 
+
+\begin{lstlisting}
+igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
+\end{lstlisting}
 
 
-\section{použitie niektorého parametru z už vytvorených geometrických objektov.}
-
-\todo{príklad}
+\section{Použitie parametru z iného objektu}
+Aby sa dala 
 
 \section{Pridanie vykreslovania orientovaného grafu pomocou knižnice GraphViz}
 
 \todo{ukážka kde sa má tento graf vykresliť a ako bude vyzerat}
 
+\section{Vykreslovanie objektov v grafickom rozhraní pomocou QOpenGLWidget}
 
+\section{Pridanie textúry na objekt}
+Po dvojkliku v zozname objektov by sa mala otvoriť ponuka pre nahratie textúry a ďalšie úpravy
