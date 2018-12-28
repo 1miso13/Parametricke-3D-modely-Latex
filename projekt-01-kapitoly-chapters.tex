@@ -102,13 +102,13 @@ Moretti v roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadi
 
 \chapter{Geometrické tvary}
 \label{chapt:Geometrické_tvary}
-štruktúra objektov
+štruktúra objektov \ref{fig:StromDedicnosti}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=\textheight]{obrazky-figures/Diagram/Draw/DP Navrh operacii-Structure.pdf}
-	\caption{Štruktúra objektov. Zložitejšie obekty }
-	\label{fig:1}
+	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké informácie uchovávajú}
+	\label{fig:StromDedicnosti}
 \end{figure}
 
 
@@ -792,6 +792,7 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 
 \subsection{Obdĺžnik z úsečky}
 
+
 \begin{lstlisting}
 	RectangleFromLine(string surfaceName, Line l, float width,
 	    Point surfacePoint, short type, float visibility)
@@ -810,29 +811,38 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
+	\caption{Vytvorenie obdĺžnika pomocou úsečky.}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Circle}
+\subsection{Kruh}
 \begin{lstlisting}
-	Circle(string surfaceName, Point center, float radius, Line lineNormal, float visibility)
-	Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, 
+	Circle(string surfaceName, Point center, float radius, Line lineNormal,
 	    float visibility)
+	Circle(string surfaceName, Point center, Point outlinePoint,
+	    Point planePoint, float visibility)
 \end{lstlisting}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
+	\caption{Kruh pomocou priemeru a normály}
+	\label{fig:1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Circle2.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle2.pdf}
+	\caption{Kruh vytvorený troma bodmi, kde jeden bod udáva stred a pomocou ďalších dvoch bodov sa určí priemer a smer normály}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Triangle}
+\subsection{Trojuholník}
 \begin{lstlisting}
 	Triangle(string surfaceName, Line l, Point p, float visibility)
 	Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
@@ -840,64 +850,65 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceTriangle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Triangle.pdf}
+	\caption{Trojuholník}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Rectangle}
+\subsection{Obdĺžnik}
 \begin{lstlisting}
 	Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
 \end{lstlisting}
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
+	\caption{Obdĺžnik}
 	\label{fig:1}
 \end{figure}
 
 
 \subsection{Shape}
+Táto operácia má ako jediná premenlivý počet bodov.
 \begin{lstlisting}
 	Shape(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)//minimum 3 points
 \end{lstlisting} 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
+	\caption{Shape}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Circumscribed}
+\subsection{Opísaná kružnica}
 \begin{lstlisting}
 	Circumscribed(string surfaceName, Triangle t, float visibility)
-\end{lstlisting} //Create circle over triangle
+\end{lstlisting} 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
+	\caption{Opísaná kružnica}
 	\label{fig:1}
 \end{figure}
 
-\subsection{Inscribed}
+\subsection{Vpísaná kružnica}
 \begin{lstlisting}
 	Inscribed(string surfaceName, Triangle t, float visibility)
-\end{lstlisting}		//Create circle in triangle
+\end{lstlisting}	
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
+	\caption{Vpísaná kružnica}
 	\label{fig:1}
 \end{figure}
 
@@ -908,9 +919,9 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 
 
 \section{Priestorové operácie}
+Tieto operácie sú zatiaľ len koncepty a teda nie sú implementované.
 
-
-\subsection{Pyramid}
+\subsection{Pyramida}
 \begin{lstlisting}
     Pyramid(string objectName, Surface s, float distance, float visibility) //Create Pyramid by     distance from center
     Pyramid(string objectName, Surface s, Point p, float visibility) //Create Pyramid by Point
@@ -918,52 +929,61 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
+	\caption{text}
+	\label{fig:1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
 	\caption{text}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{Extrude} 
+\subsection{Extrudovanie} 
+Natiahne plochu do priestoru v smere normály. 
 \begin{lstlisting}
-    To3D(string objectName, Surface s, float distance, float visibility) //add width to 
+    Extrude(string objectName, Surface s, float distance, float visibility) 
 \end{lstlisting}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+	\caption{Extrudovanie}
 	\label{fig:1}
 \end{figure}
 
 
-\subsection{SpericalCurvedSurface}
+\subsection{Zagulatená plocha}
 \begin{lstlisting}
     SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
 \end{lstlisting}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+	\caption{Zagulatenie plochy}
 	\label{fig:1}
 \end{figure}
 
 
 
-\subsection{Cylinder}
+\subsection{Valec}
 \begin{lstlisting}
 Cylinder(string objectName, Line l, float radius, float visibility)
 \end{lstlisting}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-0D - Point2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointRelative.pdf}
-	\caption{text}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+	\caption{Valec}
 	\label{fig:1}
 \end{figure}
 
