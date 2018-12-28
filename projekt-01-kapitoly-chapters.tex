@@ -988,15 +988,15 @@ Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označe
 	\label{fig:dialogWindow}
 \end{figure}
 
-\chapter{Ostáva spracovať}
+\chapter{Záver}
 
-\section{Boolovské operácie nad objemovými telesami}
-Vo výsledku by sa malo dať vytvárať nad objektami boolovské operácie ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Keďže je táto operácia náročná na spracovanie, rozhodol som sa využiť niektorú z voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z nich je \texttt{libigl}\cite{libigl} ale na integráciu do aplikácie zatiaľ nie sú dostatočne spracované objemové objekty.
+\section{Logické operácie nad objemovými telesami}
+Vo výsledku by sa malo dať vytvárať nad objektami logické operácie ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Keďže sú tieto operácie náročné na spracovanie, rozhodol som sa využiť niektorú z voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z nich je \texttt{libigl}\cite{libigl} ale na integráciu do aplikácie zatiaľ nie sú dostatočne spracované objemové objekty.
 %https://stackoverflow.com/questions/24694845/c-library-for-mesh-to-mesh-intersection-what-is-available
 %https://libigl.github.io/tutorial/#boolean-operations-on-meshes
 
 libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
-Obľúbená je hlavne pre svoju jednoduchosť. Tvorba booluvských operácii nad mesh stačí zavolať funkciu: 
+Obľúbená je hlavne pre svoju jednoduchosť. Tvorba boolovských operácii nad mesh stačí zavolať funkciu: 
 
 \begin{lstlisting}
 igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
@@ -1004,7 +1004,7 @@ igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
 
 
 \section{Použitie parametru z iného objektu}
-Aby sa dala 
+Je potrebné navrhnúť, na ktoré hodnoty u objektoch sa bude dať odkazovať. 
 
 \section{Pridanie vykreslovania orientovaného grafu pomocou knižnice GraphViz}
 
