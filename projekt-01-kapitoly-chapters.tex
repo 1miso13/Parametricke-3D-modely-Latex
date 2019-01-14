@@ -34,7 +34,10 @@
 }
 
 \chapter{Úvod}
-Pre vsetkych 
+modelovanie 
+
+parametrické objekty 
+V dnešnej dobe sa počítače používajú na tvorbu geometrických modelov.
 
 Úlohou tejto práce je vytvoriť aplikáciu na tvorbu parametrických 3D modelov. Tieto modely sú tvorené pomocou geometrických operácii. Aplikácia by mala umožňovať prácu pomocou dvoch rozhraní, grafického a programátorského. Grafické rozhranie musí umožniť návrhárovi jednoduchú tvorbu modelov. Programátorské rozhranie umožní používať  Hodnota u parametrov sa dá ľubovolne meniť  
 
@@ -44,14 +47,15 @@ preco to moze byt uzitocne
 
 Druhá kapitola sa zaoberá parametrickými modelmi, ich tvorbou a ich históriou. V tejto kapitole tiež popisujem existujúce programy pre tvorbu parametrických modelov.
 
-Tretia kapitola sa zaoberá štruktúrami pre objekty.
 
-V štvrtej kapitole je výpis použitých geometrických operácii. Tieto operácie sú rozdelené na štyri druhy, podľa toho aký typ objektu vytvárajú. Sú to bodové geometrické operácie, úsečkové, plošné a objemové. U jednotlivých geometrických operácii je uvedené ako dané objekty vytvárajú, parametre ktoré jednotlivé operácie potrebujú a formát zápisu, ktorý sa používa na ich vytvorenie a v ktorom sa tiež ukladajú. Parametre typu $Float$ (desatinné čísla) je možné pomenovať, a tak na ne vytvoriť odkaz pre nastavovanie parametrov. 
+V tretej kapitole sú opísané geometrické objekty a geometrické operácie. Tieto operácie sú rozdelené na štyri druhy, podľa toho aký typ objektu vytvárajú. Sú to bodové geometrické operácie, úsečkové, plošné a objemové. 
+%U jednotlivých geometrických operácii je uvedené ako dané objekty vytvárajú, parametre ktoré jednotlivé operácie potrebujú a formát zápisu, ktorý sa používa na ich vytvorenie a v ktorom sa tiež ukladajú. Parametre typu $Float$ (desatinné čísla) je možné pomenovať, a tak na ne vytvoriť odkaz pre nastavovanie parametrov. 
+
 
 V piatej kapitole je opísané grafické užívateľské rozhranie, ktoré umožňuje jednoduchý návrh geometrických modelov. Grafické užívateľské rozhranie umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácii a pri geometrickej operácii ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený), upozorní užívateľa. Grafické užívateľské rozhranie pozostáva z dvoch okien. Jedno pre správu geometrických operácii, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
 
 \chapter{Parametrické 3d modely}
-\todo{táto cast práce sa zaobera}
+Táto časť práce sa zaoberá parametrickými modelmi. 
 
 Typickým návrhovým médiom je ceruzka a papier. Presnejšie ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idei. Dizajnéri musia pridávať a odoberať značky a spájať ich \cite{woodbury2010elements}.
 
@@ -108,23 +112,26 @@ Moretti v roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadi
 
 Geometrické objekty môžeme rozdeliť do 4 kategórii podľa dimenzii. Body, úsečky, plochy a objemové objekty.
 Zložitejšie objekty z vyšších rozmerov sú tvorené z objektov z nižších rozmerov. 
-Štruktúra objektov vytvára strom dedičnosti. \todo{upravit}
+%Parametre objektov  podľa toho do akej kategórie patria. 
+Niektoré geometrické objekty majú podobné parametre. Všetky plošné útvary majú normálu, stred a aj plochu a obvod. Všetky geometrické objekty majú svoje meno a priehľadnosť. Tieto parametre pre geometrické objekty sa dajú zobraziť pomocou stromu dedičnosti. Tento strom je zobrazený na obrázku \ref{fig:StromDedicnosti}. 
+Jednotlivé geometrické objekty obsahujú hodnoty ktoré sa zadávajú a hodnoty, ktoré sa dajú vypočítať. Napríklad ihlan s kruhovou podstavou obsahuje stred a polomer základne a výšku ihlanu. Vypočítanými hodnotami sú obvod a obsah základne alebo objem a plocha ihlanu.  
 
-štruktúra objektov \ref{fig:StromDedicnosti}.
+Táto kapitola pokračuje opisom jednotlivých geometrických objektov a operácii ktoré ich vytvárajú.
 
 \begin{figure}[]
 	\centering
 	\includegraphics[height=0.95\textheight]{obrazky-figures/Diagram/Draw/DP Navrh operacii-Structure.pdf}
-	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké informácie uchovávajú}
+	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké informácie uchováva}
 	\label{fig:StromDedicnosti}
 \end{figure}
 
 \section{Bod}
 Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické útvary sa dajú definovať ako množina bodov. Je to bezrozmerný geometrický útvar, teda nemá šírku, výšku ani hrúbku. Jeho úlohou je označiť pozíciu v priestore. Pozíciu bodu v trojrozmernom priestore udáva vzdialenosť na jednotlivých osiach ortogonálneho súradnicového systému X, Y a Z. Táto pozícia môže byť v absolútnom tvare, teda od stredu súradnicového systému alebo v relatívnom tvare, kedy je závislá na pozícii iného bodu.
 
+\todo{obrazok relativny a absolutny bod}
 
 \subsection*{Lineárna interpolácia}
-Výsledná pozícia bodu závisí od zadanej vzdia\-le\-nos\-ti od počiatočného bodu. Táto vzdia\-le\-nosť môže byť zadaná dĺžkou alebo percentuálne, kde 50\% vytvorí bod uprostred počiatočného a koncového bodu. 
+Lineárna interpolácia umožňuje získať bod, ktorý je na rovnakej priamke ako dva zadané body. Na obrázku \ref{fig:PointLinearInterpolation} sú tieto zobrazené modrou a zelenou farbou, výsledný bod je zobrazený žltou farbou. Pozícia bodu závisí od zadanej vzdia\-le\-nos\-ti od počiatočného bodu. Táto vzdia\-le\-nosť môže byť zadaná dĺžkou alebo percentuálne, kde 50\% vytvorí bod uprostred počiatočného a koncového bodu. 
 
 
 
@@ -192,8 +199,7 @@ Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto
 \end{figure}
 
 \subsection*{Stred plochy}
-Existuje množstvo možností ako získať stred objektu. Do tejto práce som vybral dve, metódu minimálneho štvorca a priemer všetkých bodov. Pri týchto operáciach sa prevádza 
-zadaná plocha z trojrozmerného priestoru  do dvojrozmerného.
+Existuje množstvo možností ako získať stred objektu. Do tejto práce som vybral dve metódy a to metódu minimálneho štvorca a priemer všetkých bodov. %Pri týchto operáciách sa prevádza zadaná plocha z trojrozmerného priestoru  do dvojrozmerného.
 
 
 \subsubsection{Minimálny štvorec}
@@ -217,7 +223,7 @@ Pri tejto operácii sa prejdú všetky body a zistí sa maximálna a minimálna 
 
 
 \subsubsection{Priemer všetkých bodov}
-Nájde aritmetický priemer všetkých bodov polygónu.
+Nájdenie aritmetického priemeru všetkých bodov polygónu.
 
 \begin{equation}
     \frac{1}{n} \sum_{i=0}^{n} p_i   
@@ -226,7 +232,7 @@ Nájde aritmetický priemer všetkých bodov polygónu.
 
 
 \subsubsection{Stred trojuholníku}
-Pre stred trojuholníka existuje v súčastnosti, podľa encyklopédie stredov trojuholníkov, až 30 714 trojuholníkových centier \cite{kimberling_2019}. Tento počet každým dňom narastá. Pre porovnanie, v roku 1994 bolo známych 101, v roku 1998 bolo 360 a v decembri 2004 bolo známych 3053 \cite{Kimberling_Center_2004}. Medzi najznámejšie patria ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N). Tieto body sú zaznačené na obrázku \ref{fig:TriangleCenters}.
+Aj pre trojuholník existuje množstvo typov stredu, v súčastnosti je podľa encyklopédie stredov trojuholníkov známych až 30 714 trojuholníkových centier \cite{kimberling_2019}. Tento počet každým dňom narastá. Pre porovnanie, v roku 1994 bolo známych 101, v roku 1998 bolo 360 a v decembri 2004 bolo známych 3053 \cite{Kimberling_Center_2004}. Medzi najznámejšie patria ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N). Tieto body sú zaznačené na obrázku \ref{fig:TriangleCenters}.
 
 
 \begin{figure}[H]
@@ -237,7 +243,7 @@ Pre stred trojuholníka existuje v súčastnosti, podľa encyklopédie stredov t
 \end{figure}
 
 
-\paragraph{Ťažisko (Centroid)}\mbox{} \\
+\paragraph{Ťažisko (Centroid)}\unskip \mbox{} \\*
 
 Ťažisko trojuholníku sa nachádza v priesečníku troch mediánov trojuholníka. Na nájdenie jeho pozície stačí vypočítať aritmetický priemer vrcholov trojuholníka v jednotlivých osiach \ref{eq:triangleCentroid} \cite{Centroid_of_a_Triangle}.
 
@@ -248,26 +254,27 @@ Pre stred trojuholníka existuje v súčastnosti, podľa encyklopédie stredov t
     \label{eq:triangleCentroid}
 \end{equation}
 
-\paragraph{Stred vpísanej kružnice (Incenter)}\mbox{} \\
+\paragraph{Stred vpísanej kružnice (Incenter)}\unskip \mbox{} \\*
+\label{sec:TriangleCenter}
 
 Z každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách priam\-ky boli rovnaké. Táto priamka sa nazýva tiež bisektor \cite{https://www.tutorvista.com/math/angle-bisector-theorem}. Stred vpísanej kružnice je na priesečníku týchto priamok.
 
 
 
 
-Stred vpísanej kružnice sa dá vypočítať aj pomocou vzorca \ref{eq:Incenter} \cite{Incenter_page_2011}.
+Stred vpísanej kružnice sa dá vypočítať aj pomocou vzorca \ref{eq:Incenter},kde  $A$, $B$, $C$ sú vrcholy trojuholníka a $a$, $b$, $c$ sú dĺžky strán protiľahlých k vrcholom $A$, $B$, $C$. \cite{Incenter_page_2011}.
 \begin{equation}
 O = \frac{a\ast A+b\ast  B +c \ast C}{a + b + c}
     \label{eq:Incenter}
 \end{equation}
-kde  $A$, $B$, $C$ sú vrcholy trojuholníka a $a$, $b$, $c$ sú dĺžky strán protiľahlých k vrcholom $A$, $B$, $C$.
 
-\paragraph{Stred opísanej kružnice (Circumcenter)}\mbox{} \\
+
+\paragraph{Stred opísanej kružnice (Circumcenter)}\unskip \mbox{} \\*
 
 U jednotlivých strán trojuholníka zistíme stred a z tohoto bodu urobíme kolmice. Kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k ľubovolnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
 
 
-\paragraph{Ortocentrum (Orthocenter)}\mbox{} \\
+\paragraph{Ortocentrum (Orthocenter)}\unskip \mbox{} \\*
 
 Ortocentrum sa nachádza na priesečníku kolmíc, ktoré prechádzajú cez protiľahlí vrchol. Tieto kolmice sa tiež nazývajú výškou trojuholníka. 
 Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je trojuholník v niektorom vrchole kolmý, nachádza sa v takomto vrchole aj ortocentrum trojuholníka.
@@ -275,7 +282,7 @@ Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je tro
 Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v mieste, kde sa tieto kolmice pretínajú. 
 
 
-\paragraph{Stred kružnice deviatich bodov (NinePointCenter)}\mbox{} \\
+\paragraph{Stred kružnice deviatich bodov (NinePointCenter)}\unskip \mbox{} \\*
 
 Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej a pripísaných kružníc \cite{NinePointTheorem} 
 
@@ -537,8 +544,9 @@ Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla ktorý zv
 	\label{fig:LineCross}
 \end{figure}
 
-\subsection*{Normála roviny}
-Normála plochy sa pri väčšine plošných objektov predvypočítava už pri vytváraní. Ak objekt nebol vytváraný už priamo so zadanou normálou, je potrebné ju vypočítať. Výpočet normály sa robí pomocou vektorového súčinu \ref{subsec:crossproduct}, ktorého výsledný vektor je potrebné normalizovať, teda vydeliť jeho dĺžkou.
+Táto operácia sa často používa aj v počítačovej grafike, kde sa používa pre výpočet normály plošných útvarov. Výsledný vektor sa musí normalizovať, teda vydeliť jeho dĺžkou.
+% \subsection*{Normála roviny}
+% Normála plochy sa pri väčšine plošných objektov predvypočítava už pri vytváraní. Ak objekt nebol vytváraný už priamo so zadanou normálou, je potrebné ju vypočítať. Výpočet normály sa robí pomocou vektorového súčinu \ref{subsec:crossproduct}, ktorého výsledný vektor je potrebné normalizovať, teda vydeliť jeho dĺžkou.
 
 
 
@@ -561,6 +569,60 @@ Koncový bod úsečky $P2$ získame pomocou vzorca \ref{eq:LineReloc}.
 % 	\caption{Presun úsečky}
 % 	\label{fig:1}
 % \end{figure}
+
+
+
+
+\subsection*{Kruh}
+Je viac metód ako zadávať kruh. Základným spôsobom pre vytvorenie kruhu je zadanie stredového bodu a priemeru. Keďže chceme aby bol kruh v trojrozmernom priestore, je potrebné zadať aj normálu. 
+
+Ďalším spôsobom je zadanie troch bodov, kde jeden z bodov označuje stred kruhu, druhý bod leží na obvode kruhu a tretí bod ležiaci na ploche kruhu tak, aby nebol s ostatnými bodmi na jednej priamke, označuje natočenie kruhu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle2.pdf}
+	\caption{Vľavo je kruh pomocou priemeru a normály a v pravo je kruh tvorený troma bodmi, kde jeden bod udáva stred a pomocou ďalších dvoch bodov sa určí priemer a smer normály}
+	\label{fig:SurfaceCreate Circle2}
+\end{figure}
+
+Alternatívne môžeme vyjadriť kruh pomocou opísanej (Circumscribed) alebo vpísanej (Inscribed) kružnice trojuholníka (obrázok \ref{fig:SurfaceInscribed Circumscribed Circle}). Postup pre nájdenie stredu opísanej a vpísanej kružnice trojuholníka je v časti \ref{sec:TriangleCenter}.
+
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
+	\caption{Opísaná a vpísaná kružnica trojuholníka}
+	\label{fig:SurfaceInscribed Circumscribed Circle}
+\end{figure}
+
+
+
+\subsection*{Obdĺžnik}
+Často používaným geometrickým objektom v grafike je aj obdĺžnik. Základnými parametrami obdĺžnikov je výška a šírka. Ďalším parametrom je často aj natočenie okolo normály. Keďže sa zaoberáme objektmi v trojrozmernom priestore, obdĺžnik musí definovať aj normála, ako je vidieť na obrázku \ref{fig:SurfaceCreate Rectangle}. 
+
+
+\begin{figure}[H]
+	\centering
+
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
+	\caption{Obdĺžnik}
+	\label{fig:SurfaceCreate Rectangle}
+\end{figure}
+
+
+
+\subsection*{Polygón}
+Keďže v reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov. 
+
+Všetky primitívne objekty, ako štvorec,kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v tomto prípade veľmi jednoduchý. stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}.
+
+
+
+
+
 
 
 
@@ -1295,103 +1357,100 @@ Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá p
 	\label{fig:SurfaceRectangleFromLine}
 \end{figure}
 
-\subsection{Kruh}
-\begin{lstlisting}
-	Circle(string surfaceName, Point center, float radius, Line lineNormal,
-	    float visibility)
-	Circle(string surfaceName, Point center, Point outlinePoint,
-	    Point planePoint, float visibility)
-\end{lstlisting}
+% \subsection{Kruh}
+% Je viac metód ako zadávať kruh. Základným spôsobom pre vytvorenie kruhu je zadanie stredového bodu a priemeru. Keďže chceme aby bol kruh v trojrozmernom priestore, je potrebné zadať aj normálu. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
-	\caption{Kruh pomocou priemeru a normály}
-	\label{fig:SurfaceCreate Circle}
-\end{figure}
+% Ďalším spôsobom je zadanie troch bodov, kde jeden z bodov označuje stred kruhu, druhý bod leží na obvode kruhu a tretí bod ležiaci na ploche kruhu tak, aby nebol s ostatnými bodmi na jednej priamke, označuje natočenie kruhu.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Circle2.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Circle2.pdf}
-	\caption{Kruh vytvorený troma bodmi, kde jeden bod udáva stred a pomocou ďalších dvoch bodov sa určí priemer a smer normály}
-	\label{fig:SurfaceCreate Circle2}
-\end{figure}
+% Alternatívne môžeme vyjadriť kruh pomocou opísanej (Circumscribed) alebo vpísanej (Inscribed) kružnice trojuholníka. Postup pre nájdenie stredu opísanej a vpísanej kružnice trojuholníka je v časti \ref{sec:TriangleCenter}.
+
+% \begin{lstlisting}
+% 	Circle(string surfaceName, Point center, float radius, Line lineNormal,
+% 	    float visibility)
+% 	Circle(string surfaceName, Point center, Point outlinePoint,
+% 	    Point planePoint, float visibility)
+% \end{lstlisting}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Circle.pdf}
+% 	\caption{}
+% 	\label{fig:SurfaceCreate Circle}
+% \end{figure}
 
 
-\subsection{Trojuholník}
-\begin{lstlisting}
-	Triangle(string surfaceName, Line l, Point p, float visibility)
-	Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
-\end{lstlisting}
+% \subsection{Trojuholník}
+% Trojuholník patrí medzi základné geometrické objekty. Trojuholník je tvorený troma 
+% \begin{lstlisting}
+% 	Triangle(string surfaceName, Line l, Point p, float visibility)
+% 	Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
+% \end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceTriangle.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Triangle.pdf}
-	\caption{Trojuholník}
-	\label{fig:SurfaceCreate Triangle}
-\end{figure}
-
-
-\subsection{Obdĺžnik}
-\begin{lstlisting}
-	Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
-\end{lstlisting}
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
-	\caption{Obdĺžnik}
-	\label{fig:SurfaceCreate Rectangle}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceTriangle.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Triangle.pdf}
+% 	\caption{Trojuholník}
+% 	\label{fig:SurfaceCreate Triangle}
+% \end{figure}
 
 
-\subsection{Polygón}
-Keďže v reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov.
-\begin{lstlisting}
-	Shape(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)//minimum 3 points
-\end{lstlisting} 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
-	\caption{Shape}
-	\label{fig:SurfaceCreate Shape}
-\end{figure}
+% \subsection{Obdĺžnik}
+% \begin{lstlisting}
+% 	Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
+% \end{lstlisting}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Rectangle.pdf}
+% 	\caption{Obdĺžnik}
+% 	\label{fig:SurfaceCreate Rectangle}
+% \end{figure}
 
 
+% \subsection{Polygón}
+% Keďže v reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov. 
 
-\subsection{Opísaná kružnica}
-\begin{lstlisting}
-	Circumscribed(string surfaceName, Triangle t, float visibility)
-\end{lstlisting} 
+% Všetky primitívne objekty, ako štvorec,kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v tomto prípade veľmi jednoduchý. stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}.
+% \begin{lstlisting}
+% 	Shape(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)//minimum 3 points
+% \end{lstlisting} 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
-	\caption{Opísaná kružnica}
-	\label{fig:SurfaceCircumscribed Circle}
-\end{figure}
-
-\subsection{Vpísaná kružnica}
-\begin{lstlisting}
-	Inscribed(string surfaceName, Triangle t, float visibility)
-\end{lstlisting}	
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
-	\caption{Vpísaná kružnica}
-	\label{fig:SurfaceInscribed Circle}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCreate Shape.pdf}
+% 	\caption{Shape}
+% 	\label{fig:SurfaceCreate Shape}
+% \end{figure}
 
 
 
+% \subsection{Opísaná kružnica}
+% \begin{lstlisting}
+% 	Circumscribed(string surfaceName, Triangle t, float visibility)
+% \end{lstlisting} 
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceCircumscribed Circle.pdf}
+% 	\caption{Opísaná kružnica}
+% 	\label{fig:SurfaceCircumscribed Circle}
+% \end{figure}
+
+% \subsection{Vpísaná kružnica}
+% \begin{lstlisting}
+% 	Inscribed(string surfaceName, Triangle t, float visibility)
+% \end{lstlisting}	
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceInscribed Circle.pdf}
+% 	\caption{Vpísaná kružnica}
+% 	\label{fig:SurfaceInscribed Circle}
+% \end{figure}
 
 
 
