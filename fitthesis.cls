@@ -801,7 +801,7 @@ Management}{\@fit@EN}%
 \fi
 \makedeclaration
 \clearpage
-\setcounter{tocdepth}{2}\setcounter{page}{1}
+\setcounter{tocdepth}{1}\setcounter{page}{1}
 }
 
 %-----------------------------------------------------------------------------
@@ -1091,10 +1091,12 @@ Management}{\@fit@EN}%
 % Left aligned column with a fixed width
 \newcolumntype{L}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
-\usepackage{todonotes}
+
 \usepackage{amssymb}
 \usepackage{grffile}
 \usepackage{url}
+\usepackage{afterpage}
+\usepackage{subfig}
 \endinput
 %%
 %% End of file `fitthesis.cls'.
