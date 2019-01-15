@@ -34,34 +34,34 @@
 }
 
 \chapter{Úvod}
-modelovanie 
+Typickým návrhovým médiom je ceruzka a papier. Presnejšie je to ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idei. Dizajnéri tieto značky pridávajú, odoberajú a spájajú ich.
 
-parametrické objekty 
-V~dnešnej dobe sa počítače používajú na tvorbu geometrických modelov.
 
-Úlohou tejto práce je vytvoriť aplikáciu na tvorbu parametrických 3D modelov. Tieto modely sú tvorené pomocou geometrických operácii. Aplikácia by mala umožňovať prácu pomocou dvoch rozhraní, grafického a programátorského. Grafické rozhranie musí umožniť návrhárovi jednoduchú tvorbu modelov. Programátorské rozhranie umožní používať  Hodnota u~parametrov sa dá ľubovolne meniť  
+Úlohou tejto práce je vytvoriť aplikáciu na tvorbu parametrických 3D modelov. Parametrické modelovanie využíva rôzne geometrické operácie na tvorbu modelov a umožňuje zmenu ich hodnôt, tzv. parametrov, v ľubovolnom čase. 
 
-osobny popis
+Aplikácia by mala umožňovať prácu pomocou dvoch rozhraní, programátorského a grafického. Programátorské rozhranie by malo slúžiť na využitie parametrických modelov v aplikáciach na výpočet hodnôt modelu a/alebo na zobrazenie modelu. Grafické rozhranie by malo umožniť návrhárovi jednoduchú tvorbu modelov. Hodnota u~parametrov v parametrickom modele sa dá ľubovolne meniť.
 
-preco to moze byt uzitocne 
+% osobny popis 
 
-Druhá kapitola sa zaoberá parametrickými modelmi, ich tvorbou a ich históriou. V~tejto kapitole tiež popisujem existujúce programy pre tvorbu parametrických modelov.
+% preco to moze byt uzitocne 
+
+Následujúca kapitola sa zaoberá parametrickými modelmi, ich tvorbou a ich históriou. V~tejto kapitole sú popísané existujúce programy pre tvorbu parametrických modelov.
 
 
 V~tretej kapitole sú opísané geometrické objekty a geometrické operácie. Tieto operácie sú rozdelené na štyri druhy, podľa toho aký typ objektu vytvárajú. Sú to bodové geometrické operácie, úsečkové, plošné a objemové. 
 %U jednotlivých geometrických operácii je uvedené ako dané objekty vytvárajú, parametre ktoré jednotlivé operácie potrebujú a formát zápisu, ktorý sa používa na ich vytvorenie a v ktorom sa tiež ukladajú. Parametre typu $Float$ (desatinné čísla) je možné pomenovať, a tak na ne vytvoriť odkaz pre nastavovanie parametrov. 
 
 
-V~piatej kapitole je opísané grafické užívateľské rozhranie, ktoré umožňuje jednoduchý návrh geometrických modelov. Grafické užívateľské rozhranie umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácii a pri geometrickej operácii ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený), upozorní užívateľa. Grafické užívateľské rozhranie pozostáva z~dvoch okien. Jedno pre správu geometrických operácii, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
+V~štvrtej kapitole je opísaný súčasný stav. Popis vytvárania geometrických modelov a aj popis grafického užívateľského rozhrania, ktoré umožňuje jednoduchý návrh geometrických modelov. Grafické užívateľské rozhranie umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácii a upozorní užívateľa pri geometrickej operácii, ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený). Grafické užívateľské rozhranie pozostáva z~dvoch okien. Jedno pre správu geometrických operácii, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
 
 \chapter{Parametrické 3d modely}
-Táto časť práce sa zaoberá parametrickými modelmi. 
+Táto časť práce sa zaoberá parametrickými modelmi. Ich históriou a existujúcimi systémami určenými na tvorbu parametrických modelov.
 
-Typickým návrhovým médiom je ceruzka a papier. Presnejšie ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idei. Dizajnéri musia pridávať a odoberať značky a spájať ich \cite{woodbury2010elements}.
+
 
 Konvenčné návrhové systémy fungujú práve na tomto princípe. Parametrické modelovanie predstavuje zásadnú zmenu. Značky ktoré sú základom návrhu spolu súvisia a vzájomne menia svoju pozíciu. Dizajnéri už nemusia iba pridávať a odoberať, ale môžu vytvárať medzi bodmi vzťahy a upravovať model, aby aj po zmazaní, časti závisiace od zmazaných častí mohli závisieť od častí ktoré zostali \cite{woodbury2010elements}. 
 
-Vďaka tomu, že sú parametrické modely vytvárané pomocou geometrických operácii. Keďže operácie sú závislé na výsledku inej operácie, pri zmene niektorého z~parametrov je potrebné model znova vytvoriť. Pre skrátenie času pre vytvorenie operácie je možné upravovať len operácie, ktoré boli touto zmenou dotknuté.
+% Vďaka tomu, že sú parametrické modely vytvárané pomocou geometrických operácii. Keďže operácie sú závislé na výsledku inej operácie, pri zmene niektorého z~parametrov je potrebné model znova vytvoriť. Pre skrátenie času pre vytvorenie operácie je možné upravovať len operácie, ktoré boli touto zmenou dotknuté.
 
 
 \todo{TODO}
@@ -102,15 +102,26 @@ Moretti v~roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadi
 
 
 
-\section{existujuce systemy}
+\section{Existujúce systémy}
 \todo{existujuce systemy}
+
+
+
+
+
+
+
+
+
+\subsection{Zhodnotenie existujúcich systémov}
+
 
 
 
 \chapter{Geometrické objekty a operácie}
 \label{chapt:Geometrické_tvary}
 
-Geometrické objekty môžeme rozdeliť do 4 kategórii podľa dimenzii. Body, úsečky, plochy a objemové objekty.
+Geometrické objekty môžeme rozdeliť do 4 kategórií podľa dimenzií. Body, úsečky, plochy a objemové objekty.
 Zložitejšie objekty z~vyšších rozmerov sú tvorené z~objektov z~nižších rozmerov. 
 %Parametre objektov  podľa toho do akej kategórie patria. 
 Niektoré geometrické objekty majú podobné parametre. Všetky plošné útvary majú normálu, stred a aj plochu a obvod. Všetky geometrické objekty majú svoje meno a priehľadnosť. Tieto parametre pre geometrické objekty sa dajú zobraziť pomocou stromu dedičnosti. Tento strom je zobrazený na obrázku \ref{fig:StromDedicnosti}. 
@@ -121,15 +132,22 @@ Táto kapitola pokračuje opisom jednotlivých geometrických objektov a operác
 \begin{figure}[]
 	\centering
 	\includegraphics[height=0.95\textheight]{obrazky-figures/Diagram/Draw/DP Navrh operacii-Structure.pdf}
-	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké informácie uchováva}
+	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké dáta uchováva. }
 	\label{fig:StromDedicnosti}
 \end{figure}
 
 \section{Bod}
 Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické útvary sa dajú definovať ako množina bodov. Je to bezrozmerný geometrický útvar, teda nemá šírku, výšku ani hrúbku. Jeho úlohou je označiť pozíciu v~priestore. Pozíciu bodu v~trojrozmernom priestore udáva vzdialenosť na jednotlivých osiach ortogonálneho súradnicového systému X, Y a Z. Táto pozícia môže byť v~absolútnom tvare, teda od stredu súradnicového systému alebo v~relatívnom tvare, kedy je závislá na pozícii iného bodu.
 
-\todo{obrazok relativny a absolutny bod}
 
+
+\begin{figure}[H]
+	\centering
+	%\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
+	\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - Point.pdf}}
+	\caption{Bod P$_1$ s absolútnou pozíciou a bod P$_2$ s relatívnou pozíciou od bodu P}
+	\label{fig:Point}
+\end{figure}
 \subsection*{Lineárna interpolácia}
 Lineárna interpolácia umožňuje získať bod, ktorý je na rovnakej priamke ako dva zadané body. Na obrázku \ref{fig:PointLinearInterpolation} sú tieto zobrazené modrou a zelenou farbou, výsledný bod je zobrazený žltou farbou. Pozícia bodu závisí od zadanej vzdia\-le\-nos\-ti od počiatočného bodu. Táto vzdia\-le\-nosť môže byť zadaná dĺžkou alebo percentuálne, kde 50\% vytvorí bod uprostred počiatočného a koncového bodu. 
 
@@ -139,8 +157,8 @@ Lineárna interpolácia umožňuje získať bod, ktorý je na rovnakej priamke a
 \begin{figure}[H]
 	\centering
 	%\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
-	\subfloat{\includegraphics[]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointLinearInterpolation.pdf}}
-	\caption{Lineárna interpolácia}
+	\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointLinearInterpolation.pdf}}
+	\caption{Lineárna interpolácia medzi bodmi.  \texttt{d} označuje vzdialenosť medzi zadanými bodmi a  \texttt{h} označuje vzdialenosť v akej sa má vykonať interpolácia }
 	\label{fig:PointLinearInterpolation}
 \end{figure}
 
@@ -194,7 +212,7 @@ Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto
 	\centering
 %	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointIntersection PlaneLine.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointIntersectionPlaneLine.pdf}
-	\caption{Priesečník plochy a priamky.}
+	\caption{Priesečník plochy a priamky. Vpravo je zobrazený prípad, ak sa priesečník nachádza na rovine, ale mimo plochy objektu}
 	\label{fig:GraphIntersection_Plane_Line}
 \end{figure}
 
@@ -257,7 +275,7 @@ Aj pre trojuholník existuje množstvo typov stredu, v~súčastnosti je podľa e
 \paragraph{Stred vpísanej kružnice (Incenter)}\unskip \mbox{} \\*
 \label{sec:TriangleCenter}
 
-Z~každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách priam\-ky boli rovnaké. Táto priamka sa nazýva tiež bisektor \cite{https://www.tutorvista.com/math/angle-bisector-theorem}. Stred vpísanej kružnice je na priesečníku týchto priamok.
+Z~každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách priam\-ky boli rovnaké. Táto priamka sa nazýva tiež bisektor \cite{angle_bisector_theorem}. Stred vpísanej kružnice je na priesečníku týchto priamok.
 
 
 
@@ -271,12 +289,12 @@ O = \frac{a\ast A+b\ast  B +c \ast C}{a + b + c}
 
 \paragraph{Stred opísanej kružnice (Circumcenter)}\unskip \mbox{} \\*
 
-U~jednotlivých strán trojuholníka zistíme stred a z~tohoto bodu urobíme kolmice. Kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovolnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
+U~jednotlivých strán trojuholníka zistíme stred a z~tohoto bodu urobíme kolmice. Kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovoľnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
 
 
 \paragraph{Ortocentrum (Orthocenter)}\unskip \mbox{} \\*
 
-Ortocentrum sa nachádza na priesečníku kolmíc, ktoré prechádzajú cez protiľahlí vrchol. Tieto kolmice sa tiež nazývajú výškou trojuholníka. 
+Ortocentrum sa nachádza na priesečníku kolmíc, ktoré prechádzajú cez protiľahlý vrchol. Tieto kolmice sa tiež nazývajú výškou trojuholníka. 
 Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je trojuholník v~niektorom vrchole kolmý, nachádza sa v~takomto vrchole aj ortocentrum trojuholníka.
 
 Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v~mieste, kde sa tieto kolmice pretínajú. 
@@ -284,7 +302,7 @@ Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie 
 
 \paragraph{Stred kružnice deviatich bodov (NinePointCenter)}\unskip \mbox{} \\*
 
-Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej a pripísaných kružníc \cite{NinePointTheorem} 
+Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej a pripísaných kružníc \cite{NinePointTheorem}.
 
 
 \newtheorem{theorem}{Teorém}
@@ -341,7 +359,7 @@ Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri 
 
 
 \section{Úsečky}
-Úsečka je časť priamky medzi dvoma koncovými bodmi. Aby bolo možné používať v~geometrických operáciach smerový vektor z~úsečky, môžeme tieto body označiť ako počiatočný a koncový, ako je zobrazené na obrázku \ref{fig:Navrh operacii-1D - Line}. 
+Úsečka je časť priamky medzi dvoma koncovými bodmi. Aby bolo možné používať v~geometrických operáciách smerový vektor z~úsečky, môžeme tieto body označiť ako počiatočný a koncový, ako je zobrazené na obrázku \ref{fig:Navrh operacii-1D - Line}. 
 %Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru.
 
 \begin{equation}
@@ -353,13 +371,13 @@ Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri 
 	\centering
 %	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Line/DP Navrh operacii-1D - Line.pdf}
 	\includegraphics[]{obrazky-figures/Diagram/Draw/2Line/DP Navrh operacii-1D - Line.pdf}
-	\caption{Zobrazenie úsečky s~bodom počiatočného a bodu koncového}
+	\caption{Zobrazenie úsečky s~počiatočným a koncovým bodom}
 	\label{fig:Navrh operacii-1D - Line}
 \end{figure}
 
 
 \subsection*{Zmena dĺžky úsečky}
-Vytvorenie úsečky so zadanou dĺžkou. Dĺžka môže byť zadaná vzdialenosťou alebo percentuálne od veľkosti zadanej úsečky. Výsledná úsečka je v~rovnakom smere a začína v~rovnakom bode ako zadaná úsečka. V~prípade ak veľkosť výslednej úsečky rovný jedna, táto geometrická operácia sa nazýva aj normalizácia.  
+Vytvorenie úsečky so zadanou dĺžkou. Dĺžka môže byť zadaná vzdialenosťou alebo percentuálne od veľkosti zadanej úsečky. Výsledná úsečka je v~rovnakom smere a začína v~rovnakom bode ako zadaná úsečka. V~prípade ak veľkosť výslednej úsečky rovná jedna, táto geometrická operácia sa nazýva aj normalizácia.  
 
 
 \begin{figure}[H]
@@ -386,7 +404,7 @@ Na získanie najkratšej vzdialenosti je potrebné nájsť kolmicu od bodu $P3(x
 \end{equation}
 Bod P označuje najbližší bod na priamke k~bodu $P3$.
 
-Substitúciou rovníc \ref{eq:MinlinePointLine_LineEq} a \ref{eq:MinlinePointLine_LinesEq} získame rovnicu \ref{eq:MinlinePointLine_subs}.
+Substitúciou rovnice \ref{eq:MinlinePointLine_LineEq} do \ref{eq:MinlinePointLine_LinesEq} získame rovnicu \ref{eq:MinlinePointLine_subs}.
 
 \begin{equation}
 [P3 - P1 - u(P2-P1)] \cdot (P2 - P1) = 0
@@ -570,7 +588,7 @@ Táto operácia sa často používa aj v~počítačovej grafike, kde sa použív
 % 	\label{fig:1}
 % \end{figure}
 
-
+\section{Plošné objekty}
 
 
 \subsection*{Kruh}
@@ -653,8 +671,148 @@ Všetky primitívne objekty, ako štvorec,kruh alebo trojuholník, sú konvexné
 
 
 
-\chapter{\todo{treba zmenit}}
-Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá pomocou nich vytvoriť. Sú to operácie bodové, úsečkové, plošné a priestorové. Na vytváranie zložitejších objektov je potrebné využívať jednoduchšie geometrické objekty. 
+
+
+
+
+
+
+
+
+
+
+\section{Objemové objekty}
+
+
+
+\subsection{Valec}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+	\caption{Valec}
+	\label{fig:ObjectsCylinder}
+\end{figure}
+
+\subsection*{Guľa}
+
+
+\subsection*{Ihlan}
+
+
+\begin{figure}[H]
+	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
+	\caption{Ihlany s rôznymi základmi.}
+	\label{fig:ObjectsCreate Pyramid}
+\end{figure}
+
+
+\subsection*{Extrudovanie} 
+Natiahne plochu do priestoru v~smere normály, čím získa na objeme. Táto operácia je zobrazená na obrázku \ref{fig:ObjectsExtrude}, kde je fialovým zobrazená počiatočná plocha a žltým je zobrazená extrudácia. Extrudáciu je možné spraviť tak, že sa vytvorí kópia zadanej plochy a posunie sa o zadaný offset. Tieto dve plochy sa následne prepoja. Častou modifikáciou je extrudovanie po krivke a/alebo postupná zmena veľkosti.
+
+
+\begin{figure}[H]
+	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+	\caption{Extrudovanie}
+	\label{fig:ObjectsExtrude}
+\end{figure}
+
+
+% \subsection{Zagulatená plocha}
+
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+% 	\caption{Zagulatenie plochy}
+% 	\label{fig:ObjectsSpherical curved surface}
+% \end{figure}
+
+
+
+
+
+\subsection*{Booleovské operácie nad objemovými telesami}
+Vo výsledku by sa malo dať vytvárať nad objektmi booleovské operácie ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Tieto operácie sú zobrazené aj na obrázku \ref{fig:BooleanOperation}, kde tvoria CSG (constructive solid geometry) strom. Keďže sú tieto operácie náročné na spracovanie, rozhodol som sa využiť niektorú z~voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z~nich je \texttt{libigl}\cite{libigl}.
+%https://stackoverflow.com/questions/24694845/c-library-for-mesh-to-mesh-intersection-what-is-available
+%https://libigl.github.io/tutorial/#boolean-operations-on-meshes
+
+Knižnica libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
+Obľúbená je hlavne pre svoju jednoduchosť. Pre tvorbu booleovských operácii nad mesh stačí zavolať funkciu \texttt{mesh\_boolean}.
+Táto funkcia pracuje s bodmy (V) a trojuholníkmi (F). Na výpočet zjednotenia (typ MESH\_BOOLEAN\_TYPE\_UNION) pre mesh $A=(VA,FA)$ a mesh $B=(VB,FB)$ je následnovná funkcia. Výsledok tejto funkcie sa uloží do mesh $C=(VC,FC)$,
+
+\begin{lstlisting}
+igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
+\end{lstlisting}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{obrazky-figures/cube-sphere-cylinders-csg-tree.jpg}
+	\caption{Skladanie objektov pomocou booleovských operácii}
+	\label{fig:BooleanOperation}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \chapter{\todo{treba zmenit}}
+% Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá pomocou nich vytvoriť. Sú to operácie bodové, úsečkové, plošné a priestorové. Na vytváranie zložitejších objektov je potrebné využívať jednoduchšie geometrické objekty. 
 
 % Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. Tento textový zápis operácii je taktiež uvedený pri jednotlivých operáciach nižšie. 
 % Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie a parametrami uvedenými v zátvorkách ( a ), oddelenými znakom \texttt{','}.  U jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
@@ -699,7 +857,7 @@ Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá p
 
 % \todo{ako vyzerá tento sled operácii pomocou graphviz a v 3D}
 
-Ďalej nasleduje výpis podporovaných geometrických operácii, kde pri každej operácii sa nachádza jednoduchý popis, formát zápisu tejto operácie a grafové zobrazenie vytvorenia tejto operácie.
+% Ďalej nasleduje výpis podporovaných geometrických operácii, kde pri každej operácii sa nachádza jednoduchý popis, formát zápisu tejto operácie a grafové zobrazenie vytvorenia tejto operácie.
 
 
 % \section{Bodové operácie}
@@ -1327,18 +1485,18 @@ Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá p
 
 
 
-\section{Plošné operácie}
-\todo{ku kazdej nieco napisat}
+% \section{Plošné operácie}
+% \todo{ku kazdej nieco napisat}
 
-\subsection{Obdĺžnik z~úsečky}
+% \subsection{Obdĺžnik z~úsečky}
 
 
-\begin{lstlisting}
-	RectangleFromLine(string surfaceName, Line l, float width,
-	    Point surfacePoint, short type, float visibility)
-	RectangleFromLine(string surfaceName, Line l, float width,
-	    Vector3 normalVector, short type, float visibility)
-\end{lstlisting}
+% \begin{lstlisting}
+% 	RectangleFromLine(string surfaceName, Line l, float width,
+% 	    Point surfacePoint, short type, float visibility)
+% 	RectangleFromLine(string surfaceName, Line l, float width,
+% 	    Vector3 normalVector, short type, float visibility)
+% \end{lstlisting}
 %//create Rectangle from Line l
 %/*type:
 %	0 - width/2 to left, width/2 to right
@@ -1349,13 +1507,13 @@ Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá p
 %	//if normal vector is same direction as line normal, exception occure
 %	//If surface point is not on line l, exception occure
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
-	\caption{Vytvorenie obdĺžnika pomocou úsečky.}
-	\label{fig:SurfaceRectangleFromLine}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Surface/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/3Plane/DP Navrh operacii-2D - SurfaceRectangleFromLine.pdf}
+% 	\caption{Vytvorenie obdĺžnika pomocou úsečky.}
+% 	\label{fig:SurfaceRectangleFromLine}
+% \end{figure}
 
 % \subsection{Kruh}
 % Je viac metód ako zadávať kruh. Základným spôsobom pre vytvorenie kruhu je zadanie stredového bodu a priemeru. Keďže chceme aby bol kruh v trojrozmernom priestore, je potrebné zadať aj normálu. 
@@ -1455,81 +1613,81 @@ Geometrické operácie sa delia na 4 typy podľa toho, aký typ objektu sa dá p
 
 
 
-\section{Priestorové operácie}
-Tieto operácie sú zatiaľ len koncepty a teda nie sú implementované.
+% \section{Priestorové operácie}
+% Tieto operácie sú zatiaľ len koncepty a teda nie sú implementované.
 
-\subsection{Pyramida}
-\begin{lstlisting}
-    Pyramid(string objectName, Surface s, float distance, float visibility) //Create Pyramid by     distance from center
-    Pyramid(string objectName, Surface s, Point p, float visibility) //Create Pyramid by Point
-\end{lstlisting}
+% \subsection{Pyramida}
+% \begin{lstlisting}
+%     Pyramid(string objectName, Surface s, float distance, float visibility) //Create Pyramid by     distance from center
+%     Pyramid(string objectName, Surface s, Point p, float visibility) //Create Pyramid by Point
+% \end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
-	\caption{text}
-	\label{fig:ObjectsCreate Pyramid by distance from center}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid by distance from center.pdf}
+% 	\caption{text}
+% 	\label{fig:ObjectsCreate Pyramid by distance from center}
+% \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
-	\caption{text}
-	\label{fig:ObjectsCreate Pyramid}
-\end{figure}
-
-
-\subsection{Extrudovanie} 
-Natiahne plochu do priestoru v~smere normály. 
-\begin{lstlisting}
-    Extrude(string objectName, Surface s, float distance, float visibility) 
-\end{lstlisting}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsExtrude.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsExtrude.pdf}
-	\caption{Extrudovanie}
-	\label{fig:ObjectsExtrude}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCreate Pyramid.pdf}
+% 	\caption{text}
+% 	\label{fig:ObjectsCreate Pyramid}
+% \end{figure}
 
 
-\subsection{Zagulatená plocha}
-\begin{lstlisting}
-    SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
-\end{lstlisting}
+% \subsection{Extrudovanie} 
+% Natiahne plochu do priestoru v~smere normály. 
+% \begin{lstlisting}
+%     Extrude(string objectName, Surface s, float distance, float visibility) 
+% \end{lstlisting}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
-	\caption{Zagulatenie plochy}
-	\label{fig:ObjectsSpherical curved surface}
-\end{figure}
-
-
-
-\subsection{Valec}
-\begin{lstlisting}
-Cylinder(string objectName, Line l, float radius, float visibility)
-\end{lstlisting}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCylinder.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCylinder.pdf}
-	\caption{Valec}
-	\label{fig:ObjectsCylinder}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsExtrude.pdf}
+% 	\caption{Extrudovanie}
+% 	\label{fig:ObjectsExtrude}
+% \end{figure}
 
 
-\chapter{Zhrnutie súčastného stavu}
+% \subsection{Zagulatená plocha}
+% \begin{lstlisting}
+%     SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
+% \end{lstlisting}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsSpherical curved surface.pdf}
+% 	\caption{Zagulatenie plochy}
+% 	\label{fig:ObjectsSpherical curved surface}
+% \end{figure}
+
+
+
+% \subsection{Valec}
+% \begin{lstlisting}
+% Cylinder(string objectName, Line l, float radius, float visibility)
+% \end{lstlisting}
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Volumetric/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/4Object/DP Navrh operacii-3D - ObjectsCylinder.pdf}
+% 	\caption{Valec}
+% 	\label{fig:ObjectsCylinder}
+% \end{figure}
+
+
+\chapter{Zhrnutie súčasného stavu}
 Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. 
 Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie a parametrami uvedenými v~zátvorkách \texttt{(} a \texttt{)}, oddelenými čiarkou. U~jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
 
-Pri parametroch typu $Float$ sa požaduje desatinné číslo, pri ostatných parametroch je potrebné uviesť názov existujúceho objektu, ktorý je rovnakého typu alebo podtypu aký je vyžadovaný. Tento textový zápis operácii s~požadovanými parametrami je uvedený v~prílohe\todo{todo ref príloha pre textovy zapis}.
+Pri parametroch typu $Float$ sa požaduje desatinné číslo, pri ostatných parametroch je potrebné uviesť názov existujúceho objektu, ktorý je rovnakého typu alebo podtypu aký je vyžadovaný. Tento textový zápis operácii s~požadovanými parametrami je uvedený v~prílohe~\ref{Priloha:zoznamGeometrickychOperacii}.
 
 Parametrom typu $Float$ je možné vytvoriť názov, pomocou ktorého sa bude dať na daný parameter neskôr pristupovať. 
 Tento názov sa zadáva za hodnotou parametra oddelený dvojbodkou.
@@ -1541,7 +1699,7 @@ Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvo
 \begin{itemize}
     \item Na vytvorenie ihlana je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
 	\begin{lstlisting}
-	Point(bod podstavy, 1, 2, 3 ,0);
+	Point(Stred podstavy, 1, 2, 3 ,0);
 	\end{lstlisting}
 	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu, je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadna úsečka vytvorená nie je, je potrebné ju vytvoriť. Úsečka sa skladá z~dvoch bodov a to počiatočného a koncového. Ako normála, sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
 
@@ -1553,24 +1711,32 @@ Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvo
 	\end{equation}
 
 	\begin{lstlisting}
-	Point(počiatočný bod, 0, 0, 0, 0);
-	Point(koncový bod, 1, 1, 1, 0);
-	Line(normála, počiatočný bod, koncový bod, 0);
+	Point(Počiatočný bod, 0, 0, 0, 0);
+	Point(Koncový bod, 1, 1, 1, 0);
+	Line(Normála, Počiatočný bod, Koncový bod, 0);
 	\end{lstlisting}
 	\item Keď už je normála vytvorená, je možné vytvoriť kruh s~polomerom 5.
 	\begin{lstlisting}
-	Circle(podstava, bod podstavy, 5, normála, 0) 
+	Circle(Podstava, Stred podstavy, 5, Normála, 0) 
 	\end{lstlisting}
 	\item Ostáva vytvoriť samotný ihlan s~výškou 10.
 	\begin{lstlisting}
-	Pyramid(ihlan s~kruhovou podstavou, podstava, 10, 1)
+	Pyramid(Ihlan, Podstava, 10, 1)
 	\end{lstlisting}
 \end{itemize}
 
 
-Tento sled operácii je možné zobraziť pomocou orientovaného grafu. Keďže operácie používajú iba už vytvorené objekty a ich hodnoty, teda žiadny objekt nie je závislý od iného objektu, ktorý je závislý na tomto objekte. Takýto graf sa tiež nazýva aj acyklický. 
+Tento sled operácii je možné zobraziť pomocou orientovaného grafu \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Tento graf zobrazuje len objektové parametre ktoré boli bol použité na vytvorenie objektu. Keďže operácie používajú iba už vytvorené objekty a ich hodnoty, teda žiadny objekt nemôže byť závislý od iného objektu, ktorý je závislý na tomto objekte. Takýto graf sa tiež nazýva aj acyklický. 
 
-\todo{ako vyzerá tento sled operácii pomocou graphviz a v~3D}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.6\textwidth]{obrazky-figures/DP Navrh operacii-Strom.pdf}
+	\caption{Sled operácii pomocou orientovaného grafu}
+	\label{fig:Sled_operácii_pomocou_orientovaného_grafu}
+\end{figure}
+
+
 
 
 
@@ -1621,19 +1787,9 @@ Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označe
 	\label{fig:dialogWindow}
 \end{figure}
 
-\chapter{časový plán}
+\chapter{Časový plán}
 
-\section{Logické operácie nad objemovými telesami}
-Vo výsledku by sa malo dať vytvárať nad objektami logické operácie ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Keďže sú tieto operácie náročné na spracovanie, rozhodol som sa využiť niektorú z~voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z~nich je \texttt{libigl}\cite{libigl} ale na integráciu do aplikácie zatiaľ nie sú dostatočne spracované objemové objekty.
-%https://stackoverflow.com/questions/24694845/c-library-for-mesh-to-mesh-intersection-what-is-available
-%https://libigl.github.io/tutorial/#boolean-operations-on-meshes
 
-libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
-Obľúbená je hlavne pre svoju jednoduchosť. Tvorba boolovských operácii nad mesh stačí zavolať funkciu: 
-
-\begin{lstlisting}
-igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
-\end{lstlisting}
 
 
 \section{Použitie parametru z~iného objektu}

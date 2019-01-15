@@ -1,0 +1,156 @@
+\chapter{Zoznam geometrických operácii}
+\label{Priloha:zoznamGeometrickychOperacii}
+Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie a 
+
+\section{Bodové operácie}
+\begin{itemize}
+		\item Point(string name, Point Parent = NULL, float visibility)
+% 		Create point on position 0,0,0. Parent - If entered, position is relative, else absolute
+
+		\item Point(string name, float X, float Y, float Z, Point Parent = NULL, float visibility) 
+% 		//-Create point on position XYZ
+% 		///	Example:
+% 		//		Point("Name of point 1")	//Name can by written with "" or '' or without, Point is on absolute position [0,0,0]
+% 		//		Point(NameOfPoint2)		//Name can by written with "" or '' or without
+% 		//		Point('NameOfPoint3')	//Name can by written with "" or '' or without
+% 		//		Point(NameOfPoint4,1.1,2.2,3.3)	//- Create visible Point on position [1,2,3] 
+% 		//		Point(NameOfPoint4,1,2,3,true)	//- Create visible Point on position [1,2,3] 
+% 		//		Point(NameOfPoint4,1,2,3,false)	//- Create invisible Point on position [1,2,3]
+% 		//		Point(NameOfPoint4,1,2,3,NameOfParentPoint,true)	//- Create visible Point on relative position [1,2,3] from ParentPoint
+
+		\item LinearInterpolationDist(string name, Point fromPoint, Point toPoint, float distance, float visibility)
+		
+		\item LinearInterpolationPerc(string name, Point fromPoint, Point toPoint, float percentage, float visibility)
+% 		//	Example:
+% 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 50%)	//- Create Point in middle of entered points
+% 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 25%)	//- Create Point on position with distance 20% of first point and 80% of second point
+% 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 100)	//- Create Point on position with distance 100 from first point in angle to second point 
+
+		\item Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, float visibility)
+% 		//	Alternative:
+% 		//	Intersection(string name, Line lineName, Sufrace surfaceName)
+% 		//	Example:
+% 		//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
+
+
+		\item SurfaceCenterBoundingSquare(string name, Surface surfaceName, float visibility) 
+% 		//Create point on position of middle of entered surface
+% 		//	Example:
+% 		//		SurfaceCenterBoundingSquare(PointName, Circle)	//- Create Point on center of Circle
+% 		//		SurfaceCenterBoundingSquare(PointName, Rectangle)	//- Create Point on middle of Rectangle
+% 		//		SurfaceCenter(PointName, Polygon)		//- Create Point on middle of Polygon 
+% 		//		SurfaceCenterBoundingSquare(PointName, Polygon)		//- Create Point on middle of Polygon - centroid (sum of points / count of points)
+
+		\item SurfaceCenterAverage(string name, Surface surfaceName, float visibility) //Create point on avarage position of entered surface
+
+		\item Centroid(string name, Triangle triangleName, float visibility)
+		
+		\item Incenter(string name, Triangle triangleName, float visibility)
+		
+		\item Circumcenter(string name, Triangle triangleName, float visibility)
+		
+		\item Orthocenter(string name, Triangle triangleName, float visibility)
+		
+		\item NinePointCenter(string name, Triangle triangleName, float visibility)
+
+		\item ObjectCenterBoundingBox(string name, Object3D ObjectName, float visibility) 
+% 		//Create point on position of middle of entered object
+
+		\item ObjectCenterAverage(string name, Object3D ObjectName, float visibility) 
+% 		//Create point on position of center of entered object
+
+		\item LineFirstPoint(string name, Line lineName, float visibility)
+		
+		\item LineSecondPoint(string name, Line lineName, float visibility)
+
+\end{itemize}
+
+\section{Úsečkové operácie}
+		
+\begin{itemize}
+		\item Line(string lineName, Point p1, Point p2, float visibility) 
+% 		//create line, where p1 is start point and p2 is end point
+
+		\item LineNormalize(string lineName, Line l, float visibility)
+
+		\item LineChangeLengthDist(string lineName, Line l, float distance, float visibility)
+		
+		\item LineChangeLengthPerc(string lineName, Line l, float percent, float visibility) 
+% 		//percent = (0;1>
+
+
+
+		
+		\item MinLineBetweenLineAndLine(string lineName, Line l1, Line l2, float visibility)
+		
+		\item MinLineBetweenPointAndLine(string lineName, Point p, Line l, float visibility)
+		
+		\item MinLineBetweenPointAndSurface(string lineName, Point p, Surface s, float visibility)
+
+
+		\item SurfaceNormal(string lineName, Surface s, float visibility) // return normal vector of surface
+
+
+
+		\item LineRelocationByPoint(string lineName, Line l, Point p, float visibility)
+
+% 		//OrthogonalLeastSquares(string lineName, Point p1, Point p2, Point p3, ..., float visibility) //min 3
+
+% 		//CrossProductLP(string lineName, Line l, Point p, float visibility)
+		\item CrossProduct(string lineName, Line l1, Line l2, float visibility)
+
+\end{itemize}
+
+\section{Plošné operácie}
+
+\begin{itemize}
+
+	\item RectangleFromLine(string surfaceName, Line l, float width, Point surfacePoint, short type, float visibility)
+	
+	\item RectangleFromLine(string surfaceName, Line l, float width, Vector3 normalVector, short type, float visibility)
+% //create Rectangle from Line l
+% /*type:
+% 	0 - width/2 to left, width/2 to right
+% 	1 - width to left
+% 	2 - width to right
+% 	*/
+% 	//if normal vector is not perpendicular to line, as normal is used normalized dot product between line and normal vector
+% 	//if normal vector is same direction as line normal, exception occure
+% 	//If surface point is not on line l, exception occure
+
+	\item Circle(string surfaceName, Point center, float radius, Line lineNormal, float visibility)
+	
+	\item Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, float visibility)
+
+	\item Triangle(string surfaceName, Line l, Point p, float visibility)
+	
+	\item Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
+
+
+	\item Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
+
+	\item Polygon(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)
+% 	//minimum 3 points 
+
+
+	\item Circumscribed(string surfaceName, Triangle t, float visibility) 
+	
+	\item Inscribed(string surfaceName, Triangle t, float visibility)		
+	
+\end{itemize}
+\section{Objemové operácie}
+
+\begin{itemize}
+\item Pyramid(string objectName, Surface s, float distance, float visibility) 
+% //Create Pyramid by distance from center
+
+\item Pyramid(string objectName, Surface s, Point p, float visibility) 
+% //Create Pyramid by Point
+
+\item Extrude(string objectName, Surface s, float distance, float visibility) 
+
+\item SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
+
+
+\item Cylinder(string objectName, Line l, float radius, float visibility)
+\end{itemize}
