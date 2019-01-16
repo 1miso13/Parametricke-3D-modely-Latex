@@ -1,13 +1,14 @@
 \chapter{Zoznam geometrických operácii}
 \label{Priloha:zoznamGeometrickychOperacii}
-Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie a 
+Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie, nasledované parametrami v zátvorkách, ktoré sú oddelené čiarkou.
 
 \section{Bodové operácie}
 \begin{itemize}
-		\item Point(string name, Point Parent = NULL, float visibility)
+
 % 		Create point on position 0,0,0. Parent - If entered, position is relative, else absolute
 
-		\item Point(string name, float X, float Y, float Z, Point Parent = NULL, float visibility) 
+		\item Point(string name, float X, float Y, float Z, float visibility) 
+		\item Point(string name, float X, float Y, float Z, Point Parent, float visibility) 
 % 		//-Create point on position XYZ
 % 		///	Example:
 % 		//		Point("Name of point 1")	//Name can by written with "" or '' or without, Point is on absolute position [0,0,0]
@@ -88,7 +89,8 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 		\item MinLineBetweenPointAndSurface(string lineName, Point p, Surface s, float visibility)
 
 
-		\item SurfaceNormal(string lineName, Surface s, float visibility) // return normal vector of surface
+		\item SurfaceNormal(string lineName, Surface s, float visibility) 
+% 		// return normal vector of surface
 
 
 
@@ -127,7 +129,9 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 	\item Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
 
 
-	\item Rectangle(string surfaceName, Point center, float X, float Y, float Roll/*[0,360]*/, Line normal, float visibility)
+	\item Rectangle(string surfaceName, Point center, float X, float Y, float Roll
+% 	/*[0,360]*/
+    , Line normal, float visibility)
 
 	\item Polygon(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)
 % 	//minimum 3 points 
