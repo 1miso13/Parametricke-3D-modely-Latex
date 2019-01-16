@@ -643,7 +643,7 @@ Výsledná úsečka má počiatočný bod na ploche a koncový bod $P_b$ \cite{b
 
 \subsection*{Vektorový súčin}\label{subsec:crossproduct}
 Vektorový súčin (cross product) vytvára úsečku, ktorá je kolmá na dané úsečky (priamky). Zadané úsečky sa najprv prevedú na vektory ($koncov\acute{y}\_bod - za\check{c}iato\check{c}n\acute{y}\_bod$).
-Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla ktorý zvierajú. 
+Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla, ktorý zvierajú. 
 
 \begin{equation}
  L_1 \times L_2 =  \{
@@ -735,7 +735,7 @@ Alternatívne môžeme vyjadriť kruh pomocou opísanej (Circumscribed) alebo vp
 \subsection*{Polygón}
 Keďže v~reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z~množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov. 
 
-Všetky primitívne objekty, ako štvorec,kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v~tomto prípade veľmi jednoduchý. stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}.
+Všetky primitívne objekty, ako štvorec, kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v~tomto prípade veľmi jednoduchý. Stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}.
 
 
 
@@ -1801,7 +1801,7 @@ Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvo
 	\begin{lstlisting}
 	Point(Stred podstavy, 1, 2, 3 ,0);
 	\end{lstlisting}
-	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu, je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadna úsečka vytvorená nie je, je potrebné ju vytvoriť. Úsečka sa skladá z~dvoch bodov a to počiatočného a koncového. Ako normála, sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
+	\item Na vytvorenie kruhu (podstavy ihlana) je potrebný polomer a normála. Ako normálu je možné využiť smer ľubovolnej úsečky, ale keďže zatiaľ žiadna úsečka vytvorená nie je, je potrebné ju vytvoriť. Úsečka sa skladá z~dvoch bodov a to počiatočného a koncového. Ako normála sa použije normalizovaný vektor medzi bodom počiatočným a koncovým \ref{eq:normalizacia_usecky}.
 
 	\begin{equation}
 		\overrightarrow{normal\_vector}=
@@ -1826,7 +1826,7 @@ Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvo
 \end{itemize}
 
 
-Tento sled operácií je možné zobraziť pomocou orientovaného grafu \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Tento graf zobrazuje len objektové parametre ktoré boli bol použité na vytvorenie objektu. Keďže operácie používajú iba už vytvorené objekty a ich hodnoty, teda žiadny objekt nemôže byť závislý od iného objektu, ktorý je závislý na tomto objekte. Takýto graf sa tiež nazýva aj acyklický. 
+Tento sled operácií je možné zobraziť pomocou orientovaného grafu \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Tento graf zobrazuje len objektové parametre, ktoré boli použité na vytvorenie objektu. Keďže operácie používajú iba už vytvorené objekty a ich hodnoty, teda žiadny objekt nemôže byť závislý od iného objektu, ktorý je závislý na tomto objekte. Takýto graf sa tiež nazýva aj acyklický. 
 
 
 \begin{figure}[H]
@@ -1869,16 +1869,16 @@ Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geomet
 
 
 \subsubsection{Pridanie, vloženie a úprava geometrických operácií} 
-Dialógové okno umožňuje výber operácie,  ktorá sa má použiť, zo zoznamu geometrických operácií. V~zozname sa nachádza názov geometrickej operácie, parametre ktoré operácia potrebuje a nápoveda, ktorá informuje užívateľa čo daná operácia robí.
+Dialógové okno umožňuje výber operácie,  ktorá sa má použiť, zo zoznamu geometrických operácií. V~zozname sa nachádza názov geometrickej operácie, parametre, ktoré operácia potrebuje a nápoveda, ktorá informuje užívateľa čo daná operácia robí.
 Po vybraní operácie zo zoznamu, sa zobrazia v~pravej časti dialógového okna parametre vybranej operácie. Ak je dialógové okno v~režime úpravy (okno sa zobrazilo po dvojkliku na zozname geometrických operácií), sú pri vybraní rovnakého typu operácie tieto parametre už predvyplnené hodnotami zvolenej operácie na úpravu.
 
 Ako prvý parameter je názov takto vytvoreného objektu, ktorý je pri novo vytváraných objektoch (režim okna pridanie alebo vloženie) predvyplnený, ale je možné ho upraviť na ľubovolnú hodnotu.  
 Po názve objektu nasleduje viditeľnosť objektu, ktorá určuje, ako bude takto vytvorený objekt viditeľný. Pri hodnote viditeľnosti $\leq0$ je objekt neviditeľný a pri hodnote $\geq1$ je objekt plne viditeľný. Ak je táto hodnota v~rozmedzí (0-1) je tento objekt priehľadný. 
-Ďalej nasledujú samotné parametre operácie typu $Float,  Point, Line, Surface$ a ďalšie. Parametrom typu $Float$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nieje povinný a pre nereferencované parametre stačí nechať políčko prázdne. Parametre typu $Float$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v~zozname referencovaných parametrov.
+Ďalej nasledujú samotné parametre operácie typu $Float,  Point, Line, Surface$ a ďalšie. Parametrom typu $Float$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nie je povinný a pre nereferencované parametre stačí nechať políčko prázdne. Parametre typu $Float$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v~zozname referencovaných parametrov.
 V~poslednom stĺpci sa nachádza nápoveda k~danému parametru.
 
 Po zadaní hodnoty sa overuje, či je táto hodnota valídna pre daný parameter. To zahŕňa testovanie, či hodnota zadaná parametru $Float$ je desatinné číslo a pri ostatných parametroch sa testuje, či existuje objekt s~rovnakým názvom ako bol zadaný a či je tento objekt správnym typom prípadne podtypom (viac o~typoch objektov v~kapitole  \ref{chapt:Geometrické_tvary}). Tiež sa testuje aj názov objektu a názov referencovaného parametra na unikátnosť.
-Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označené červenou farbou pozadia, čo upozorňuje užívateľa na chybu. Ak je hodnota valídna, políčko sa označí zeleným pozadím. Prázdne políčko je označené bielim pozadím. 
+Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označené červenou farbou pozadia, čo upozorňuje užívateľa na chybu. Ak je hodnota valídna, políčko sa označí zeleným pozadím. Prázdne políčko je označené bielym pozadím. 
 
 \begin{figure}[hbt]
 	\centering
@@ -1891,13 +1891,13 @@ Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označe
 
 % \section{Použitie parametru z~iného objektu}
 % Je potrebné navrhnúť, na ktoré hodnoty u~objektoch sa bude dať odkazovať. 
-Aby nebolo potrebné vytvárať veľké množstvo parametrov modelu, niektoré hodnoty by mohli byť závislé na inej hodnote. Napríklad, ak je množstvo parametrov ktoré musia mať rovnakú hodnotu, je postačujúce vytvoriť iba jeden parameter a ostatné hodnoty ostatných parametrov by boli na tomto parametre závislé. 
+Aby nebolo potrebné vytvárať veľké množstvo parametrov modelu, niektoré hodnoty by mohli byť závislé na inej hodnote. Napríklad, ak je množstvo parametrov, ktoré musia mať rovnakú hodnotu, je postačujúce vytvoriť iba jeden parameter a hodnoty ostatných parametrov by boli na tomto parametre závislé. 
 
-Ako už bolo spomenuté vyššie, geometrické operácie vytvárajú acyklický orientovaný graf. Tento graf je vhodné užívateľovi zobraziť. Takýto graf je zobrazený aj na obrázku \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Vhodným nástrojom pre tvorbu grafov je knižnica GraphViz. Táto knižnica umožňuje rozmiestnenie jednotlivých vrcholov tak, aby sa hrany grafu príliš nekrížili. 
+Ako už bolo spomenuté vyššie, geometrické operácie vytvárajú acyklický orientovaný graf. Tento graf je vhodné užívateľovi zobraziť. Zobrazený je aj na obrázku \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Vhodným nástrojom pre tvorbu grafov je knižnica GraphViz. Táto knižnica umožňuje rozmiestnenie jednotlivých vrcholov tak, aby sa hrany grafu príliš nekrížili. 
 
 
 % \section{Vykreslovanie objektov v~grafickom rozhraní pomocou QOpenGLWidget}
 Následne je potrebné tento model vykresliť. Knižnica Qt, pomocou ktorej je vytvorené grafické užívateľské rozhranie,  umožňuje vykresľovať grafické modely pomocou OpenGL vo widgete QOpenGLWidget.
 
 % \section{Pridanie textúry na objekt}
-Aby neboli všetky objekty len jednej farby, je vhodné na jednotlivé objekty v~geometrickom modeli zvoliť farbu, prípadne textúru. Napríklad po dvojkliku v~zozname objektov by sa mohla otvoriť ponuka pre úpravy objektu, medzi ktorými by mohlo byť zvolenie farby, nahratie textúry a rôzne ďalšie možnosti.
+Aby neboli všetky objekty len jednej farby, je vhodné na jednotlivé objekty v~geometrickom modeli zvoliť farbu, prípadne textúru. Napríklad po dvojkliku v~zozname objektov by sa mohla otvoriť ponuka, pre úpravy objektu, medzi ktorými by mohlo byť zvolenie farby, nahratie textúry a rôzne ďalšie možnosti.
