@@ -369,6 +369,7 @@ Aj pre trojuholník existuje množstvo typov stredu. V~súčastnosti je podľa e
     \label{eq:triangleCentroid}
 \end{equation}
 
+ \mbox{} \\*
 \paragraph{Stred vpísanej kružnice (Incenter)}\unskip \mbox{} \\*
 \label{sec:TriangleCenter}
 
@@ -384,10 +385,11 @@ O = \frac{a\ast A+b\ast  B +c \ast C}{a + b + c}
 \end{equation}
 
 
+ \mbox{} \\*
 \paragraph{Stred opísanej kružnice (Circumcenter)}\unskip \mbox{} \\*
 
-U~jednotlivých strán trojuholníka zistíme stred a z~tohto bodu urobíme kolmice. Kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovoľnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
-
+U~jednotlivých strán trojuholníka zistíme stred a z~tohto bodu urobíme kolmice. Tam kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovoľnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
+ \mbox{} \\*
 
 \paragraph{Ortocentrum (Orthocenter)}\unskip \mbox{} \\*
 
@@ -397,6 +399,7 @@ Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je tro
 Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v~mieste, kde sa tieto kolmice pretínajú. 
 
 
+ \mbox{} \\*
 \paragraph{Stred kružnice deviatich bodov (NinePointCenter)}\unskip \mbox{} \\*
 
 Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej a pripísaných kružníc \cite{NinePointTheorem}.
@@ -531,10 +534,10 @@ Výsledná úsečka je tvorená bodmi $P$ a $P3$ \cite{bourke_Point_Line_Plane}.
 \end{figure}
 
 \subsection*{Najkratšia úsečka medzi dvomi priamkami}
-Keďže v~trojrozmernom priestore často nenastáva pretnutie dvoch úsečiek práve v~jednom bode, je práve najkratšia úsečka medzi dvoma priamkami používaná ako priesečník priamok v~trojrozmernom priestore.
+Keďže v~trojrozmernom priestore často nenastáva pretnutie dvoch úsečiek v~jednom bode, je práve najkratšia úsečka medzi dvoma priamkami používaná ako priesečník priamok v~trojrozmernom priestore.
 
 
-Hľadáme najkratšiu úsečku s~bodmi $P_a$ a $P_b$, kde $P_a$ leží na priamke definovanou bodmi $P_1$ a $P_2$, a $P_b$ leží na priamke ktorá je definovaná bodmi $P_3$ a $P_4$.
+Hľadáme najkratšiu úsečku s~bodmi $P_a$ a $P_b$, kde $P_a$ leží na priamke definovanou bodmi $P_1$ a $P_2$, a $P_b$ leží na priamke, ktorá je definovaná bodmi $P_3$ a $P_4$.
 
 Pre bod $P_a$ môžeme napísať rovnicu  \ref{eq:MinlineLL_Pa}.
 \begin{equation}
@@ -1859,7 +1862,7 @@ Tento sled operácií je možné zobraziť pomocou orientovaného grafu \ref{fig
 \section{Grafické rozhranie}
 Okrem programátorského rozhrania, som vytvoril aj jednoduché grafické užívateľské rozhranie pomocou knižnice QT. Toto grafické rozhranie umožňuje užívateľovi jednoduchšiu správu tvorby geometrických objektov a to aj vďaka prehľadnému zoznamu použitých geometrických operácií a zoznamu referencovaných premenných. 
 
-\subsection{Zoznam geometrických operácií}
+\subsection*{Zoznam geometrických operácií}
 Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geometrické operácie pridať, upraviť, mazať a aj vložiť na ľubovoľné miesto. Tieto operácie je tiež možné ľubovolne presúvať. Keďže parametre operácií môžu odkazovať iba na predchádzajúce objekty, je nutné pri upravovaní, presúvaní a mazaní tieto parametre kontrolovať. Grafické rozhranie následne zobrazí, u~ktorých operácií sa nachádzajú nevyhovujúce parametre a tieto objekty (a objekty na nich závislé) sa nebudú vykresľovať.
 
 % \todo{Zobrazenie grafického rozhrania}
