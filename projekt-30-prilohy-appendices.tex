@@ -7,8 +7,8 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 
 % 		Create point on position 0,0,0. Parent - If entered, position is relative, else absolute
 
-		\item Point(string name, float X, float Y, float Z, float visibility) 
-		\item Point(string name, float X, float Y, float Z, Point Parent, float visibility) 
+		\item Point(string name, expression X, expression Y, expression Z, RRGGBBAA color) 
+		\item Point(string name, expression X, expression Y, expression Z, Point Parent, RRGGBBAA color) 
 % 		//-Create point on position XYZ
 % 		///	Example:
 % 		//		Point("Name of point 1")	//Name can by written with "" or '' or without, Point is on absolute position [0,0,0]
@@ -19,22 +19,22 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 		//		Point(NameOfPoint4,1,2,3,false)	//- Create invisible Point on position [1,2,3]
 % 		//		Point(NameOfPoint4,1,2,3,NameOfParentPoint,true)	//- Create visible Point on relative position [1,2,3] from ParentPoint
 
-		\item LinearInterpolationDist(string name, Point fromPoint, Point toPoint, float distance, float visibility)
+		\item LinearInterpolationDist(string name, Point fromPoint, Point toPoint, expression distance, RRGGBBAA color)
 		
-		\item LinearInterpolationPerc(string name, Point fromPoint, Point toPoint, float percentage, float visibility)
+		\item LinearInterpolationPerc(string name, Point fromPoint, Point toPoint, expression percentage, RRGGBBAA color)
 % 		//	Example:
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 50%)	//- Create Point in middle of entered points
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 25%)	//- Create Point on position with distance 20% of first point and 80% of second point
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 100)	//- Create Point on position with distance 100 from first point in angle to second point 
 
-		\item Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, float visibility)
+		\item Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, RRGGBBAA color)
 % 		//	Alternative:
 % 		//	Intersection(string name, Line lineName, Sufrace surfaceName)
 % 		//	Example:
 % 		//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
 
 
-		\item SurfaceCenterBoundingSquare(string name, Surface surfaceName, float visibility) 
+		\item SurfaceCenterBoundingSquare(string name, Surface surfaceName, RRGGBBAA color) 
 % 		//Create point on position of middle of entered surface
 % 		//	Example:
 % 		//		SurfaceCenterBoundingSquare(PointName, Circle)	//- Create Point on center of Circle
@@ -42,64 +42,64 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 		//		SurfaceCenter(PointName, Polygon)		//- Create Point on middle of Polygon 
 % 		//		SurfaceCenterBoundingSquare(PointName, Polygon)		//- Create Point on middle of Polygon - centroid (sum of points / count of points)
 
-		\item SurfaceCenterAverage(string name, Surface surfaceName, float visibility) //Create point on avarage position of entered surface
+		\item SurfaceCenterAverage(string name, Surface surfaceName, RRGGBBAA color) %//Create point on avarage position of entered surface
 
-		\item Centroid(string name, Triangle triangleName, float visibility)
+		\item Centroid(string name, Triangle triangleName, RRGGBBAA color)
 		
-		\item Incenter(string name, Triangle triangleName, float visibility)
+		\item Incenter(string name, Triangle triangleName, RRGGBBAA color)
 		
-		\item Circumcenter(string name, Triangle triangleName, float visibility)
+		\item Circumcenter(string name, Triangle triangleName, RRGGBBAA color)
 		
-		\item Orthocenter(string name, Triangle triangleName, float visibility)
+		\item Orthocenter(string name, Triangle triangleName, RRGGBBAA color)
 		
-		\item NinePointCenter(string name, Triangle triangleName, float visibility)
+		\item NinePointCenter(string name, Triangle triangleName, RRGGBBAA color)
 
-		\item ObjectCenterBoundingBox(string name, Object3D ObjectName, float visibility) 
+		\item ObjectCenterBoundingBox(string name, Object3D ObjectName, RRGGBBAA color) 
 % 		//Create point on position of middle of entered object
 
-		\item ObjectCenterAverage(string name, Object3D ObjectName, float visibility) 
+		\item ObjectCenterAverage(string name, Object3D ObjectName, RRGGBBAA color) 
 % 		//Create point on position of center of entered object
 
-		\item LineFirstPoint(string name, Line lineName, float visibility)
+		\item LineFirstPoint(string name, Line lineName, RRGGBBAA color)
 		
-		\item LineSecondPoint(string name, Line lineName, float visibility)
+		\item LineSecondPoint(string name, Line lineName, RRGGBBAA color)
 
 \end{itemize}
 
 \section{Úsečkové operácie}
 		
 \begin{itemize}
-		\item Line(string lineName, Point p1, Point p2, float visibility) 
+		\item Line(string lineName, Point p1, Point p2, RRGGBBAA color) 
 % 		//create line, where p1 is start point and p2 is end point
 
-		\item LineNormalize(string lineName, Line l, float visibility)
+		\item LineNormalize(string lineName, Line l, RRGGBBAA color)
 
-		\item LineChangeLengthDist(string lineName, Line l, float distance, float visibility)
+		\item LineChangeLengthDist(string lineName, Line l, expression distance, RRGGBBAA color)
 		
-		\item LineChangeLengthPerc(string lineName, Line l, float percent, float visibility) 
+		\item LineChangeLengthPerc(string lineName, Line l, expression percent, RRGGBBAA color) 
 % 		//percent = (0;1>
 
 
 
 		
-		\item MinLineBetweenLineAndLine(string lineName, Line l1, Line l2, float visibility)
+		\item MinLineBetweenLineAndLine(string lineName, Line l1, Line l2, RRGGBBAA color)
 		
-		\item MinLineBetweenPointAndLine(string lineName, Point p, Line l, float visibility)
+		\item MinLineBetweenPointAndLine(string lineName, Point p, Line l, RRGGBBAA color)
 		
-		\item MinLineBetweenPointAndSurface(string lineName, Point p, Surface s, float visibility)
+		\item MinLineBetweenPointAndSurface(string lineName, Point p, Surface s, RRGGBBAA color)
 
 
-		\item SurfaceNormal(string lineName, Surface s, float visibility) 
+		\item SurfaceNormal(string lineName, Surface s, RRGGBBAA color) 
 % 		// return normal vector of surface
 
 
 
-		\item LineRelocationByPoint(string lineName, Line l, Point p, float visibility)
+		\item LineRelocationByPoint(string lineName, Line l, Point p, RRGGBBAA color)
 
-% 		//OrthogonalLeastSquares(string lineName, Point p1, Point p2, Point p3, ..., float visibility) //min 3
+% 		//OrthogonalLeastSquares(string lineName, Point p1, Point p2, Point p3, ..., RRGGBBAA color) //min 3
 
-% 		//CrossProductLP(string lineName, Line l, Point p, float visibility)
-		\item CrossProduct(string lineName, Line l1, Line l2, float visibility)
+% 		//CrossProductLP(string lineName, Line l, Point p, RRGGBBAA color)
+		\item CrossProduct(string lineName, Line l1, Line l2, RRGGBBAA color)
 
 \end{itemize}
 
@@ -107,9 +107,9 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 
 \begin{itemize}
 
-	\item RectangleFromLine(string surfaceName, Line l, float width, Point surfacePoint, short type, float visibility)
+	\item RectangleFromLine(string surfaceName, Line l, expression width, Point surfacePoint, short type, RRGGBBAA color)
 	
-	\item RectangleFromLine(string surfaceName, Line l, float width, Vector3 normalVector, short type, float visibility)
+	\item RectangleFromLine(string surfaceName, Line l, expression width, Vector3 normalVector, short type, RRGGBBAA color)
 % //create Rectangle from Line l
 % /*type:
 % 	0 - width/2 to left, width/2 to right
@@ -120,41 +120,42 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 	//if normal vector is same direction as line normal, exception occure
 % 	//If surface point is not on line l, exception occure
 
-	\item Circle(string surfaceName, Point center, float radius, Line lineNormal, float visibility)
+	\item Circle(string surfaceName, Point center, expression radius, Line lineNormal, RRGGBBAA color)
 	
-	\item Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, float visibility)
+	\item Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)
 
-	\item Triangle(string surfaceName, Line l, Point p, float visibility)
+	\item Triangle(string surfaceName, Line l, Point p, RRGGBBAA color)
 	
-	\item Triangle(string surfaceName, Point p1, Point p2, Point p3, float visibility)
+	\item Triangle(string surfaceName, Point p1, Point p2, Point p3, RRGGBBAA color)
 
 
-	\item Rectangle(string surfaceName, Point center, float X, float Y, float Roll
+	\item Rectangle(string surfaceName, Point center, expression X, expression Y, expression Roll
 % 	/*[0,360]*/
-    , Line normal, float visibility)
+    , Line normal, RRGGBBAA color)
 
-	\item Polygon(string surfaceName, Point p1, Point p2, Point p3, ..., float visibility)
+	\item Polygon(string surfaceName, Point p1, Point p2, Point p3, ..., RRGGBBAA color)
 % 	//minimum 3 points 
 
 
-	\item Circumscribed(string surfaceName, Triangle t, float visibility) 
+	\item Circumscribed(string surfaceName, Triangle t, RRGGBBAA color) 
 	
-	\item Inscribed(string surfaceName, Triangle t, float visibility)		
+	\item Inscribed(string surfaceName, Triangle t, RRGGBBAA color)		
 	
 \end{itemize}
 \section{Objemové operácie}
 
 \begin{itemize}
-\item Pyramid(string objectName, Surface s, float distance, float visibility) 
+\item Pyramid(string objectName, Surface s, expression distance, RRGGBBAA color) 
 % //Create Pyramid by distance from center
 
-\item Pyramid(string objectName, Surface s, Point p, float visibility) 
+\item Pyramid(string objectName, Surface s, Point p, RRGGBBAA color) 
 % //Create Pyramid by Point
 
-\item Extrude(string objectName, Surface s, float distance, float visibility) 
+\item Extrude(string objectName, Surface s, expression distance, RRGGBBAA color) 
 
-\item SpericalCurvedSurface(string objectName, Surface s, float distance, float visibility)
+%\item SpericalCurvedSurface(string objectName, Surface s, expression distance, RRGGBBAA color)
 
+\item Sphere(string objectName, Point center, expression radius, RRGGBBAA color)
 
-\item Cylinder(string objectName, Line l, float radius, float visibility)
+\item Cylinder(string objectName, Line l, expression radius, RRGGBBAA color)
 \end{itemize}
