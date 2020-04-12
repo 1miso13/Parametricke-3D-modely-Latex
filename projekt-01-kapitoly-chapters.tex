@@ -44,11 +44,11 @@ Počítače sa ale stále zdokonaľujú a preto nieje prekvapením, že v~dnešn
 
 
 
-Úlohou tejto práce je vytvoriť knižnicu na tvorbu parametrických 3D modelov a prácu s nimi. Parametrické modelovanie využíva rôzne geometrické operácie na tvorbu modelov a umožňuje zmenu ich parametrov, v~ľubovolnom čase. 
+Úlohou tejto práce je vytvoriť knižnicu na tvorbu trojrozmerných parametrických modelov a prácu s nimi. Parametrické modelovanie využíva rôzne geometrické operácie na tvorbu modelov a umožňuje zmenu ich parametrov, v~ľubovolnom čase. 
 
 
 
-Aplikácia by mala umožňovať prácu pomocou dvoch rozhraní, programátorského a grafického. Programátorské rozhranie by malo slúžiť na využitie parametrických modelov v~aplikáciach na výpočet hodnôt modelu a/alebo na zobrazenie modelu. Grafické rozhranie by malo umožniť návrhárovi jednoduchú tvorbu modelov. Hodnota u~parametrov v~parametrickom modeli sa musí dať ľubovolnom čase meniť.
+Aplikácia by mala umožňovať prácu programátorského a grafického rozhrania. Programátorské rozhranie by malo slúžiť na využitie parametrických modelov v~aplikáciach a na nastavovanie hodnôt parametrov modelu. Grafické rozhranie by malo umožniť návrhárovi jednoduchú tvorbu modelov a tiež zobrazenie modelu a jeho animáciu v čase. Hodnota u~parametrov v~parametrickom modeli sa musí dať ľubovolnom čase meniť.
 
 % osobny popis 
 
@@ -69,7 +69,7 @@ V~štvrtej kapitole je opísaný koncept práce a súčasný stav práce. Popis 
 
 Posledná kapitola obsahuje zhrnutie práce a rôzne možnosti pre ďalšie rozšírenia a vylepšenia.
 
-\chapter{Parametrické 3d modely}
+\chapter{Parametrické trojrozmerné modely}
 Táto časť práce sa zaoberá parametrickými modelmi. Ich históriou a existujúcimi systémami určenými na tvorbu parametrických modelov.
 
 
@@ -133,7 +133,7 @@ Moretti v~roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadi
 
 
 \section{Systémy pre tvorbu parametrických modelov}
-Existuje niekoľko systémov pre tvorbu parametrických modelov. Zväčša sú platené, ale sú aj také, ktoré umožňujú vytváranie modelov zdarma. Väčšinou tieto parametrické modelovacie systémy nie sú navrhnuté pre domáceho používateľa ale skôr pre profesionálnych 3d dizajnérov. Táto časť je podľa blogu \cite{gaget_2018}.
+Existuje niekoľko systémov pre tvorbu parametrických modelov. Zväčša sú platené, ale sú aj také, ktoré umožňujú vytváranie modelov zdarma. Väčšinou tieto parametrické modelovacie systémy nie sú navrhnuté pre domáceho používateľa ale skôr pre profesionálnych 3D dizajnérov. Táto časť je podľa blogu \cite{gaget_2018}.
 
 
 \subsection*{Solidworks}
@@ -152,7 +152,7 @@ Solidworks je jedným z~najlepších softvérov na tvorbu mechanických častí.
 
 
 \subsection*{Catia}
-Tento softvér je náročnejší pre menej zdatných užívateľov. Je to komplexný nástroj určený hlavne pre profesionálov a umožňuje množstvo pokročilejších nástrojov, ako je prevedenie 2D obrázku do 3D modelu alebo generovanie organických tvarov, ktoré spĺňajú pevnostné požiadavky, ale sú od pôvodného modelu značne odľahčené \cite{technodat_cz_2017}.
+Tento softvér je náročnejší pre menej zdatných užívateľov. Je to komplexný nástroj určený hlavne pre profesionálov a umožňuje množstvo pokročilejších nástrojov, ako je prevedenie dvojrozmerného obrázku do trojrozmerného modelu alebo generovanie organických tvarov, ktoré spĺňajú pevnostné požiadavky, ale sú od pôvodného modelu značne odľahčené \cite{technodat_cz_2017}.
 
 \begin{figure}[H]
     \centering
@@ -175,7 +175,7 @@ FreeCad je voľne dostupný softvér s~intuitívnym grafickým rozhraním. Umož
 
 
 \subsection*{Creo Parametric}
-Jedná sa o~softvér pre priemyselný dizajn. Umožňuje vytvárať zložité 3d modely. Poskytuje veľa účinných nástrojov prispôsobených priemyselnému výrobnému prostrediu. Tento softvér sa často používa napríklad v~automobilovom priemysle.
+Jedná sa o~softvér pre priemyselný dizajn. Umožňuje vytvárať zložité trojrozmerné modely. Poskytuje veľa účinných nástrojov prispôsobených priemyselnému výrobnému prostrediu. Tento softvér sa často používa napríklad v~automobilovom priemysle.
 
 \begin{figure}[H]
     \centering
@@ -226,19 +226,10 @@ Inventor je rovnako ako Fusion 360 vytvorený spoločnosťou Autodesk. Tento pro
 \label{chapt:Geometrické_tvary}
 
 Geometrické objekty môžeme rozdeliť do 4 kategórií podľa dimenzií. Body, úsečky, plochy a objemové objekty.
-Zložitejšie objekty z~vyšších rozmerov sú tvorené z~objektov z~nižších rozmerov. 
-%Parametre objektov  podľa toho do akej kategórie patria. 
-Niektoré geometrické objekty majú podobné parametre. Všetky plošné útvary majú normálu, stred a aj plochu a obvod. Každý geometrický objekt má svoje meno a priehľadnosť. Tieto parametre pre geometrické objekty sa dajú zobraziť pomocou stromu dedičnosti. Ten je zobrazený na obrázku \ref{fig:StromDedicnosti}. 
-Jednotlivé geometrické objekty obsahujú hodnoty, ktoré sa zadávajú a hodnoty, ktoré sa dajú vypočítať. Napríklad ihlan s~kruhovou podstavou obsahuje stred a polomer základne a výšku ihlanu. Vypočítanými hodnotami sú obvod a obsah základne alebo objem a plocha ihlanu.  
+Spájaním objektov z nižších dimenzií, vznikajú zložitejšie objekty z~vyšších dimenzii. 
 
-Táto kapitola pokračuje opisom jednotlivých geometrických objektov a operácií, ktoré ich vytvárajú.
 
-\begin{figure}[]
-	\centering
-	\includegraphics[height=0.95\textheight]{obrazky-figures/Diagram/Draw/DP Navrh operacii-Structure.pdf}
-	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké dáta uchováva. }
-	\label{fig:StromDedicnosti}
-\end{figure}
+Táto kapitola opisuje jednotlivé geometrické objekty a operácie, ktoré ich vytvárajú, a to od jednoduchších až k zložitejším.
 
 \section{Bod}
 Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické útvary sa dajú definovať ako množina bodov. Je to bezrozmerný geometrický útvar, teda nemá šírku, výšku ani hrúbku. Jeho úlohou je označiť pozíciu v~priestore. Pozíciu bodu v~trojrozmernom priestore udáva vzdialenosť na jednotlivých osiach ortogonálneho súradnicového systému X, Y a Z. Táto pozícia môže byť v~absolútnom tvare, teda od stredu súradnicového systému alebo v~relatívnom tvare, kedy je závislá na pozícii iného bodu.
@@ -432,7 +423,7 @@ Nech ABC je všeobecný trojuholník, P,Q,R nech sú päty jeho výšok, K,L,M n
 \subsection*{Stred objektu}
 %https://www.gamedev.net/forums/topic/468405-center-of-a-3d-object/
 
-Rovnako ako pri 2D objektoch, aj u~3D objektoch je viacero variant získania stredu objektu. Zvolil som dve metódy a to metódu ohraničujúceho kvádra a metódu priemerného stredu všetkých bodov.
+Rovnako ako pri dvojrozmerných objektoch, je aj u~trojrozmerných objektoch viacero variant získania stredu objektu. Zvolil som dve metódy a to metódu ohraničujúceho kvádra a metódu priemerného stredu všetkých bodov.
 
 
 \subsubsection{Stred pomocou ohraničujúceho kvádra}
@@ -1794,15 +1785,12 @@ igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
 
 
 \chapter{Zhrnutie stavu práce}
-V tejto časti je opísaný aktuálny stav práce, návrh možností previazania objektov v parametrickom modely a implementácia knižnice určenej na tvorbu parametrických 3D modelov, kde sú tieto možnosti previazania implementované.  
+V tejto časti je opísaný aktuálny stav práce, návrh možností previazania objektov v parametrickom modely a implementácia knižnice určenej na tvorbu trojrozmerných parametrických modelov, kde sú tieto možnosti previazania implementované.  
 
 \section{Koncept práce}
 
-Táto knižnica musí byť intuitívna a ľahko použiteľná pre používateľa.
-
-Vlastnosti ktoré by mala táto knižnica obsahovať:
+Koncept práce pre implementáciu knižnice a vlastnosti, ktoré by mala by mala táto knižnica obsahovať:
 \begin{itemize}
-\item Implementácia knižnice:
 \item Parametrické modelovanie
 \item Previazanie objektov v modeli
 \item Skladanie geometrických operácii
@@ -1811,6 +1799,7 @@ Vlastnosti ktoré by mala táto knižnica obsahovať:
 \item Animácie modelu v čase
 \item Vlastný parametrický formát súboru
 \item Uloženie objektu v polygonálnom formáte - OBJ
+\item Táto knižnica musí byť tiež intuitívna a ľahko použiteľná pre používateľa.
 \end{itemize}
 
 
@@ -1831,27 +1820,15 @@ Operácie ukladané v zozname operácii
 
 
 
-
-
-\todo{napisat ze som sa hlavne zameral na jednoduchost pouzitia pre uzivatela a pokusal som sa o zrychlenia aplikacie}
-
-\todo{ako importovat kniznicu, ktore subory (presne) je potrebne importovat, aby kniznica fungovala}
-
-\todo{opisat parametre modelu/operacii - umoznene zapisat v tvare vyrazu a popisat, ze pri zapise sa kontroluje iba lexikalna, syntakticka a semanticka, ale vyhodnocovanie prebieha az pri zostavovani objektu. Opisat ake operacie su povolene vo vyrazoch }
-
-\todo{opisat ake objekty mozu byt v modele a ake operacie sa nad nimi daju robit}
-
 \todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z neho nejake parametre)}
 
-
-
-\todo{ulozenie a nacitanie modelu pomocou ParametricModel::Save()/Load()}
 
 \todo{ukazka vytvorenia niekolkych model a obrazok}
 
 \todo{vykreslenie modelu pomocou kniznice, ze je potrebne najprv vytvorit okno a graficky kontext, napisat ze sa pre vykreslenie pouziva kniznica glew a napisat ake funkcie treba volat pri init a draw. Pouzitie kniznice s roznimy typmi na tvorenie kontextu(aspon opisat glfw a QT (mozno aj kniznicu SDL)), napisat ake su minimalne poziadavky pre spustenie grafickej casti (OpenGL >=3.3 kvoli shaderom)}
 
-\section{Skladanie operácii}
+\section{Skladanie operácii }
+\label{sec:skladanie}
 Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. 
 Textová podoba geometrickej operácie sa začína názvom použitej geometrickej operácie a parametrami uvedenými v~zátvorkách \texttt{(} a \texttt{)}, oddelenými čiarkou. U~jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
 
@@ -1862,7 +1839,7 @@ Parametrom operácie, ktoré sú typu $Expression$, je možné vytvoriť názov,
 Tento názov sa zadáva za hodnotou parametra oddelený dvojbodkou.
 
 Jednotlivé operácie sa oddeľujú bodkočiarkou (\texttt{;}). 
-Táto textová podoba geometrických operácií sa používa pri vytváraní modelu a aj pre uloženie do súboru a jeho neskoršie načítanie.
+Táto textová podoba geometrických operácií sa používa pri vytváraní modelu a aj pre uloženie do súboru a tiež jeho následné načítanie.
 
 Pre predstavu ako sa jednotlivé objekty vytvárajú uvádzam príklad pre vytvorenie ihlana s~kruhovou podstavou s~polomerom 5 a výškou 10:
 \begin{itemize}
@@ -1926,41 +1903,55 @@ Operácie používajú iba už vytvorené objekty a ich hodnoty, teda žiadny ob
 
 
 \section{Pridávanie a odoberanie objektov}
+\label{sec:addAndRemoveObjects}
 Jedným z mojich cieľov bolo, aby sa dal model dynamicky upravovať. Na to vo vytvorenej knižnici slúžia následovné metódy:
 \lstset {language=C++}
 \begin{lstlisting}
 bool AddOperations(std::string s)
 bool AddOperation(std::string s)
-void InsertOperation(size\_t index,Operation *c)
-void RemoveOperation(size\_t index)
+void AddOperation(Operation *c) 
+void InsertOperation(size_t index, Operation *c)
+void ReplaceOperation(size_t index, Operation *c)
+void RemoveOperation(size_t index)
 void DeleteModel()
 \end{lstlisting}
+Pre pridávanie operácii do modelu slúžia metódy \texttt{AddOperation}  a \texttt{AddOperations} ktoré umožňujú pridávanie operácii v \texttt{String}-ovej forme v tvare ako je napísané v časti \ref{sec:skladanie}. Metóda \texttt{AddOperations} umožňuje pridanie množiny operácii, kde jednotlivé zápisy operácii sú oddelené znakom bodkočiarky~(;).  Operácie je tiež môžné zapísať aj v tvare štruktúry \texttt{Operation}, kde sa zapisujú jednotlivé zložky operácie, ako sú typ operácie, názov vytváraného objektu a parametre operácie.
+Pomocou metódy \texttt{InsertOperation} je možné vkladať operácie do už vytvoreného modelu na ľubovolnú pozíciu, prípadne pomocou metódy \texttt{ReplaceOperation} nahradiť ľubovolnú operáciu. 
+Metóda \texttt{RemoveOperation} umožňuje odstránenie jednej operácie na zadanej pozícii. Pre vymazanie celého modelu slúži metóda \texttt{DeleteModel}. 
 
 
-Pre otestovanie, či v zapísanom reťazci nieje chyba, či už sytaktická alebo sémantická, slúži testovanie. Na začiatku každého testovania je potrebné zavolať metódu void resetTest() a následne je možné pridávať operácie pomocou metódy 
+Knižnica tiež umožňuje uloženie parametrického modelu do  súboru a jeho následné načítanie. Aby bolo možné použiť vytvorený objekt aj v iných aplikáciach, je možné tento objekt exportovať do súborového formátu OBJ, ktorý kvôli svojej jednoduchosti patrí medzi najviac podporované geometrické súborové formáty. Pre ukladanie a načítanie modelu slúžia následovné metódy:
+\lstset {language=C++}
+\begin{lstlisting}
+void Save(std::string filePath);
+void Load(std::string filePath);
+void SaveOBJ(std::string filePath);
+\end{lstlisting}
+
+Pre otestovanie, či v zapísanom reťazci nieje chyba, či už syntaktická alebo sémantická, slúži testovanie. Na začiatku každého testovania je potrebné zavolať metódu \texttt{void resetTest()} a následne je možné pridávať operácie pomocou metódy 
 \lstset {language=C++}
 \begin{lstlisting}
 bool TestOperation(std::string s)
 \end{lstlisting}
-Takto pridané operácie sa nezapisujú do samotného modelu a budú vymazané pri ďalšom zavolaní metódy resetTest(). Metóda TestOperation vracia hodnotu True, ak sa nevyskytla žiadna chyba, a je teda možné operáciu do modelu bezchybne vložiť.
+Takto pridané operácie sa nezapisujú do samotného modelu a budú vymazané pri ďalšom zavolaní metódy \texttt{resetTest()}. Metóda TestOperation vracia hodnotu True, ak sa nevyskytla žiadna chyba, a je teda možné operáciu do modelu bezchybne vložiť.
 
 
 Aby sa urýchlil výpočet modelu, spracovanie sa nezačína hneď pri každej úprave modelu, ale je potrebné, aby bola zavolaná metóda 
 \begin{lstlisting}
 void BuildModel()
 \end{lstlisting}
-Pri skladaní iba jednoduchých operácií stačilo celý model pred generovaním zahodiť a vytvoriť znova celý model od začiatku. Problém nastal, keď som sa rozhodol implementovať konštruktívnu geometriu. Keďže model je vytváraný v polygonálnej forme, použil som už spomenutú knižnicu libigl (viac o konštruktívnej geometrii je v časti \ref{sec:CSG}), ktorá umožňuje jednoduchú prácu s boolovskými operáciami nad polygonálnymi objektami. Výpočet boolovskej operácie trvá nejaký čas a teda nemôžeme hovoriť o  real-timeovej operácii. Preto som algoritmus prerobil tak, aby sa znova generovali iba objekty ktoré sa nejakým spôsobom modifikovali, či už pridaním novej operácie alebo zmenou hodnoty niektorého parametru operácie, alebo ak sa zmenila niektorá operácia na ktorej je táto operácia tvoriaca daný objekt závislá. Taktiež je potrebné kontrolovať, či niektorá premenná v zadanom výraze nezmenila svoju hodnotu (napríklad časová premenná alebo parameter niektorého objektu - viac v časti \ref{sec:vyrazy}) a je teda potrebné znovu vypočítať zadaný výraz a podľa nových hodnôt vytvoriť objekt.
+Pri skladaní iba jednoduchých operácií stačilo celý model pred generovaním zahodiť a vytvoriť znova celý model od začiatku. Problém nastal, keď som sa rozhodol implementovať konštruktívnu geometriu. Keďže model je vytváraný v polygonálnej forme, použil som už spomenutú knižnicu libigl (viac o konštruktívnej geometrii je v časti \ref{sec:CSG}), ktorá umožňuje jednoduchú prácu s boolovskými operáciami nad polygonálnymi objektami. Výpočet boolovskej operácie trvá nejaký čas a teda nemôžeme hovoriť o  real-timeovej operácii. Preto som algoritmus prerobil tak, aby sa znova generovali iba objekty ktoré sa nejakým spôsobom modifikovali, či už pridaním novej operácie alebo zmenou hodnoty niektorého parametru operácie, alebo ak sa zmenila niektorá operácia na ktorej je táto operácia tvoriaca daný objekt závislá. Taktiež je potrebné kontrolovať, či niektorá premenná v zadanom výraze nezmenila svoju hodnotu (napríklad časová premenná alebo parameter niektorého objektu - viac v časti \ref{sec:vyrazy}) a je teda potrebné znovu vypočítať zadaný výraz a podľa nových hodnôt vytvoriť objekt. \todo{pridat graf na ukazku tejto optimalizacie}
 
 \section{Výrazy}
 \label{sec:vyrazy}
-Zo začiatku umožňovala knižnica v parametroch operácií iba číselnú hodnotu, s presnosťou dátového typu \textit{double}. To ale často nebolo dostatočné, preto som sa rozhodol prerobiť túto hodnotu číselnej na výrazy so základnou aritmetikou a s použitím aj iných hodnôt z objektov. Neskôr som pridal aj trigonometrické operácie a zaokrúhľovanie. Aby sa dal model animovať v čase, pridalo som aj  časové premenné.
+Zo začiatku umožňovala knižnica v parametroch operácií iba číselnú hodnotu, s presnosťou dátového typu \textit{double}. To ale často nebolo dostatočné, preto som sa rozhodol prerobiť túto hodnotu na výrazy so základnou aritmetikou a s použitím aj iných hodnôt z objektov. Neskôr som pridal aj trigonometrické operácie a zaokrúhľovanie. Pridal som aj  časové premenné,aby sa dal model animovať v čase.
 Parametre operácii môžu byť zapísané v tvare výrazu. Tieto výrazy sa počas zápisu overia a spracúvajú. Vyhodnocovanie prebieha až v čase vytvárania modelu.
 
 Výrazy môžu obsahovať: 
 \begin{itemize}
     \item  čísla (0; 1.5; -5.5)
-    \item  parameter \todo{TODO}
-    \item  hodnotu z niektorého objektu \todo{TODO}
+    \item  parametre \todo{TODO}
+    \item  hodnotu z objektov \todo{TODO}
     \item  časové premenné
         \begin{itemize}
             \item  time - časová hodnota v milisekundách
@@ -1999,6 +1990,12 @@ Výrazy môžu obsahovať:
 Príklady zápisu výrazov:
 
 
+\lstset {language=C++}
+\begin{lstlisting}
+Point(P1,1:param1,-5:param2,1.5:param3,FF0000FF);
+Point(P2,param1+param2, sin(param3*time),P1.X,00FF00FF); 
+\end{lstlisting}
+
 
 \subsection*{Precedenčná tabuľka}
 Na vyhodnocovanie výrazov je potrebná precedenčná tabuľka. Tá označuje, ktorá operácia má vyššiu prioritu pri výpočte. Zvislé popisky udávajú, aký znak je na vrchole zásobníka a vodorovné popisky udávajú, aký znak práve prišiel (vstupný token). Znak \$ na zásobníku určuje dno zásobníku a \$ na vstupe určuje koniec. Ak je výsledná hodnota z precedenčnej tabuľky znak X, znamená to, že zadaný výraz je zapísaný v chybej forme a teda nie je možné takýto výraz ďalej riešiť.
@@ -2030,14 +2027,33 @@ unary & > & > & > & > & > & < & < & > & > & > & >      \\
 
 Ak nastane situácia, kedy nie je možné niektorý výraz vyriešiť, napríklad delenie nulou, geometrická operácia nevytvorí takýto objekt a taktiež operácie, ktoré sú na tomto objekte závislé nevytvoria svoje objekty.
 
-\subsubsection*{Identifikátory}
+\subsubsection*{Parametre objektov}
 
 
-označuje číslo, parameter alebo hodnotu objektu
+
+%označuje číslo, parameter alebo hodnotu objektu
+
 
 % \section{Použitie parametru z~iného objektu}
 % Je potrebné navrhnúť, na ktoré hodnoty u~objektoch sa bude dať odkazovať. 
-Aby nebolo potrebné vytvárať veľké množstvo parametrov modelu, niektoré hodnoty by mohli byť závislé na inej hodnote. Napríklad, ak je množstvo parametrov, ktoré musia mať rovnakú hodnotu, je postačujúce vytvoriť iba jeden parameter a hodnoty ostatných parametrov by boli na tomto parametre závislé. \todo{PREPISAT}
+%Aby nebolo potrebné vytvárať veľké množstvo parametrov modelu, niektoré hodnoty by mohli byť závislé na inej hodnote. Napríklad, ak je množstvo parametrov, ktoré musia mať rovnakú hodnotu, je postačujúce vytvoriť iba jeden parameter a hodnoty ostatných parametrov by boli na tomto parametre závislé. \todo{PREPISAT}
+Niektoré geometrické objekty majú podobné parametre. Všetky plošné útvary majú normálu, stred a aj plochu a obvod. 
+Tieto parametre pre geometrické objekty sa dajú zobraziť pomocou stromu dedičnosti. Ten je zobrazený na obrázku \ref{fig:StromDedicnosti}.  Jednotlivé geometrické objekty obsahujú priame hodnoty, teda parametre na ktorých je objekt závislý, ako výška alebo šírka objektu a hodnoty ktoré je potrebné vypočítať, ako sú napríklad obvod alebo objem objektu. Napríklad ihlan s~kruhovou podstavou obsahuje stred a polomer základne a výšku ihlanu. Vypočítanými hodnotami tohto objektu sú obvod a obsah základne alebo objem a plocha ihlanu.  
+
+\begin{figure}[]
+	\centering
+	\includegraphics[height=0.95\textheight]{obrazky-figures/Diagram/Draw/Parametric Sctructures Tree.pdf}
+	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké dáta uchováva. }
+	\label{fig:StromDedicnosti}
+\end{figure}
+Vo vytvorenej knižnici je možné pristupovať k jednotlivým hodnotám objektom pomocou:\todo{TODOTODOTODO + Pridanie ukazky ako vybrat hodnotu z objektu}.    
+\begin{lstlisting}
+double GetObjectValue(std::string s,bool* Err).
+\end{lstlisting}
+Alternatívne sa dá pristupovať k štruktúram objektov priamo, pomocou funkcie: 
+\begin{lstlisting}
+Object::GeometricObject* GetObject(std::string objectName).
+\end{lstlisting}
 
 \subsubsection*{Časové premenné}
 Pre možnosti animácie modelu som vytvoril časové premenné time a time\_seconds pre časovú hodnotu v milisekundách, prípadne v sekundách. Táto časová hodnota je po zapnutí aplikácie nastavená na 0 a behom aplikácie sa zvyšuje. V prípade, ak je potrebné nastaviť túto hodnotu na inú hodnotu je možné nastaviť túto hodnotu manuálne pomocou metódy
@@ -2061,7 +2077,7 @@ Pre použitie grafického rozhrania je potrebné, aby používateľ po vytvoren�
 \begin{lstlisting}
 void InitRenderer().
 \end{lstlisting}
-Táto metóda inicializuje GLEW a vytvorí program so shaderami.
+Táto metóda inicializuje GLEW a vytvorí program so shaderami.  Minimálna požiadavka pre spustenie grafického rozhrania je podpora OpenGL vo verzii 3.3 v ktorom sú napísané shadery.
 Následne je potrebné volať vo vykresľovacej slučke metódu  
 \begin{lstlisting}
 void Draw(int x, int y, float fov, int width, int height),
@@ -2089,17 +2105,18 @@ void setRendererAmbientStrength(float ambientStrength).
 
 
 \subsection*{Grafický editor}
+\label{sec:grafickyEditor}
 %Okrem programátorského rozhrania, som vytvoril aj jednoduché grafické užívateľské rozhranie pomocou knižnice QT. Toto grafické rozhranie umožňuje užívateľovi jednoduchšiu správu tvorby geometrických objektov a to aj vďaka prehľadnému zoznamu použitých geometrických operácií a zoznamu referencovaných premenných. 
 
+ 
+Práca obsahuje aj jednoduché grafické rozhranie, ktoré návrhárovi pomáha, pri vytváraní parametrického modelu a uľahčuje prácu s geometrickými operáciami, a zároveň pri tom zobrazuje aj internú štruktúru modelu, teda jednotlivé operácie, objekty a parametre a zároveň tento model aj vizualizuje.
+Táto aplikácia je vytvorená pomocou knižnice QT a jej grafické rozhranie je zobrazené na obrázku \ref{fig:GraphicEditor}.
 
-Vytvoril som aj jednoduché grafické rozhranie, ktoré návrhárovi pomáha, pri vytváraní parametrického modelu a uľahčuje prácu s geometrickými operáciami, a zároveň pri tom zobrazuje aj internú štruktúru modelu, teda jednotlivé operácie, objekty a parametre a zároveň tento model aj vizualizuje.
-Táto aplikácia je vytvorená pomocou knižnice QT a je zobrazená na obrázku \ref{fig:GraphicEditor}.
 
-
-\begin{figure}[hbt]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{obrazky-figures/placeholder.pdf}
-	\caption{Grafický editor}
+	\includegraphics[width=1\textwidth]{obrazky-figures/Parametric_editor.png}
+	\caption{Grafický editor na tvorbu parametrických trojrozmerných modelov.}
 	\label{fig:GraphicEditor}
 \end{figure}
 
@@ -2125,26 +2142,27 @@ V~poslednom stĺpci sa nachádza nápoveda k~danému parametru.
 Po zadaní hodnoty sa overuje, či je táto hodnota valídna pre daný parameter. To zahŕňa testovanie, či hodnota zadaná parametru $Expression$ je platný výraz a pri ostatných parametroch sa testuje, či existuje objekt s~rovnakým názvom ako bol zadaný a či je tento objekt správnym typom prípadne podtypom (viac o~typoch objektov v~kapitole  \ref{chapt:Geometrické_tvary}). Tiež sa testuje aj názov objektu a názov referencovaného parametra na unikátnosť.
 Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označené červenou farbou pozadia, čo upozorňuje užívateľa na chybu. Ak je hodnota valídna, políčko sa označí zeleným pozadím. Prázdne políčko je označené bielym pozadím. 
 
-\begin{figure}[hbt]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Dialog.png}
 	\caption{Dialógové okno na pridanie, vloženie a úpravu operácií. Ukážka úpravy bodu s~názvom $p3$ s~jednou chybne zadanou hodnotou }
 	\label{fig:dialogWindow}
 \end{figure}
+V hlavnom okne aplikácie je možné zadať operácie v textovej podobe. Tento text sa pri zadaní testuje a zafarbuje podľa validity. Ak je zadaný text valídny, zafarbí sa na zeleno. Naopak ak je v niektorej operácii chyba, či už syntaktická alebo sémantická, zafarbí sa na červeno. Viac o možnostiach pridávania, úpravy a odoberanie objektov je v časti \ref{sec:addAndRemoveObjects}.
 
 
+% \section{Animácia modelu}
 
-\section{Animácia modelu}
-
-\todo{metody na animaciu}
+% \todo{metody na animaciu}
 
 
 
 
 
 \section{Príklady použitia knižnice}
-
+Okrem grafického editora, ktorý je popísaný v časti \ref{sec:grafickyEditor}, som vytvoril aj ďalšie dve aplikácie znázorňujúce použitie tejto knižnice na tvorbu parametrických trojrozmerných modelov.  V tejto časti sú tieto aplikácie opísané.
 \todo{Opisanie vytvorenych ukazok}
+
 
 \subsection*{Aplikácia s použitím glfw}
 
@@ -2155,18 +2173,18 @@ Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označe
 
 \section{Metrika}
 Počet riadkov zdrojového kódu: ~7000 riadkov \\
-Počet geometrických operácii: 46
+Počet geometrických operácii: 44
 \begin{itemize}
-    \item 15 bodových
-    \item 13 čiarových
+    \item 16 bodových
+    \item 10 čiarových
     \item 10 plošných
     \item 8 objemových
 \end{itemize}
 Použité externé knižnice:
 \begin{itemize}
-    \item GLEW (OpenGL)
-    \item GLM
-    \item Libigl (CSG nad mesh)
+    \item GLEW - Vykresľovanie modelu do okna pomocou OpenGL
+    \item GLM - Geometrické výpočty 
+    \item Libigl - Operácie konštruktívnej geometrie nad trojrozmernými objektami
 \end{itemize}
 
 
@@ -2174,22 +2192,22 @@ Použité externé knižnice:
 
 
 
-\chapter{Časový plán} - \todo{DELETE?}
+% \chapter{Časový plán} - \todo{DELETE?}
 
 
 
-Ako už bolo spomenuté vyššie, geometrické operácie vytvárajú acyklický orientovaný graf. Tento graf je vhodné užívateľovi zobraziť. Zobrazený je aj na obrázku \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Vhodným nástrojom pre tvorbu grafov je knižnica GraphViz. Táto knižnica umožňuje rozmiestnenie jednotlivých vrcholov tak, aby sa hrany grafu príliš nekrížili. 
+% Ako už bolo spomenuté vyššie, geometrické operácie vytvárajú acyklický orientovaný graf. Tento graf je vhodné užívateľovi zobraziť. Zobrazený je aj na obrázku \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Vhodným nástrojom pre tvorbu grafov je knižnica GraphViz. Táto knižnica umožňuje rozmiestnenie jednotlivých vrcholov tak, aby sa hrany grafu príliš nekrížili. 
 
 
-% \section{Vykreslovanie objektov v~grafickom rozhraní pomocou QOpenGLWidget}
-%Následne je potrebné tento model vykresliť. Knižnica Qt, pomocou ktorej je vytvorené grafické užívateľské rozhranie,  umožňuje vykresľovať grafické modely pomocou OpenGL vo widgete QOpenGLWidget.
+% % \section{Vykreslovanie objektov v~grafickom rozhraní pomocou QOpenGLWidget}
+% %Následne je potrebné tento model vykresliť. Knižnica Qt, pomocou ktorej je vytvorené grafické užívateľské rozhranie,  umožňuje vykresľovať grafické modely pomocou OpenGL vo widgete QOpenGLWidget.
 
-% \section{Pridanie textúry na objekt}
-Aby neboli všetky objekty len jednej farby, je vhodné na jednotlivé objekty v~geometrickom modeli zvoliť farbu, prípadne textúru. Napríklad po dvojkliku v~zozname objektov by sa mohla otvoriť ponuka, pre úpravy objektu, medzi ktorými by mohlo byť zvolenie farby, nahratie textúry a rôzne ďalšie možnosti.
+% % \section{Pridanie textúry na objekt}
+% Aby neboli všetky objekty len jednej farby, je vhodné na jednotlivé objekty v~geometrickom modeli zvoliť farbu, prípadne textúru. Napríklad po dvojkliku v~zozname objektov by sa mohla otvoriť ponuka, pre úpravy objektu, medzi ktorými by mohlo byť zvolenie farby, nahratie textúry a rôzne ďalšie možnosti.
 
 
 
-\todo{metriky (vytvorenie modelu s X operáciami (možno aj graf s tabuľkou))}
+% \todo{metriky (vytvorenie modelu s X operáciami (možno aj graf s tabuľkou))}
 
 \chapter{Záver}
 \todo{čo bolo cieľom práce - asi 10 slov. Ako sa mi to podarilo splniť, }"Ciel práce sa podarilo splniť." 

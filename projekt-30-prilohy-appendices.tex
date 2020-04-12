@@ -7,8 +7,8 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 
 % 		Create point on position 0,0,0. Parent - If entered, position is relative, else absolute
 
-		\item Point(string name, expression X, expression Y, expression Z, RRGGBBAA color) 
-		\item Point(string name, expression X, expression Y, expression Z, Point Parent, RRGGBBAA color) 
+\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, RRGGBBAA color)}} - Create point with absolut position
+\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, Point parent, RRGGBBAA color)}} - Create point with relative position of entered point
 % 		//-Create point on position XYZ
 % 		///	Example:
 % 		//		Point("Name of point 1")	//Name can by written with "" or '' or without, Point is on absolute position [0,0,0]
@@ -19,22 +19,22 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 		//		Point(NameOfPoint4,1,2,3,false)	//- Create invisible Point on position [1,2,3]
 % 		//		Point(NameOfPoint4,1,2,3,NameOfParentPoint,true)	//- Create visible Point on relative position [1,2,3] from ParentPoint
 
-		\item LinearInterpolationDist(string name, Point fromPoint, Point toPoint, expression distance, RRGGBBAA color)
-		
-		\item LinearInterpolationPerc(string name, Point fromPoint, Point toPoint, expression percentage, RRGGBBAA color)
+\item \textsc{\textbf{LinearInterpolationDist(string name, Point from, Point to, expression distance, RRGGBBAA color)}} - Create point in distance from first point to second
+		 
+\item \textsc{\textbf{LinearInterpolationPerc(string name, Point from, Point to, expression percentage, RRGGBBAA color)}} - Create point in percentual distance from first point to second
 % 		//	Example:
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 50%)	//- Create Point in middle of entered points
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 25%)	//- Create Point on position with distance 20% of first point and 80% of second point
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 100)	//- Create Point on position with distance 100 from first point in angle to second point 
 
-		\item Intersection\_Plane\_Line(string name, Line lineName, Sufrace surfaceName, RRGGBBAA color)
+\item \textsc{\textbf{Intersection\_Plane\_Line(string name, Line l, Sufrace s, RRGGBBAA color)}} - Create Point on position where line l intersect surface s
 % 		//	Alternative:
 % 		//	Intersection(string name, Line lineName, Sufrace surfaceName)
 % 		//	Example:
 % 		//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
 
 
-		\item SurfaceCenterBoundingSquare(string name, Surface surfaceName, RRGGBBAA color) 
+\item \textsc{\textbf{SurfaceCenterBoundingSquare(string name, Surface s, RRGGBBAA color)}}- Create point on position in middle of bounding box of entered surface
 % 		//Create point on position of middle of entered surface
 % 		//	Example:
 % 		//		SurfaceCenterBoundingSquare(PointName, Circle)	//- Create Point on center of Circle
@@ -42,74 +42,68 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 		//		SurfaceCenter(PointName, Polygon)		//- Create Point on middle of Polygon 
 % 		//		SurfaceCenterBoundingSquare(PointName, Polygon)		//- Create Point on middle of Polygon - centroid (sum of points / count of points)
 
-		\item SurfaceCenterAverage(string name, Surface surfaceName, RRGGBBAA color) %//Create point on avarage position of entered surface
+\item \textsc{\textbf{SurfaceCenterAverage(string name, Surface s, RRGGBBAA color) }}- Create point on avarage position of all points of entered surface
 
-		\item Centroid(string name, Triangle triangleName, RRGGBBAA color)
-		
-		\item Incenter(string name, Triangle triangleName, RRGGBBAA color)
-		
-		\item Circumcenter(string name, Triangle triangleName, RRGGBBAA color)
-		
-		\item Orthocenter(string name, Triangle triangleName, RRGGBBAA color)
-		
-		\item NinePointCenter(string name, Triangle triangleName, RRGGBBAA color)
+\item \textsc{\textbf{Centroid(string name, Triangle t, RRGGBBAA color)}} - Create point on centroid of triangle
 
-		\item ObjectCenterBoundingBox(string name, Object3D ObjectName, RRGGBBAA color) 
-% 		//Create point on position of middle of entered object
+\item \textsc{\textbf{Incenter(string name, Triangle t, RRGGBBAA color)}} - Create point on center of inscribed circle in triangle
 
-		\item ObjectCenterAverage(string name, Object3D ObjectName, RRGGBBAA color) 
-% 		//Create point on position of center of entered object
+\item \textsc{\textbf{Circumcenter(string name, Triangle t, RRGGBBAA color) }}- Create point on center of circumscribed circle over triangle
 
-		\item LineFirstPoint(string name, Line lineName, RRGGBBAA color)
-		
-		\item LineSecondPoint(string name, Line lineName, RRGGBBAA color)
+\item \textsc{\textbf{Orthocenter(string name, Triangle t, RRGGBBAA color)}} - Create orthocentrum of triangle
+
+\item \textsc{\textbf{NinePointCenter(string name, Triangle t, RRGGBBAA color)}} - Create point at center of nine points circle of triangle
+
+\item \textsc{\textbf{ObjectCenterBoundingBox(string name, Object3D o, RRGGBBAA color)}} - Create point on position in middle of bounding box of entered object
+
+\item \textsc{\textbf{ObjectCenterAverage(string name, Object3D o, RRGGBBAA color)}} - Create point on avarage position of all points of entered object
+
+\item \textsc{\textbf{LineFirstPoint(string name, Line l, RRGGBBAA color)}} - Begin point of line
+
+\item \textsc{\textbf{LineSecondPoint(string name, Line l, RRGGBBAA color)}} - End point of line
 
 \end{itemize}
 
 \section*{Úsečkové operácie}
 		
 \begin{itemize}
-		\item Line(string lineName, Point p1, Point p2, RRGGBBAA color) 
-% 		//create line, where p1 is start point and p2 is end point
+\item \textsc{\textbf{Line(string name, Point p1, Point p2, RRGGBBAA color)}}  - Create line, where p1 is start point and p2 is end point
 
-		\item LineNormalize(string lineName, Line l, RRGGBBAA color)
+\item \textsc{\textbf{LineNormalize(string name, Line l, RRGGBBAA color)}} - Normalize line to distance 1.0. Beginning point is same as beginning point of entered line, end point is in distance 1.0 in direction to end point of line
 
-		\item LineChangeLengthDist(string lineName, Line l, expression distance, RRGGBBAA color)
+\item \textsc{\textbf{LineChangeLengthDist(string name, Line l, expression distance, RRGGBBAA color)}} - Beginning point is same as beginning point of entered line, end point is in entered distance in direction to end point of line
 		
-		\item LineChangeLengthPerc(string lineName, Line l, expression percent, RRGGBBAA color) 
-% 		//percent = (0;1>
+\item \textsc{\textbf{LineChangeLengthPerc(string name, Line l, expression percent, RRGGBBAA color)}} - Beginning point is same as beginning point of entered line, end point is in entered percentual distance in direction to end point of line
 
 
 
 		
-		\item MinLineBetweenLineAndLine(string lineName, Line l1, Line l2, RRGGBBAA color)
+\item \textsc{\textbf{MinLineBetweenLineAndLine(string name, Line l1, Line l2, RRGGBBAA color)}} - Minimal line between two lines
 		
-		\item MinLineBetweenPointAndLine(string lineName, Point p, Line l, RRGGBBAA color)
+\item \textsc{\textbf{MinLineBetweenPointAndLine(string name, Point p, Line l, RRGGBBAA color)}}
 		
-		\item MinLineBetweenPointAndSurface(string lineName, Point p, Surface s, RRGGBBAA color)
+\item \textsc{\textbf{MinLineBetweenPointAndSurface(string name, Point p, Surface s, RRGGBBAA color)}} - Minimal line between point and surface
 
 
-		\item SurfaceNormal(string lineName, Surface s, RRGGBBAA color) 
-% 		// return normal vector of surface
+\item \textsc{\textbf{SurfaceNormal(string name, Surface s, RRGGBBAA color)}}  - Normal vector of surface
 
 
 
-		\item LineRelocationByPoint(string lineName, Line l, Point p, RRGGBBAA color)
-
-% 		//OrthogonalLeastSquares(string lineName, Point p1, Point p2, Point p3, ..., RRGGBBAA color) //min 3
-
-% 		//CrossProductLP(string lineName, Line l, Point p, RRGGBBAA color)
-		\item CrossProduct(string lineName, Line l1, Line l2, RRGGBBAA color)
+\item \textsc{\textbf{LineRelocationByPoint(string name, Line l, Point p, RRGGBBAA color)}} - Line is moved to new location. Beginning point is entered point and end point is in distance of entered line with same direction.
+\item \textsc{\textbf{CrossProduct(string name, Line l1, Line l2, RRGGBBAA color)}} - Create cross-product of entered lines
 
 \end{itemize}
+
+
+
 
 \section*{Plošné operácie}
 
 \begin{itemize}
 
-	\item RectangleFromLine(string surfaceName, Line l, expression width, Point surfacePoint, short type, RRGGBBAA color)
+\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Point pointOnSurface, type, RRGGBBAA color)}} - Create rectangle surface from line
 	
-	\item RectangleFromLine(string surfaceName, Line l, expression width, Vector3 normalVector, short type, RRGGBBAA color)
+\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Line normal, type, RRGGBBAA color)}} - Create rectangle surface from line by normal
 % //create Rectangle from Line l
 % /*type:
 % 	0 - width/2 to left, width/2 to right
@@ -120,42 +114,42 @@ Geometrické operácie z ktorých sa skladajú parametrické 3D modely. Tieto op
 % 	//if normal vector is same direction as line normal, exception occure
 % 	//If surface point is not on line l, exception occure
 
-	\item Circle(string surfaceName, Point center, expression radius, Line lineNormal, RRGGBBAA color)
+\item \textsc{\textbf{Circle(string name, Point center, expression radius, Line lineNormal, RRGGBBAA color)}} - Create circle by center, radius and normal vector
 	
-	\item Circle(string surfaceName, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)
+\item \textsc{\textbf{Circle(string name, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)}} - Create circle by 3 points
 
-	\item Triangle(string surfaceName, Line l, Point p, RRGGBBAA color)
+\item \textsc{\textbf{Triangle(string name, Line l, Point p, RRGGBBAA color)}} - Create triangle by line and point
 	
-	\item Triangle(string surfaceName, Point p1, Point p2, Point p3, RRGGBBAA color)
+\item \textsc{\textbf{Triangle(string name, Point p1, Point p2, Point p3, RRGGBBAA color)}} - Create triangle by 3 points
 
 
-	\item Rectangle(string surfaceName, Point center, expression X, expression Y, expression Roll
+\item \textsc{\textbf{Rectangle(string name, Point center, expression X, expression Y, expression Roll
 % 	/*[0,360]*/
-    , Line normal, RRGGBBAA color)
+    , Line normal, RRGGBBAA color)}} - Create recangle
 
-	\item Polygon(string surfaceName, Point p1, Point p2, Point p3, ..., RRGGBBAA color)
-% 	//minimum 3 points 
+\item \textsc{\textbf{Polygon(string name, Point p1, Point p2, Point p3, ..., RRGGBBAA color)}} - Create Polygon by connecting points, minimum 3 points.  Multiple points are divided by ';'
 
 
-	\item Circumscribed(string surfaceName, Triangle t, RRGGBBAA color) 
+\item \textsc{\textbf{Circumscribed(string name, Triangle t, RRGGBBAA color)}}  - Create circumscribed circle around triangle
 	
-	\item Inscribed(string surfaceName, Triangle t, RRGGBBAA color)		
+\item \textsc{\textbf{Inscribed(string name, Triangle t, RRGGBBAA color)}} - Create inscribed circle in triangle		
 	
 \end{itemize}
 \section*{Objemové operácie}
 
 \begin{itemize}
-\item Pyramid(string objectName, Surface s, expression distance, RRGGBBAA color) 
-% //Create Pyramid by distance from center
+\item \textsc{\textbf{Pyramid(string name, Surface s, expression distance, RRGGBBAA color)}} - Create pyramid from surface and distance from center
 
-\item Pyramid(string objectName, Surface s, Point p, RRGGBBAA color) 
-% //Create Pyramid by Point
+\item \textsc{\textbf{Pyramid(string name, Surface s, Point p, RRGGBBAA color)}} - Create pyramid from surface and specific point
 
-\item Extrude(string objectName, Surface s, expression distance, RRGGBBAA color) 
+\item \textsc{\textbf{Extrude(string name, Surface s, expression distance, RRGGBBAA color)}}  - Enlarge surface to 3D with distance
 
 %\item SpericalCurvedSurface(string objectName, Surface s, expression distance, RRGGBBAA color)
 
-\item Sphere(string objectName, Point center, expression radius, RRGGBBAA color)
+\item \textsc{\textbf{Sphere(string name, Point center, expression radius, RRGGBBAA color)}} - Sphere
 
-\item Cylinder(string objectName, Line l, expression radius, RRGGBBAA color)
+\item \textsc{\textbf{BooleanUnion(string name, Object o1, Object o2, RRGGBBAA color)}} - Union objects
+\item \textsc{\textbf{BooleanIntersection(string name, Object o1, Object o2, RRGGBBAA color)}} - Intersection between objects
+\item \textsc{\textbf{BooleanMinus(string name, Object o1, Object o2, RRGGBBAA color)}} - First object minus second object
+\item \textsc{\textbf{BooleanXOR(string name, Object o1, Object o2, RRGGBBAA color)}} - Symmetric difference between objects
 \end{itemize}
