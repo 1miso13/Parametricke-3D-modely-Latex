@@ -1790,8 +1790,9 @@ igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
 V~tejto časti je opísaný aktuálny stav práce, návrh možností previazania objektov v~parametrickom modely a implementácia knižnice určenej na tvorbu trojrozmerných parametrických modelov, kde sú tieto možnosti previazania implementované.  
 
 \section{Koncept práce}
+Knižnica by mala mať jednoduché rozhranie. Operácie by mali byť ukladané v~zozname operácii. Po zavolaní metódy pre vyskladanie objektu sa všetky operácie vyhodnotia a vytvoria objekt. Operácie môžu obsahovať aj hodnoty parametrov modelu a aj hodnoty objektov ktoré boli vytvorené z predchádzajúcich operácii. Výsledný model by malo byť možné animovať. Na to je potrebné zahrnúť pri vyhodnocovanie operácii aj časovú premennú. Tú by sa malo dať ľubovoľne nastavovať a aj pozastaviť. Objekty sa majú ukladať do zoznamu objektov a ak užívateľ chce, malo by sa dať vytvorený model aj vizualizovať. 
 
-Koncept práce pre implementáciu knižnice a vlastnosti, ktoré by mala by mala táto knižnica obsahovať:
+Koncept práce pre implementáciu knižnice a vlastnosti, ktoré by mala by mala táto knižnica zahrňovať:
 \begin{itemize}
 \item Parametrické modelovanie
 \item Previazanie objektov v~modeli
@@ -1799,14 +1800,14 @@ Koncept práce pre implementáciu knižnice a vlastnosti, ktoré by mala by mala
 \item Dynamický model
 \item Grafický výstup
 \item Animácie modelu v~čase
-\item Vlastný parametrický formát súboru
+\item Uloženie v parametrickom súborovom formáte
 \item Uloženie objektu v~polygonálnom formáte - OBJ
 \item Táto knižnica musí byť tiež intuitívna a ľahko použiteľná pre používateľa.
 \end{itemize}
 
 
 
-Operácie ukladané v~zozname operácii
+
 
 
 
@@ -1822,12 +1823,8 @@ Operácie ukladané v~zozname operácii
 
 
 
-\todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z~neho nejake parametre)}
 
 
-\todo{ukazka vytvorenia niekolkych model a obrazok}
-
-\todo{vykreslenie modelu pomocou kniznice, ze je potrebne najprv vytvorit okno a graficky kontext, napisat ze sa pre vykreslenie pouziva kniznica glew a napisat ake funkcie treba volat pri init a draw. Pouzitie kniznice s~roznimy typmi na tvorenie kontextu(aspon opisat glfw a QT (mozno aj kniznicu SDL)), napisat ake su minimalne poziadavky pre spustenie grafickej casti (OpenGL >=3.3 kvoli shaderom)}
 
 \section{Skladanie operácii }
 \label{sec:skladanie}
@@ -2057,6 +2054,9 @@ Alternatívne sa dá pristupovať k~štruktúram objektov priamo, pomocou funkci
 Object::GeometricObject* GetObject(std::string objectName).
 \end{lstlisting}
 
+\todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z~neho nejake parametre)}
+
+
 \subsubsection*{Časové premenné}
 Pre možnosti animácie modelu som vytvoril časové premenné time a time\_seconds pre časovú hodnotu v~milisekundách, prípadne v~sekundách. Táto časová hodnota je po zapnutí aplikácie nastavená na 0 a behom aplikácie sa zvyšuje. V~prípade, ak je potrebné nastaviť túto hodnotu na inú hodnotu je možné nastaviť túto hodnotu manuálne pomocou metódy
 \begin{lstlisting}
@@ -2170,6 +2170,7 @@ Okrem grafického editora, ktorý je popísaný v~časti \ref{sec:grafickyEditor
 
 \subsection*{Aplikácia s~použitím Qt}
 
+\todo{ukazka vytvorenia niekolkych model a obrazok}
 
 
 
