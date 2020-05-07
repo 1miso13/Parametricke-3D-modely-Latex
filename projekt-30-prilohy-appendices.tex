@@ -1,4 +1,4 @@
-\chapter{Zoznam geometrických operácii}
+\chapter{Zoznam geometrických operácií}
 \label{Priloha:zoznamGeometrickychOperacii}
 Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie, nasledované parametrami v~zátvorkách, ktoré sú oddelené čiarkou.
 
@@ -90,7 +90,7 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 
 \item \textsc{\textbf{LineRelocationByPoint(string name, Line l, Point p, RRGGBBAA color)}} - Presun úsečky na novú pozíciu. Začiatočný bod je zadaný bod a koncový bod je vo vzdialenosti zadanej čiary rovnakým smerom.%Line is moved to new location. Beginning point is entered point and end point is in distance of entered line with same direction.
-\item \textsc{\textbf{CrossProduct(string name, Line l1, Line l2, RRGGBBAA color)}} - úsečka v smere vektorového súčinu dvoch priamok%Create cross-product of entered lines
+\item \textsc{\textbf{CrossProduct(string name, Line l1, Line l2, RRGGBBAA color)}} - Úsečka v smere vektorového súčinu dvoch priamok%Create cross-product of entered lines
 
 \end{itemize}
 
@@ -103,7 +103,7 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 \item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Point pointOnSurface, type, RRGGBBAA color)}} - Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a bodu na ploche  %Create rectangle surface from line
 	
-\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Line normal, type, RRGGBBAA color)}} - Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a normále od plochy %Create rectangle surface from line by normal
+\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Line normal, type, RRGGBBAA color)}} - Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a normály od plochy %Create rectangle surface from line by normal
 % //create Rectangle from Line l
 % /*type:
 % 	0 - width/2 to left, width/2 to right
@@ -138,9 +138,9 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 \section*{Objemové operácie}
 
 \begin{itemize}
-\item \textsc{\textbf{Pyramid(string name, Surface s, expression distance, RRGGBBAA color)}} - Vytvorenie ihlanu s podstavou z ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
+\item \textsc{\textbf{Cone(string name, Surface s, expression distance, RRGGBBAA color)}} - Vytvorenie kužeľu s podstavou z ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
 
-\item \textsc{\textbf{Pyramid(string name, Surface s, Point p, RRGGBBAA color)}} - Vytvorenie ihlanu s podstavou z ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
+\item \textsc{\textbf{Cone(string name, Surface s, Point p, RRGGBBAA color)}} - Vytvorenie kužeľu s podstavou z ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
 
 \item \textsc{\textbf{Extrude(string name, Surface s, expression distance, RRGGBBAA color)}}  - Vysunutie plochy do priestoru%Enlarge surface to 3D with distance
 
