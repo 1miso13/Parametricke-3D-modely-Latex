@@ -215,7 +215,7 @@ Inventor je rovnako ako Fusion 360 vytvorený spoločnosťou Autodesk. Tento pro
 \end{figure}
 
 \section{Existujúce knižnice na tvorbu trojrozmerných  modelov} \label{sec:existing_libraries}
-Existuje niekoľko knižníc, ktoré umožňujú vytváranie trojrozmerných modelov. V tejto časti je opísaných niekoľko z nich.\nopagebreak
+Existuje niekoľko knižníc, ktoré umožňujú vytváranie trojrozmerných modelov. V~tejto časti je opísaných niekoľko z~nich.\nopagebreak
 \subsection*{Libfive}
 Libfive je knižnica  a sada nástrojov na modelovanie pevných látok, zvlášť vhodná na parametrické a procedurálne navrhovanie. Jazyk, ktorý knižnica používa na modelovanie objektov, je podobný jazyku Lisp.\nopagebreak
 \begin{figure}[H]
@@ -256,7 +256,7 @@ Spájaním objektov z~nižších dimenzií, vznikajú zložitejšie objekty z~vy
 
 Táto kapitola opisuje jednotlivé geometrické objekty a operácie, ktoré ich vytvárajú, a to od jednoduchších až k~zložitejším.
 
-\section{Bod v 3D modelovaní}
+\section{Bod v~3D modelovaní}
 Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické útvary sa dajú definovať ako množina bodov. Je to bezrozmerný geometrický útvar, teda nemá šírku, výšku ani hrúbku. Jeho úlohou je označiť pozíciu v~priestore. Pozíciu bodu v~trojrozmernom priestore udáva vzdialenosť na jednotlivých osiach ortogonálneho súradnicového systému X, Y a Z. Táto pozícia môže byť v~absolútnom tvare, teda od stredu súradnicového systému alebo v~relatívnom tvare, kedy je závislá na pozícii iného bodu.
 
 
@@ -483,7 +483,7 @@ Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri 
 
 
 
-\section{Úsečky v 3D modelovaní}
+\section{Úsečky v~3D modelovaní}
 Úsečka je časť priamky medzi dvoma koncovými bodmi. Aby bolo možné používať v~geometrických operáciách smerový vektor z~úsečky, môžeme tieto body označiť ako počiatočný a koncový, ako je zobrazené na obrázku \ref{fig:Navrh operacii-1D - Line}. 
 %Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru.
 
@@ -536,7 +536,7 @@ Substitúciou rovnice \ref{eq:MinlinePointLine_LineEq} do \ref{eq:MinlinePointLi
     \label{eq:MinlinePointLine_subs}
 \end{equation}
 
-Vyriešením tejto rovnice získame rovnicu \ref{eq:MinlinePointLine_subsSolved}, ktorú následne môžeme dosadiť do rovnice pre priamku \ref{eq:MinlinePointLine_LineEq} a získať pozíciu bodu $P$. Ak by sme chceli, aby sa bod vytváral iba na úsečke a nie mimo nej, bolo by potrebné testovať vzdialenosť $u$, či je v rozmedzí (0,1). Ak je hodnota $u$ záporná alebo väčšia ako jedna,  najbližší bod na priamke k~bodu $P3$ sa nachádza mimo zadanej úsečky. 
+Vyriešením tejto rovnice získame rovnicu \ref{eq:MinlinePointLine_subsSolved}, ktorú následne môžeme dosadiť do rovnice pre priamku \ref{eq:MinlinePointLine_LineEq} a získať pozíciu bodu $P$. Ak by sme chceli, aby sa bod vytváral iba na úsečke a nie mimo nej, bolo by potrebné testovať vzdialenosť $u$, či je v~rozmedzí (0,1). Ak je hodnota $u$ záporná alebo väčšia ako jedna,  najbližší bod na priamke k~bodu $P3$ sa nachádza mimo zadanej úsečky. 
 \begin{equation}
 u= \frac
 {\left (x3 -x1  \right )\left (x2-x1  \right )
@@ -713,7 +713,7 @@ Táto operácia sa často používa aj v~počítačovej grafike, kde sa použív
 % 	\label{fig:1}
 % \end{figure}
 
-\section{Plošné objekty v 3D modelovaní}
+\section{Plošné objekty v~3D modelovaní}
 
 
 \subsection*{Kruh}
@@ -808,7 +808,7 @@ Všetky primitívne objekty, ako štvorec, kruh alebo trojuholník, sú konvexn�
 
 
 
-\section{Objemové objekty v 3D modelovaní}
+\section{Objemové objekty v~3D modelovaní}
 Medzi základné geometrické objemové telesá patrí guľa, kváder, valec, a ihlan. Nad týmito geometrickými telesami je možné vykonávať rôzne geometrické operácie.
 
 
@@ -1815,13 +1815,13 @@ igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
 \chapter{Analýza a koncept práce}
 
 \section{Analýza súčasného stavu vo svete}
-Existuje niekoľko systémov a knižníc pre tvorbu trojrozmerných modelov. Niekoľko z nich je opísaných v časti \ref{sec:Existing_systems} a \ref{sec:existing_libraries}. Systémy opísané v časti \ref{sec:Existing_systems} umožňujú návrh rôznych komplexných modelov. Tieto modelovacie systémy sú veľmi kvalitné a často používané aj profesionálnymi grafickými dizajnérmi. Tieto systémy vytvárajú modely pomocou rôznych geometrických operácii. 
+Existuje niekoľko systémov a knižníc pre tvorbu trojrozmerných modelov. Niekoľko z~nich je opísaných v~časti \ref{sec:Existing_systems} a \ref{sec:existing_libraries}. Systémy opísané v~časti \ref{sec:Existing_systems} umožňujú návrh rôznych komplexných modelov. Tieto modelovacie systémy sú veľmi kvalitné a často používané aj profesionálnymi grafickými dizajnérmi. Tieto systémy vytvárajú modely pomocou rôznych geometrických operácii. 
 
-Ak ale užívateľ chce prepojiť takýto parametrický model s programovacím jazykom, napríklad kvôli nastaveniu parametrov z výsledkov simulácie  alebo jeho dynamickú úpravu, má často iba obmedzené možnosti. Niektoré modelovacie systémy obsahujú aplikačné programovacie rozhranie (API). Modelovacie systémy zväčša umožňujú prácu s modelmi iba pomocou skriptov alebo je potrebné pridať doplnky (angl. add-in), na prepojenie modelovacích systémov s externou aplikáciou. 
+Ak ale užívateľ chce prepojiť takýto parametrický model s~programovacím jazykom, napríklad kvôli nastaveniu parametrov z~výsledkov simulácie  alebo jeho dynamickú úpravu, má často iba obmedzené možnosti. Niektoré modelovacie systémy obsahujú aplikačné programovacie rozhranie (API). Modelovacie systémy zväčša umožňujú prácu s~modelmi iba pomocou skriptov alebo je potrebné pridať doplnky (angl. add-in), na prepojenie modelovacích systémov s~externou aplikáciou. 
  Rozhranie takéhoto systému je ale často veľmi komplikované na používanie. 
  
  
-Pri použití knižnice na tvorbu trojrozmerných modelov sa nerozširuje komplexný modelovací systém, ale sa rozširuje programovací jazyk o možnosť tvorby geometrických modelov. Existujúce knižnice, ktoré umožňujú tvorbu grafických modelov sú opísané v časti \ref{sec:existing_libraries}.
+Pri použití knižnice na tvorbu trojrozmerných modelov sa nerozširuje komplexný modelovací systém, ale sa rozširuje programovací jazyk o~možnosť tvorby geometrických modelov. Existujúce knižnice, ktoré umožňujú tvorbu grafických modelov sú opísané v~časti \ref{sec:existing_libraries}.
 Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ich rozhranie podstatne jednoduchšie.
 
 
@@ -1840,7 +1840,7 @@ Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ic
   \hline
  Creo Parametric & Systém & ? &  \$2,200 \\
   \hline
- Rhino s Grasshopper & Systém  & Skripty & \$995 \\
+ Rhino s~Grasshopper & Systém  & Skripty & \$995 \\
   \hline
  Fusion 360 & Systém & Skripty a Add-in & Zadarmo - \$1,500 \\
   \hline
@@ -1853,7 +1853,7 @@ Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ic
  Tigl & Knižnica & & Zadarmo \\
   \hline
 \end{tabular}
-\caption{Parametre modelu - kváder s kruhovým výrezom}
+\caption{Parametre modelu - kváder s~kruhovým výrezom}
  \label{tab:homeModel}
 \end{table}
 
@@ -1870,36 +1870,36 @@ Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ic
 % \todo{TODO}
 
 \section{Koncept práce}
-Z vykonanej analýzy vyplýva, že 
+Z~vykonanej analýzy vyplýva, že 
 \todo{TODO cele prerobit}
 +motivacia
 
 
 
-umožňujú vytváranie modelu hlavne pomocou vytvárať dostatočne dynamický model, ktorý je možné v ľubovolný čas . 
+umožňujú vytváranie modelu hlavne pomocou vytvárať dostatočne dynamický model, ktorý je možné v~ľubovolný čas . 
 
 
 \section{Technické parametre realizačnej časti}
 Na základe analýzy a koncepcie  by mala knižnica zahrňovať tieto vlastnosti:
 \begin{itemize}
 \item vytváranie objektov pomocou geometrických operácií, ktoré sú závislé od iných objektov,
-\item podpora všetkých geometrických objektov a operácií, ktoré sú opísané v kapitole \ref{chapt:Geometrické_tvary},
+\item podpora všetkých geometrických objektov a operácií, ktoré sú opísané v~kapitole \ref{chapt:Geometrické_tvary},
 \item vykresľovanie trojrozmerného modelu pomocou OpenGL,
-\item univerzálne vykresľovanie knižnice, pre použitie s rôznymi knižnicami pre tvorbu grafického okna, ako je Qt alebo GLFW,
-\item ukladanie modelu v parametrickom súborovom formáte,
+\item univerzálne vykresľovanie knižnice, pre použitie s~rôznymi knižnicami pre tvorbu grafického okna, ako je Qt alebo GLFW,
+\item ukladanie modelu v~parametrickom súborovom formáte,
 \item ukladanie objektu v~polygonálnom formáte  OBJ,
 \item animácie modelu v~čase,
 \item dynamický model,
-\item možnosť získavania hodnôt z objektov,
-\item knižnica napísaná v jazyku C++.
+\item možnosť získavania hodnôt z~objektov,
+\item knižnica napísaná v~jazyku C++.
 \end{itemize}
 
 
 \section{Návrh geometrických funkcií}
-Vytváranie trojrozmerných parametrických modelov je založené na skladaní rôznych operácií. Návrh skladanie operácii je zobrazené v nasledujúcich  príkladoch. 
+Vytváranie trojrozmerných parametrických modelov je založené na skladaní rôznych operácií. Návrh skladanie operácii je zobrazené v~nasledujúcich  príkladoch. 
 
 
-\subsection*{Kváder s kruhovým výrezom}
+\subsection*{Kváder s~kruhovým výrezom}
 
 \begin{table}[H]
 \centering
@@ -1917,7 +1917,7 @@ Vytváranie trojrozmerných parametrických modelov je založené na skladaní r
  r & Priemer výrezu  \\
   \hline
 \end{tabular}
-\caption{Parametre modelu - kváder s kruhovým výrezom}
+\caption{Parametre modelu - kváder s~kruhovým výrezom}
  \label{tab:homeModel}
 \end{table}
 
@@ -1928,12 +1928,12 @@ Počiatočný bod, od ktorého bude model vytváraný. Na pozícii tohoto bodu z
 	\caption{Počiatočný bod}
 	\label{fig:A1}
 \end{figure}
-Vytvorenie kruhu a štvorca. Šírka a výška objektu je udávaná podľa parametrov modelu $a$ a $b$. Prierez kruhu udáva parameter $r$. Tieto objekty majú rovnakú orientáciu normály v priestore.
+Vytvorenie kruhu a štvorca. Šírka a výška objektu je udávaná podľa parametrov modelu $a$ a $b$. Prierez kruhu udáva parameter $r$. Tieto objekty majú rovnakú orientáciu normály v~priestore.
 \nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A2.pdf}
-	\caption{Kruh a štvorec,  z ktorých sa vytvoria trojrozmerne objekty}
+	\caption{Kruh a štvorec,  z~ktorých sa vytvoria trojrozmerne objekty}
 	\label{fig:A2}
 \end{figure}
 Pridaním hĺbky $c$ ku kruhu a štvorcu, vznikne kváder a valec.
@@ -1944,7 +1944,7 @@ Pridaním hĺbky $c$ ku kruhu a štvorcu, vznikne kváder a valec.
 	\caption{Kváder a valec, vytvorené pomocou natiahnutia kruhu a štvorca do priestoru}
 	\label{fig:A3}
 \end{figure}
-Rozdielom kruhu od kvádra vznikne kváder s kruhovou dierou.
+Rozdielom kruhu od kvádra vznikne kváder s~kruhovou dierou.
 \nopagebreak
 \begin{figure}[H]
 	\centering
@@ -1953,23 +1953,23 @@ Rozdielom kruhu od kvádra vznikne kváder s kruhovou dierou.
 	\label{fig:A4}
 \end{figure}
 
-Pri modelovaní ale často nie je hneď zrejmé, aký rozmer má mať objekt. Na to slúžia v parametrickom modeli parametre. Pri zmene hodnoty parametru $c$ na menšiu hodnotu bude objekt vyzerať následne:\nopagebreak
+Pri modelovaní ale často nie je hneď zrejmé, aký rozmer má mať objekt. Na to slúžia v~parametrickom modeli parametre. Pri zmene hodnoty parametru $c$ na menšiu hodnotu bude objekt vyzerať následne:\nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A3x.pdf}
-	\caption{Obdĺžnik s kruhom}
+	\caption{Obdĺžnik s~kruhom}
 	\label{fig:A3x}
 \end{figure}
 Rozdielom týchto objektov vznikne následný objekt:\nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4x.pdf}
-	\caption{Obdĺžnik s kruhovým prierezom}
+	\caption{Obdĺžnik s~kruhovým prierezom}
 	\label{fig:A4x}
 \end{figure}
 
 \subsection*{Model domu}
-Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre tohto parametrického modelu sú uvedené v tabuľke \ref{tab:homeModel}.\nopagebreak
+Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre tohto parametrického modelu sú uvedené v~tabuľke \ref{tab:homeModel}.\nopagebreak
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c| }
@@ -1991,7 +1991,7 @@ Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre to
 \end{table}
 
 
-Ako prvé je potrebné  stanoviť počiatočný bod, z ktorého sa bude model domu vytvárať. Na tomto bode je závislá pozícia domu. Keďže z tohto bodu sa bude vytvárať aj strecha, jeho výška je stanovená parametrom $c$.\nopagebreak
+Ako prvé je potrebné  stanoviť počiatočný bod, z~ktorého sa bude model domu vytvárať. Na tomto bode je závislá pozícia domu. Keďže z~tohto bodu sa bude vytvárať aj strecha, jeho výška je stanovená parametrom $c$.\nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/B1.pdf}
@@ -2005,7 +2005,7 @@ Na bode sa vytvorí obdĺžnik, so šírkou zadanou parametrom $a$ a dĺžkou pa
 	\caption{Rovina domu}
 	\label{fig:B2}
 \end{figure}
-Pridaním výšky k rovine sa vytvorí blok domu. Z roviny vytvorenej v predchádzajúcom kroku sa dá vytvoriť aj strecha domu, a to vytvorením ihlanu s výškou zadanou parametrom $d$. \nopagebreak
+Pridaním výšky k~rovine sa vytvorí blok domu. Z~roviny vytvorenej v~predchádzajúcom kroku sa dá vytvoriť aj strecha domu, a to vytvorením ihlanu s~výškou zadanou parametrom $d$. \nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/B3.pdf}
@@ -2027,7 +2027,7 @@ V~tejto časti je opísaný stav práce, návrh možností previazania objektov 
 
 \section{Bloková schéma}
 
-Knižnica by mala mať jednoduché rozhranie, aby bola ľahko použiteľná pre používateľa. Toto rozhranie je vidieť aj na blokovom diagrame \ref{fig:blockDiagram}. Operácie by mali byť ukladané v~zozname operácií. Po zavolaní metódy pre vyskladanie objektu sa všetky operácie vyhodnotia a vytvoria objekt. Operácie môžu obsahovať aj hodnoty parametrov modelu a aj hodnoty objektov, ktoré boli vytvorené z predchádzajúcich operácií. Výsledný model, by malo byť možné animovať. Na to je potrebné zahrnúť pri vyhodnocovaní operácií aj časovú premennú. Tú by sa malo dať ľubovoľne nastavovať a aj pozastaviť. Objekty sa majú ukladať do zoznamu objektov a ak užívateľ chce, malo by sa dať vytvorený model aj vizualizovať. 
+Knižnica by mala mať jednoduché rozhranie, aby bola ľahko použiteľná pre používateľa. Toto rozhranie je vidieť aj na blokovom diagrame \ref{fig:blockDiagram}. Operácie by mali byť ukladané v~zozname operácií. Po zavolaní metódy pre vyskladanie objektu sa všetky operácie vyhodnotia a vytvoria objekt. Operácie môžu obsahovať aj hodnoty parametrov modelu a aj hodnoty objektov, ktoré boli vytvorené z~predchádzajúcich operácií. Výsledný model, by malo byť možné animovať. Na to je potrebné zahrnúť pri vyhodnocovaní operácií aj časovú premennú. Tú by sa malo dať ľubovoľne nastavovať a aj pozastaviť. Objekty sa majú ukladať do zoznamu objektov a ak užívateľ chce, malo by sa dať vytvorený model aj vizualizovať. 
 
 \begin{figure}[H]
 	\centering
@@ -2039,7 +2039,7 @@ Knižnica by mala mať jednoduché rozhranie, aby bola ľahko použiteľná pre 
 \section{Skladanie operácií}
 \label{sec:skladanie}
 Všetky geometrické operácie sa dajú zapisovať pomocou textovej podoby. 
-Textová podoba geometrickej operácie sa začína s názvom použitej geometrickej operácie a parametrami uvedenými v~zátvorkách \texttt{(} a \texttt{)}, oddelenými čiarkou. U~jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
+Textová podoba geometrickej operácie sa začína s~názvom použitej geometrickej operácie a parametrami uvedenými v~zátvorkách \texttt{(} a \texttt{)}, oddelenými čiarkou. U~jednotlivých parametrov sa medzery na začiatku a konci ignorujú.
 
 %Pri parametroch typu $Float$ sa požaduje desatinné číslo, pri ostatných parametroch je potrebné uviesť názov existujúceho objektu, ktorý je rovnakého typu alebo podtypu aký je vyžadovaný. 
  Keďže pri niektorých objektoch existuje viac možností ako objekt vytvoriť, inšpiroval som sa preťažovaním funkcií v~jazyku C++ a umožnil som, aby mali niektoré operácie rovnaký názov, ale rozdielny typ argumentov. Parametre môžu byť dvoch typov, a to buď názov objektu alebo v~tvare výrazu. Viac o~možnostiach výrazov je v~časti \ref{sec:vyrazy}. Operácie, ktoré táto knižnica umožňuje využiť, sú uvedené v~prílohe~\ref{Priloha:zoznamGeometrickychOperacii}, s~ich textovým zápisom a s~požadovanými parametrami, potrebnými na zostavenie týchto operácií.
@@ -2116,7 +2116,7 @@ Na obrázku \ref{fig:addOperation} je zobrazené, ako sa prejaví po vložení n
 \begin{lstlisting}
 AddOperations("Extrude(Valec,Podstava,3:Šírka,00FF00FF)").
 \end{lstlisting}
-Po zavolaní tejto metódy, sa do zoznamu operácií vloží operácia \texttt{Extrude}, ktorá z kruhu \texttt{"Podstava"}, vytvára valec. Táto operácia tiež pridáva aj parameter \texttt{"Šírka"}.
+Po zavolaní tejto metódy, sa do zoznamu operácií vloží operácia \texttt{Extrude}, ktorá z~kruhu \texttt{"Podstava"}, vytvára valec. Táto operácia tiež pridáva aj parameter \texttt{"Šírka"}.
 
 \begin{figure}[H]
 	\centering
@@ -2170,7 +2170,7 @@ Preto som navrhol algoritmus tak, aby sa znova generovali iba objekty, ktoré sa
 
 
 
-Táto optimalizácia je zobrazená aj na grafe \ref{fig:build optimization}. V tomto grafe sú vyznačené operácie, ktoré je potrebné znovu vyhodnotiť, pri zmene jedného z parametrov. 
+Táto optimalizácia je zobrazená aj na grafe \ref{fig:build optimization}. V~tomto grafe sú vyznačené operácie, ktoré je potrebné znovu vyhodnotiť, pri zmene jedného z~parametrov. 
 
 \begin{figure}[H]
 	\centering
@@ -2186,7 +2186,7 @@ Zo začiatku umožňovala knižnica v~parametroch operácií iba číselnú hodn
 Parametre operácií môžu byť zapísané v~tvare výrazu. Tieto výrazy sa počas zápisu overia a spracúvajú. Vyhodnocovanie prebieha až v~čase vytvárania modelu.
 
 
-Príklady zápisu rôznych výrazov v operáciách vytvárajúcich body:
+Príklady zápisu rôznych výrazov v~operáciách vytvárajúcich body:
 
 
 \lstset {language=C++}
@@ -2195,7 +2195,7 @@ Point(P1,1+2:param1,0-5:param2,1.5:param3,FF0000FF);
 Point(P2,param1+param2, sin(param3*time),P1.X,00FF00FF); 
 \end{lstlisting}
 
-Výrazy môžu obsahovať rôzne prvky. V tejto knižnici sú podporované nasledujúce prvky: 
+Výrazy môžu obsahovať rôzne prvky. V~tejto knižnici sú podporované nasledujúce prvky: 
 \begin{itemize}
     \item  čísla (0; 1.5; -5.5)
     \item  parametre modelu
@@ -2299,7 +2299,7 @@ Object::GeometricObject* GetObject(std::string objectName).
 
 
 \subsubsection*{Časové premenné}
-Knižnica by mala umožňovať aj vytváranie animácií. Pri tvorbe modelu s animáciou, je vhodné využiť časovú hodnotu a na tejto hodnote založiť operácie. Na obrázku \ref{fig:animation} je zobrazená annimácia skákajúcej guli, ktorej priemer sa mení podľa výšky. Čím je táto guľa vyššie, tým je jej priemer väčší.
+Knižnica by mala umožňovať aj vytváranie animácií. Pri tvorbe modelu s~animáciou, je vhodné využiť časovú hodnotu a na tejto hodnote založiť operácie. Na obrázku \ref{fig:animation} je zobrazená annimácia skákajúcej guli, ktorej priemer sa mení podľa výšky. Čím je táto guľa vyššie, tým je jej priemer väčší.
 
 
 
@@ -2425,7 +2425,7 @@ Okrem grafického editora, ktorý je popísaný v~časti \ref{sec:grafickyEditor
 \subsection*{Aplikácia s~použitím glfw}
 
 \subsection*{Aplikácia s~použitím Qt}
-Táto ukážka zobrazuje použitie vytvorenej knižnice s aplikáciou využívajúcou grafické rozhranie z knižnice Qt. V tejto aplikácii ...
+Táto ukážka zobrazuje použitie vytvorenej knižnice s~aplikáciou využívajúcou grafické rozhranie z~knižnice Qt. V~tejto aplikácii ...
 
 
 \begin{figure}[H]
@@ -2440,9 +2440,9 @@ Táto ukážka zobrazuje použitie vytvorenej knižnice s aplikáciou využívaj
 
 
 
-Okno aplikácie obsahuje niekoľko sliderov na manipuláciu s modelom. Pomocou týchto sliderov sa v modele "Hlava", dá upravovať niekoľko parametrov hlavy. Dá sa upraviť napríklad veľkosť hlavy, veľkosť uší alebo veľkosť očí. Taktiež sa dá upravovať vzdialenosť medzi ušami alebo pozíciu očí. Oči modelu sú tiež pohyblivé, teda sa dá nastaviť pozíciu na ktorú sa bude model pozerať. To je v aplikácii ovládané pomocou ťahu pravého tlačidla myši, po okne aplikácie.  
+Okno aplikácie obsahuje niekoľko sliderov na manipuláciu s~modelom. Pomocou týchto sliderov sa v~modele "Hlava", dá upravovať niekoľko parametrov hlavy. Dá sa upraviť napríklad veľkosť hlavy, veľkosť uší alebo veľkosť očí. Taktiež sa dá upravovať vzdialenosť medzi ušami alebo pozíciu očí. Oči modelu sú tiež pohyblivé, teda sa dá nastaviť pozíciu na ktorú sa bude model pozerať. To je v~aplikácii ovládané pomocou ťahu pravého tlačidla myši, po okne aplikácie.  
 
-Grafické rozhranie Qt, je tvorené pomocou widgetov. V kóde aplikácie, je v inicializácii vykresľovacieho widgetu, volaná inicializácia \texttt{Rendereru} knižnice a nastavenie farby pozadia. 
+Grafické rozhranie Qt, je tvorené pomocou widgetov. V~kóde aplikácie, je v~inicializácii vykresľovacieho widgetu, volaná inicializácia \texttt{Rendereru} knižnice a nastavenie farby pozadia. 
 Pri každom snímu vykresľovania, sa model znovu postaví a nastaví sa pozícia kamery a jej natočenie okolo modelu. Následne je tento model vykreslený do grafického widgetu aplikácie.
 
 \begin{minipage}{\linewidth}
@@ -2461,7 +2461,7 @@ void paintGL() {
 \end{lstlisting}
 \end{minipage}
 
-Parametrické modely sú tvorené rôznymi operáciami, ktoré na seba nadväzujú. Tieto operácie sa dajú zobraziť ja pomocou acyklického grafu operácií. Množina operácií, tvoriace model "Hlava", je v prílohe \ref{mnozinaoperacii}. Grafové zobrazenie tohto modelu, je na obrázku \ref{fig:headGraph}.
+Parametrické modely sú tvorené rôznymi operáciami, ktoré na seba nadväzujú. Tieto operácie sa dajú zobraziť ja pomocou acyklického grafu operácií. Množina operácií, tvoriace model "Hlava", je v~prílohe \ref{mnozinaoperacii}. Grafové zobrazenie tohto modelu, je na obrázku \ref{fig:headGraph}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-Head - Graf.pdf}

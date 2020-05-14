@@ -9,8 +9,8 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 % 		Create point on position 0,0,0. Parent - If entered, position is relative, else absolute
 
-\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, RRGGBBAA color)}} - Bod s absolútnou pozíciou 
-\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, Point parent, RRGGBBAA color)}} - Bod s relatívnou pozíciou of zadaného bodu
+\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, RRGGBBAA color)}} - Bod s~absolútnou pozíciou 
+\item \textsc{\textbf{Point(string name, expression X, expression Y, expression Z, Point parent, RRGGBBAA color)}} - Bod s~relatívnou pozíciou of zadaného bodu
 % 		//-Create point on position XYZ
 % 		///	Example:
 % 		//		Point("Name of point 1")	//Name can by written with "" or '' or without, Point is on absolute position [0,0,0]
@@ -23,20 +23,20 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 \item \textsc{\textbf{LinearInterpolationDist(string name, Point from, Point to, expression distance, RRGGBBAA color)}} - Bod medzi dvomi bodmi, so vzdialenosťou od prvého bodu
 		 
-\item \textsc{\textbf{LinearInterpolationPerc(string name, Point from, Point to, expression percentage, RRGGBBAA color)}} - Bod medzi dvomi bodmi, s percentuálnou vzdialenosťou od prvého bodu
+\item \textsc{\textbf{LinearInterpolationPerc(string name, Point from, Point to, expression percentage, RRGGBBAA color)}} - Bod medzi dvomi bodmi, s~percentuálnou vzdialenosťou od prvého bodu
 % 		//	Example:
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 50%)	//- Create Point in middle of entered points
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 25%)	//- Create Point on position with distance 20% of first point and 80% of second point
 % 		//		LinearInterpolation(PointName, FromPoint, ToPoint, 100)	//- Create Point on position with distance 100 from first point in angle to second point 
 
-\item \textsc{\textbf{Intersection\_Plane\_Line(string name, Line l, Sufrace s, RRGGBBAA color)}} - Bod v pozícii, kde úsečka pretína plochu %Create Point on position where line l intersect surface s
+\item \textsc{\textbf{Intersection\_Plane\_Line(string name, Line l, Sufrace s, RRGGBBAA color)}} - Bod v~pozícii, kde úsečka pretína plochu %Create Point on position where line l intersect surface s
 % 		//	Alternative:
 % 		//	Intersection(string name, Line lineName, Sufrace surfaceName)
 % 		//	Example:
 % 		//		Intersection\_Plane\_Line(PointName,  lineName, surfaceName) //- Create Point on position where Line with name "lineName" intersecting Surface with name "surfaceName"
 
 
-\item \textsc{\textbf{SurfaceCenterBoundingSquare(string name, Surface s, RRGGBBAA color)}} - Bod v centre plochy %Create point on position in middle of bounding box of entered surface
+\item \textsc{\textbf{SurfaceCenterBoundingSquare(string name, Surface s, RRGGBBAA color)}} - Bod v~centre plochy %Create point on position in middle of bounding box of entered surface
 % 		//Create point on position of middle of entered surface
 % 		//	Example:
 % 		//		SurfaceCenterBoundingSquare(PointName, Circle)	//- Create Point on center of Circle
@@ -46,11 +46,11 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 \item \textsc{\textbf{SurfaceCenterAverage(string name, Surface s, RRGGBBAA color) }} - Bod roviny vytvorený spriemerovaním všetkých bodov plochy%Create point on avarage position of all points of entered surface
 
-\item \textsc{\textbf{Centroid(string name, Triangle t, RRGGBBAA color)}} - Bod v ťažisku trojuholníka % Create point on centroid of triangle
+\item \textsc{\textbf{Centroid(string name, Triangle t, RRGGBBAA color)}} - Bod v~ťažisku trojuholníka % Create point on centroid of triangle
 
-\item \textsc{\textbf{Incenter(string name, Triangle t, RRGGBBAA color)}} - Bod v centre vpísaného kruhu trojuholníka%Create point on center of inscribed circle in triangle
+\item \textsc{\textbf{Incenter(string name, Triangle t, RRGGBBAA color)}} - Bod v~centre vpísaného kruhu trojuholníka%Create point on center of inscribed circle in triangle
 
-\item \textsc{\textbf{Circumcenter(string name, Triangle t, RRGGBBAA color) }} - Bod v centre opísaného kruhu %Create point on center of circumscribed circle over triangle
+\item \textsc{\textbf{Circumcenter(string name, Triangle t, RRGGBBAA color) }} - Bod v~centre opísaného kruhu %Create point on center of circumscribed circle over triangle
 
 \item \textsc{\textbf{Orthocenter(string name, Triangle t, RRGGBBAA color)}} - Ortocentrum trojuholníka %Create orthocentrum of triangle
 
@@ -71,11 +71,11 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 \begin{itemize}
 \item \textsc{\textbf{Line(string name, Point p1, Point p2, RRGGBBAA color)}}  - Vytvorenie úsečky, kde p1 je počiatočný bod a p2 je koncový bod %Create line, where p1 is start point and p2 is end point
 
-\item \textsc{\textbf{LineNormalize(string name, Line l, RRGGBBAA color)}} - Normalizujte čiaru na vzdialenosť 1,0. Počiatočný bod je rovnaký ako počiatočný bod zadanej čiary, konečný bod je vo vzdialenosti 1,0 v smere koncového bodu čiary. %Normalize line to distance 1.0. Beginning point is same as beginning point of entered line, end point is in distance 1.0 in direction to end point of line
+\item \textsc{\textbf{LineNormalize(string name, Line l, RRGGBBAA color)}} - Normalizujte čiaru na vzdialenosť 1,0. Počiatočný bod je rovnaký ako počiatočný bod zadanej čiary, konečný bod je vo vzdialenosti 1,0 v~smere koncového bodu čiary. %Normalize line to distance 1.0. Beginning point is same as beginning point of entered line, end point is in distance 1.0 in direction to end point of line
 
-\item \textsc{\textbf{LineChangeLengthDist(string name, Line l, expression distance, RRGGBBAA color)}} - Počiatočný bod je rovnaký ako počiatočný bod zadaného riadku, koncový bod je v zadanej vzdialenosti v smere k koncovému bodu riadku%Beginning point is same as beginning point of entered line, end point is in entered distance in direction to end point of line
+\item \textsc{\textbf{LineChangeLengthDist(string name, Line l, expression distance, RRGGBBAA color)}} - Počiatočný bod je rovnaký ako počiatočný bod zadaného riadku, koncový bod je v~zadanej vzdialenosti v~smere k~koncovému bodu riadku%Beginning point is same as beginning point of entered line, end point is in entered distance in direction to end point of line
 		
-\item \textsc{\textbf{LineChangeLengthPerc(string name, Line l, expression percent, RRGGBBAA color)}} - Počiatočný bod je rovnaký ako počiatočný bod zadaného riadku, koncový bod je v zadanej percentuálnej vzdialenosti v smere k cieľovému bodu riadku %Beginning point is same as beginning point of entered line, end point is in entered percentual distance in direction to end point of line
+\item \textsc{\textbf{LineChangeLengthPerc(string name, Line l, expression percent, RRGGBBAA color)}} - Počiatočný bod je rovnaký ako počiatočný bod zadaného riadku, koncový bod je v~zadanej percentuálnej vzdialenosti v~smere k~cieľovému bodu riadku %Beginning point is same as beginning point of entered line, end point is in entered percentual distance in direction to end point of line
 
 
 
@@ -92,7 +92,7 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 
 \item \textsc{\textbf{LineRelocationByPoint(string name, Line l, Point p, RRGGBBAA color)}} - Presun úsečky na novú pozíciu. Začiatočný bod je zadaný bod a koncový bod je vo vzdialenosti zadanej čiary rovnakým smerom.%Line is moved to new location. Beginning point is entered point and end point is in distance of entered line with same direction.
-\item \textsc{\textbf{CrossProduct(string name, Line l1, Line l2, RRGGBBAA color)}} - Úsečka v smere vektorového súčinu dvoch priamok%Create cross-product of entered lines
+\item \textsc{\textbf{CrossProduct(string name, Line l1, Line l2, RRGGBBAA color)}} - Úsečka v~smere vektorového súčinu dvoch priamok%Create cross-product of entered lines
 
 \end{itemize}
 
@@ -120,16 +120,16 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 	
 \item \textsc{\textbf{Circle(string name, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)}} - Vytvorenie kruhu od stredu, bodu na okraji kruhu a bodu na ploche %Create circle by 3 points
 
-\item \textsc{\textbf{Triangle(string name, Line l, Point p, RRGGBBAA color)}} - Vytvorenie trojuholníku z úsečky a bodu%Create triangle by line and point
+\item \textsc{\textbf{Triangle(string name, Line l, Point p, RRGGBBAA color)}} - Vytvorenie trojuholníku z~úsečky a bodu%Create triangle by line and point
 	
-\item \textsc{\textbf{Triangle(string name, Point p1, Point p2, Point p3, RRGGBBAA color)}} -  Vytvorenie trojuholníku z troch bodov%Create triangle by 3 points
+\item \textsc{\textbf{Triangle(string name, Point p1, Point p2, Point p3, RRGGBBAA color)}} -  Vytvorenie trojuholníku z~troch bodov%Create triangle by 3 points
 
 
 \item \textsc{\textbf{Rectangle(string name, Point center, expression X, expression Y, expression Roll
 % 	/*[0,360]*/
     , Line normal, RRGGBBAA color)}} - Vytvorenie obdĺžniku%Create recangle
 
-\item \textsc{\textbf{Polygon(string name, Point p1, Point p2, Point p3, ..., RRGGBBAA color)}} - Vytvorenie polygónu z ľubovoľného počtu bodov%Create Polygon by connecting points, minimum 3 points.  Multiple points are divided by ';'
+\item \textsc{\textbf{Polygon(string name, Point p1, Point p2, Point p3, ..., RRGGBBAA color)}} - Vytvorenie polygónu z~ľubovoľného počtu bodov%Create Polygon by connecting points, minimum 3 points.  Multiple points are divided by ';'
 
 
 \item \textsc{\textbf{Circumscribed(string name, Triangle t, RRGGBBAA color)}}  - Vytvorenie opísanej kružnice trojuholníka %Create circumscribed circle around triangle
@@ -140,9 +140,9 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 \section*{Objemové operácie}
 
 \begin{itemize}
-\item \textsc{\textbf{Cone(string name, Surface s, expression distance, RRGGBBAA color)}} - Vytvorenie kužeľu s podstavou z ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
+\item \textsc{\textbf{Cone(string name, Surface s, expression distance, RRGGBBAA color)}} - Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
 
-\item \textsc{\textbf{Cone(string name, Surface s, Point p, RRGGBBAA color)}} - Vytvorenie kužeľu s podstavou z ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
+\item \textsc{\textbf{Cone(string name, Surface s, Point p, RRGGBBAA color)}} - Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
 
 \item \textsc{\textbf{Extrude(string name, Surface s, expression distance, RRGGBBAA color)}}  - Vysunutie plochy do priestoru%Enlarge surface to 3D with distance
 
