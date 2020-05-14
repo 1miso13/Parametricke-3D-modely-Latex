@@ -964,6 +964,8 @@ Management}{\@fit@EN}%
 \usepackage{ragged2e}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage{eurosym}
+\usepackage{graphbox}
 \DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{tt}}
 \def\UrlBreaks{\do\/\do-}
 

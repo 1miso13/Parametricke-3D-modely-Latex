@@ -1,3 +1,5 @@
+
+
 \chapter{Zoznam geometrických operácií}
 \label{Priloha:zoznamGeometrickychOperacii}
 Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie, nasledované parametrami v~zátvorkách, ktoré sú oddelené čiarkou.
@@ -153,3 +155,43 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 \item \textsc{\textbf{BooleanMinus(string name, Object o1, Object o2, RRGGBBAA color)}} - Rozdiel objektov%First object minus second object
 \item \textsc{\textbf{BooleanXOR(string name, Object o1, Object o2, RRGGBBAA color)}} - Symetrická diferencia objektov%Symmetric difference between objects
 \end{itemize}
+
+
+\chapter{Množina operácii, tvoriace model hlavy.}
+\label{mnozinaoperacii}
+\begin{lstlisting}[language=C,frame=tb,numbers=left]
+Point(center,0,0,0,00000000);
+Sphere(head,center,2:headSize,00FF00FF);
+Point(param1,0.5:earSize,3.14/4:earDistance,0.7:earPopOut,00000000);
+Point(centerOfLEar,
+	0-(sin(earDistance)*(head.radius+earSize*earPopOut)),
+	cos(earDistance)*(head.radius+earSize*earPopOut),
+	0,center,0000FFFF);
+Point(centerOfREar,
+	sin(earDistance)*(head.radius+earSize*earPopOut),
+	cos(earDistance)*(head.radius+earSize*earPopOut),
+	0,center,0000FFFF);
+Sphere(leftEar,centerOfLEar,earSize,FF0000FF);
+Sphere(rightEar,centerOfREar,earSize,FF0000FF);
+Point(paramEyes,3.14/8:eyesWidth,3.14/8:eyesHeight,0.7:eyePopOut,00000000);
+Point(paramEyes2,0.2:eyeSize,0,0,00000000);
+Point(lEyeCenter,
+	sin(eyesWidth)*(head.radius+eyeSize*(0-eyePopOut)),
+	cos(eyesWidth)*(head.radius+eyeSize*(0-eyePopOut))*sin(eyesHeight),
+	cos(eyesHeight)*(head.radius+eyeSize*(0-eyePopOut))*cos(eyesWidth),
+	FF00FFFF);
+Point(rEyeCenter,
+	0-sin(eyesWidth)*(head.radius+eyeSize*(0-eyePopOut)),
+	cos(eyesWidth)*(head.radius+eyeSize*(0-eyePopOut))*sin(eyesHeight),
+	cos(eyesHeight)*(head.radius+eyeSize*(0-eyePopOut))*cos(eyesWidth),
+	0000FFFF);
+Sphere(leftEye,lEyeCenter,eyeSize,FFFF00FF);
+Sphere(rightEye,rEyeCenter,eyeSize,FF0FF0FF);
+
+Point(param2,0.7:eyeDotPopOut,eyeSize/2:eyeDotSize,0,00000000);
+Point(LookAtPoint,0:lookAtX,0:lookAtY,10:lookAtDistance,00000000);
+LinearInterpolationDist(eyeDotLCenter,lEyeCenter,LookAtPoint,eyeSize-eyeDotSize*eyeDotPopOut,00000000);
+Sphere(eyeDotL,eyeDotLCenter,eyeDotSize,FF0000FF);
+LinearInterpolationDist(eyeDotRCenter,rEyeCenter,LookAtPoint,eyeSize-eyeDotSize*eyeDotPopOut,00000000);
+Sphere(eyeDotR,eyeDotRCenter,eyeDotSize,FF0000FF);
+\end{lstlisting}{}
