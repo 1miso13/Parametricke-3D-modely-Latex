@@ -74,7 +74,7 @@ V~ďalšej, tretej kapitole sú opísané geometrické objekty a geometrické op
 V~štvrtej kapitole je opísaná analýza, koncept práce a návrh skladania parametrických modelov.
 Piata kapitola obsahuje implementačnú časť práce. Popis a postup vytvárania geometrických modelov pomocou skladania geometrických operácií a použitie rôznych možností pri zápise výrazu v~parametroch geometrických operácií. Táto kapitola tiež obsahuje príklady použitia navrhnutej knižnice.
 %Kapitola pokračuje opisom grafického užívateľského rozhrania, ktoré umožňuje návrh geometrických modelov. Grafické užívateľské rozhranie zobrazuje internú štruktúru modelu, teda jednotlivé operácie, objekty a parametre a zároveň tento model vizualizuje. Tiež umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácií a upozorní užívateľa pri geometrickej operácii, ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený). Grafické užívateľské rozhranie pozostáva z~dvoch okien. Jedno pre správu geometrických objektov a operácií, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
-V šiestej kapitole je popísané experimentálne vyhodnotenie vytvoreného riešenia.
+V~šiestej kapitole je popísané experimentálne vyhodnotenie vytvoreného riešenia.
 Posledná kapitola obsahuje zhrnutie práce a rôzne možnosti pre ďalšie rozšírenia a vylepšenia.
 
 \chapter{Parametrické trojrozmerné modely}
@@ -284,8 +284,8 @@ Libfive je knižnica  a sada nástrojov na modelovanie pevných látok, zvláš�
 \subsection*{Tigl}
 TiGL je knižnica, ktorá je určená hlavne pre geometrické modelovanie lietadiel a helikoptér. 
 Je to spojenie medzi parametrami CPACS lietadla a simulačnými nástrojmi. 
-CPACS (The Common Parametric Aircraft Configuration Schema) je definícia údajov pre systém leteckej dopravy. TiGL počíta CAD modely z týchto parametrov.
-Tvorba modelu v knižnici Tigl je založená hlavne na vytváraní plôch pomocou kriviek NURBS. \cite{}\nopagebreak
+CPACS (The Common Parametric Aircraft Configuration Schema) je definícia údajov pre systém leteckej dopravy. TiGL počíta CAD modely z~týchto parametrov.
+Tvorba modelu v~knižnici Tigl je založená hlavne na vytváraní plôch pomocou kriviek NURBS. \cite{}\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/tigl.png}
@@ -296,7 +296,7 @@ Tvorba modelu v knižnici Tigl je založená hlavne na vytváraní plôch pomoco
 
 \chapter{Geometrické objekty a operácie v~3D modelovaní}
 \label{chapt:Geometrické_tvary}
-Táto kapitola je súčasťou zhrnutia súčasného stavu. Sú v nej zhrnuté matematické a geometrické vlastnosti objektov a operácií ktorými sa práca zaoberá.
+Táto kapitola je súčasťou zhrnutia súčasného stavu. Sú v~nej zhrnuté matematické a geometrické vlastnosti objektov a operácií ktorými sa práca zaoberá.
 
 Geometrické objekty môžeme rozdeliť do 4 kategórií podľa dimenzií. Body, úsečky, plochy a objemové objekty.
 Spájaním objektov z~nižších dimenzií, vznikajú zložitejšie objekty z~vyšších dimenzií. Táto kapitola opisuje jednotlivé geometrické objekty a operácie, ktoré ich vytvárajú, a to od jednoduchších až k~zložitejším.
@@ -364,7 +364,7 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
 {\textbf{N} \cdot (\textbf{P2}-\textbf{P1})}
     \label{eq:rovnicaPriesecnikuSolved}
 \end{equation}
-Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto operácie sa vytvorí bod aj mimo zadaných objektov. Problém nastáva, ak je zadaná úsečka paralelná s~plochou, a teda je kolmá na normálu plochy $N$. Skalárny súčin v~menovateli je potom rovný 0, teda úsečka je s plochou rovnobežná. V~tomto prípade priesečník buď neexistuje, alebo je priesečníkov nekonečne veľa, ak úsečka leží na rovine \cite{bourke_Point_Line_Plane}.
+Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto operácie sa vytvorí bod aj mimo zadaných objektov. Problém nastáva, ak je zadaná úsečka paralelná s~plochou, a teda je kolmá na normálu plochy $N$. Skalárny súčin v~menovateli je potom rovný 0, teda úsečka je s~plochou rovnobežná. V~tomto prípade priesečník buď neexistuje, alebo je priesečníkov nekonečne veľa, ak úsečka leží na rovine \cite{bourke_Point_Line_Plane}.
 
 \begin{figure}[H]
 	\centering
@@ -1891,7 +1891,7 @@ Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ic
 % \todo{TODO}
 
 \section{Koncept práce}
-Z~vykonanej analýzy vyplýva, že existujúce systémy pre tvorbu parametrických modelov, buď umožňujú pripojenie s externými systémami pomocou API (Application Programming Interface), ktoré sú ale zväčša komplikované na používanie alebo obsahujú iba skripty, ktoré sú určené len na tvorbu modelov, ale neumožňujú pripojenie k externým systémom. Preto som sa rozhodol vytvoriť systém, ktorý bude obsahovať knižnicu, ktorá bude mať jednoduché rozhranie pre tvorbu a nastavovanie modelu a aplikáciu, ktorá bude využívať túto knižnicu a uľahčovať ich tvorbu. 
+Z~vykonanej analýzy vyplýva, že existujúce systémy pre tvorbu parametrických modelov, buď umožňujú pripojenie s~externými systémami pomocou API (Application Programming Interface), ktoré sú ale zväčša komplikované na používanie alebo obsahujú iba skripty, ktoré sú určené len na tvorbu modelov, ale neumožňujú pripojenie k~externým systémom. Preto som sa rozhodol vytvoriť systém, ktorý bude obsahovať knižnicu, ktorá bude mať jednoduché rozhranie pre tvorbu a nastavovanie modelu a aplikáciu, ktorá bude využívať túto knižnicu a uľahčovať ich tvorbu. 
 
 
 % Z~vykonanej analýzy vyplýva, že knižníc, ktoré umožňujú modelovanie telies, nie je veľa. Preto som sa rozhodol vytvoriť ďalšiu knižnicu, ktorá bude umožňovať parametrické modelovanie a bude týmto knižniciam konkurovať.  \todo{Blbost}
@@ -1899,7 +1899,7 @@ Z~vykonanej analýzy vyplýva, že existujúce systémy pre tvorbu parametrický
 % Vytvorené riešenie by malo obsahovať knižnicu a aplikáciu na tvorbu parametrických modelov. 
  Takáto knižnica by mala byť založená na vytváraní objektov pomocou geometrických operácií, ktoré na seba budú nadväzovať.
 Tiež by mala mať jednoduché rozhranie pre tvorbu modelov a umožňovať ich vykresľovanie do grafického okna aplikácie. 
-Súčasťou realizačnej časti musí byť aj vytvorenie grafického rozhrania, pre návrh parametrických modelov v trojrozmernom priestore. Návrh základnej koncepcie rozhrania je uvedené na obrázku \ref{fig:GUI_draft}.
+Súčasťou realizačnej časti musí byť aj vytvorenie grafického rozhrania, pre návrh parametrických modelov v~trojrozmernom priestore. Návrh základnej koncepcie rozhrania je uvedené na obrázku \ref{fig:GUI_draft}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.5\textwidth]{obrazky-figures/Examples/mockup.pdf}
@@ -1936,14 +1936,14 @@ Vytváranie trojrozmerných parametrických modelov musí byť založené na skl
 Knižnica musí byť schopná spracovať následujúce príklady úloh.
 
 \subsection*{Príklad 1. Vytvorenie kvádra s~kruhovým výrezom}
-Cieľovým objektom tohoto príkladu je kváder s kruhovým výrezom, viď. obrázok \ref{fig:A4First}. Základné parametre tohoto útvaru sú zhrnuté v tabuľke \ref{tab:blockWithCircleHole}  a sú zobrazené na obrázku \ref{fig:A4First}.
+Cieľovým objektom tohoto príkladu je kváder s~kruhovým výrezom, viď. obrázok \ref{fig:A4First}. Základné parametre tohoto útvaru sú zhrnuté v~tabuľke \ref{tab:blockWithCircleHole}  a sú zobrazené na obrázku \ref{fig:A4First}.
 
 \begin{minipage}[b]{\textwidth}
 \begin{minipage}[b]{0.49\textwidth}
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.49\textwidth]{obrazky-figures/Examples/A4.pdf}
-	\caption{Ukážka vytvoreného kvádra s kruhovým výrezom}
+	\caption{Ukážka vytvoreného kvádra s~kruhovým výrezom}
 	\label{fig:A4First}
 \end{figure}
 \end{minipage}
@@ -1999,7 +1999,7 @@ Rozdielom kruhu od kvádra vznikne kváder s~kruhovou dierou.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4.pdf}
-	\caption{Vytvorený obdĺžnik s kruhovým výrezom}
+	\caption{Vytvorený obdĺžnik s~kruhovým výrezom}
 	\label{fig:A4}
 \end{figure}
 
@@ -2019,7 +2019,7 @@ Rozdielom týchto objektov vznikne následný objekt:\nopagebreak
 \end{figure}
 
 \subsection*{Príklad 2 - Vytvorenie modelu domu}
-Cieľovým objektom tohoto príkladu je model domu, viď obrázok \ref{fig:B4First}. Základné parametre tohoto útvaru sú zhrnuté v tabuľke \ref{tab:homeModel}  a sú zobrazené na obrázku \ref{fig:B4First}
+Cieľovým objektom tohoto príkladu je model domu, viď obrázok \ref{fig:B4First}. Základné parametre tohoto útvaru sú zhrnuté v~tabuľke \ref{tab:homeModel}  a sú zobrazené na obrázku \ref{fig:B4First}
 % Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre tohto parametrického modelu sú uvedené v~tabuľke \ref{tab:homeModel}
 \label{sec:homeModel}.
 \nopagebreak
@@ -2249,7 +2249,7 @@ Táto optimalizácia je zobrazená aj na grafe \ref{fig:build optimization}. V~t
 \end{figure}
 Červenou farbou sú vyznačené operácie, ktorým sa zmenil parameter. Žltou farbou sú vyznačené operácie, ktoré sú závislé od výsledku pozmenenej operácie. Tieto operácie je potrebné tiež znovu vyhodnotiť. Modrou farbou sú vyznačené operácie, ktorým sa žiadna hodnota nezmenila a nezmenila sa ani žiadna operácia, na ktorej sú závislé. Výsledok týchto operácií by bol rovnaký, ako pred zmenou hodnoty parametra. Preto tieto operácie nie je potrebné znova spracovať, a tým sa dá ušetriť výpočtový čas na znovupostavenie modelu.
 
-\section{Výrazy v operáciách}
+\section{Výrazy v~operáciách}
 \label{sec:vyrazy}
 Zo začiatku umožňovala knižnica v~parametroch operácií iba číselnú hodnotu, s~presnosťou dátového typu \textit{double}. To ale často nebolo dostatočné, preto som sa rozhodol prerobiť túto hodnotu na výrazy so základnou aritmetikou a s~použitím aj iných hodnôt z~objektov. Neskôr som pridal aj trigonometrické operácie a zaokrúhľovanie. Pridal som aj  časové premenné, aby sa dal model animovať v~čase.
 Parametre operácií môžu byť zapísané v~tvare výrazu. Tieto výrazy sa počas zápisu overia a spracúvajú. Vyhodnocovanie prebieha až v~čase vytvárania modelu.
@@ -2305,7 +2305,7 @@ Výrazy môžu obsahovať rôzne prvky. V~tejto knižnici sú podporované nasle
 
 
 \subsection*{Precedenčná tabuľka}
-Pre vyhodnocovanie výrazov v realizovanom systéme je potrebné dbať na precedenciu operátorov. Preto je potrebná precedenčná tabuľka. Tá označuje, ktorá operácia má vyššiu prioritu pri výpočte. Zvislé popisky udávajú, aký znak je na vrchole zásobníka a vodorovné popisky udávajú, aký znak práve prišiel (vstupný token). Znak \$ na zásobníku určuje dno zásobníka a \$ na vstupe určuje koniec. Ak je výsledná hodnota z~precedenčnej tabuľky znak X, znamená to, že zadaný výraz je zapísaný v~chybej forme, a teda nie je možné takýto výraz ďalej riešiť.
+Pre vyhodnocovanie výrazov v~realizovanom systéme je potrebné dbať na precedenciu operátorov. Preto je potrebná precedenčná tabuľka. Tá označuje, ktorá operácia má vyššiu prioritu pri výpočte. Zvislé popisky udávajú, aký znak je na vrchole zásobníka a vodorovné popisky udávajú, aký znak práve prišiel (vstupný token). Znak \$ na zásobníku určuje dno zásobníka a \$ na vstupe určuje koniec. Ak je výsledná hodnota z~precedenčnej tabuľky znak X, znamená to, že zadaný výraz je zapísaný v~chybej forme, a teda nie je možné takýto výraz ďalej riešiť.
 
 Pre vyhodnocovanie výrazov sa v~knižnici využíva nasledovná precedenčná tabuľka: \nopagebreak
 \begin{table}[H]
@@ -2358,7 +2358,7 @@ Vo vytvorenej knižnici je možné pristupovať k~jednotlivým hodnotám objekto
 \texttt{GetObjectValue}. Použitie tejto metódy je vidieť na následujúcich príkladoch:
 \begin{lstlisting}
 GetObjectValue("Guľa.center.x") &\textrm{- Hodnota pozície stredu kruhu na ose X,}&
-GetObjectValue("Trojuhoľník.perimeter") &\textrm{- Obvod trujuhoľníka s názvom \newline"Trojuhoľník",}&
+GetObjectValue("Trojuhoľník.perimeter") &\textrm{- Obvod trujuhoľníka s~názvom \newline"Trojuhoľník",}&
 GetObjectValue("Kužeľ.volume") &\textrm{- Objem kužeľa "Kužeľ".}&
 \end{lstlisting}
 
@@ -2366,7 +2366,7 @@ GetObjectValue("Kužeľ.volume") &\textrm{- Objem kužeľa "Kužeľ".}&
 Alternatívne sa dá pristupovať k~štruktúram objektov priamo, pomocou funkcie \newline \texttt{GetObject}, ktorý berie ako argument názov požadovaného objektu.
 \begin{lstlisting}
 ((Object::Sphere*) paramModel.GetObject("Guľa"))->center.Position.X&\newline \textrm{- Hodnota pozície stredu kruhu na ose X}&
-((Object::Triangle*) paramModel.GetObject("Trojuhoľník"))->GetPerimeter()&\newline\textrm{- Obvod trujuhoľníka s názvom "Trojuhoľník",}&
+((Object::Triangle*) paramModel.GetObject("Trojuhoľník"))->GetPerimeter()&\newline\textrm{- Obvod trujuhoľníka s~názvom "Trojuhoľník",}&
 ((Object::Shape3D*) paramModel.GetObject("Kužeľ"))->GetVolume() &\newline\textrm{- Objem kužeľa "Kužeľ".}&
 \end{lstlisting}
 % \todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z~neho nejake parametre)}
@@ -2464,7 +2464,7 @@ Po vybraní operácie zo zoznamu, sa zobrazia v~pravej časti dialógového okna
 \end{figure}
 
 Ako prvý parameter je názov takto vytvoreného objektu, ktorý je pri novo vytváraných objektoch (režim okna pridanie alebo vloženie) predvyplnený, ale je možné ho upraviť na ľubovoľnú hodnotu.  
-Po názve objektu nasleduje farba objektu v tvare RRGGBBAA zapísaná hexadecimálne.
+Po názve objektu nasleduje farba objektu v~tvare RRGGBBAA zapísaná hexadecimálne.
 Ďalej nasledujú samotné parametre operácie typu $Expression,  Point, Line,$ $ Surface$ a ďalšie. Parametrom typu $Expression$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nie je povinný a pre parametre stačí nechať políčko prázdne. Parametre typu $Expression$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v~zozname parametrov modelu.
 V~poslednom stĺpci sa nachádza nápoveda k~danému parametru.
 
@@ -2475,7 +2475,7 @@ V~hlavnom okne aplikácie je možné zadať operácie v~textovej podobe. Tento t
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{obrazky-figures/operations text.png}
-	\caption{Textový zápis operácii, v hlavnom okne aplikácie}
+	\caption{Textový zápis operácii, v~hlavnom okne aplikácie}
 	\label{fig:text}
 \end{figure}
 Ak je zadaný text valídny, zafarbí sa na čierno. Naopak ak je v~niektorej operácii chyba, či už syntaktická alebo sémantická, zafarbí sa na červeno. Viac o~možnostiach pridávania, úpravy a odoberanie objektov je v~časti \ref{sec:addAndRemoveObjects}.
@@ -2487,26 +2487,26 @@ Ak je zadaný text valídny, zafarbí sa na čierno. Naopak ak je v~niektorej op
 \chapter{Vyhodnotenie vytvoreného riešenia}\label{sec:zhodnotenie}
 % Okrem grafického editora, ktorý je popísaný v~časti \ref{sec:grafickyEditor}, som vytvoril aj ďalšie dve aplikácie znázorňujúce použitie tejto knižnice na tvorbu parametrických trojrozmerných modelov.  V~tejto časti sú tieto aplikácie opísané. \todo{hlupost}
 
-Vytvorený systém bol testovaný na niekoľkých príkladoch. Základom pre tieto príklady boli návrhy geometrických objektov z časti \ref{sec:navrhOperacii}.
+Vytvorený systém bol testovaný na niekoľkých príkladoch. Základom pre tieto príklady boli návrhy geometrických objektov z~časti \ref{sec:navrhOperacii}.
 
-\section*{Príklad 1 - Kváder s kruhovým výrezom}
-Základom pre tento príklad bol model kvádra s dierou, zobrazený aj na obrázku \ref{fig:A4vyhodnotenie}.
+\section*{Príklad 1 - Kváder s~kruhovým výrezom}
+Základom pre tento príklad bol model kvádra s~dierou, zobrazený aj na obrázku \ref{fig:A4vyhodnotenie}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4x.pdf}
-	\caption{Model kvádra s dierou}
+	\caption{Model kvádra s~dierou}
 	\label{fig:A4vyhodnotenie}
 \end{figure}
 
-Výsledný model kvádra s dierou, vytvorený pomocou implementovaného systému je zobrazený na obrázku \ref{fig:qwerty7io}.
+Výsledný model kvádra s~dierou, vytvorený pomocou implementovaného systému je zobrazený na obrázku \ref{fig:qwerty7io}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s dierou1.png}
-	\includegraphics[trim=10 10 10 10,clip,width=0.30\textwidth]{obrazky-figures/Examples/kvader s dierou2.png}
-	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s dierou3.png}
-	\caption{Model "kváder s dierou" pri rôznych hodnotách parametrov}
+	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s~dierou1.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.30\textwidth]{obrazky-figures/Examples/kvader s~dierou2.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s~dierou3.png}
+	\caption{Model "kváder s~dierou" pri rôznych hodnotách parametrov}
 	\label{fig:qwerty7io}
 \end{figure}
 
@@ -2523,13 +2523,13 @@ Circle(kruh,centerWithOffset,2.5:polomer kruhu,vector,00FF0000);
 Rectangle(stvorec,center,5,5,0,vector,FF000000);
 Extrude(kvader,stvorec,1:sirka,00000000);
 Extrude(diera,kruh,sirka-offset*2,00000000);
-BooleanMinus(kvader s kruhovou dierou,kvader,diera,0000FFFF);
+BooleanMinus(kvader s~kruhovou dierou,kvader,diera,0000FFFF);
 \end{lstlisting}
 \end{minipage}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[trim=10 10 10 10,clip,width=0.50\textwidth]{obrazky-figures/Examples/kvader s dierou4.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.50\textwidth]{obrazky-figures/Examples/kvader s~dierou4.png}
 	\includegraphics[trim=10 10 10 10,clip,width=0.49\textwidth]{obrazky-figures/Examples/followUp.png}
 	\includegraphics[trim=10 10 10 10,clip,width=0.50\textwidth]{obrazky-figures/Examples/followup3.png}
 	\caption{Modifikácie vytvoreného modelu}
@@ -2542,7 +2542,7 @@ Navrhnutý model je možné ďalej modifikovať. Ďalšie vytvorené modifikáci
 
 \newpage
 \subsection*{Príklad 2 - Model domu}\label{priklad2}
-Tento príklad je implementovaný na priloženom médiu a zobrazuje vytvorený model s použitím grafického okna vytvoreného pomocou knižnice glfw. Model použitý v tejto aplikácii je model domu, ktorý je navrhnutý v časti \ref{sec:homeModel}.
+Tento príklad je implementovaný na priloženom médiu a zobrazuje vytvorený model s~použitím grafického okna vytvoreného pomocou knižnice glfw. Model použitý v~tejto aplikácii je model domu, ktorý je navrhnutý v~časti \ref{sec:homeModel}.
 
 
 \begin{figure}[H]
@@ -2562,7 +2562,7 @@ Tento príklad je implementovaný na priloženom médiu a zobrazuje vytvorený m
 	\label{fig:homeModel}
 \end{figure}
 
-V navrhnutej knižnici bolo dôležité, aby sa vytvorený model dal uložiť a po načítaní ďalej upravovať, napríklad pridávaním ďalších operácií. To je zobrazené na nasledovnej ukážke:\nopagebreak 
+V~navrhnutej knižnici bolo dôležité, aby sa vytvorený model dal uložiť a po načítaní ďalej upravovať, napríklad pridávaním ďalších operácií. To je zobrazené na nasledovnej ukážke:\nopagebreak 
 \vspace{10pt}
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C,frame=tb,numbers=left,emph={void,int,char,double,float,unsigned},emphstyle={\color{blue}},tabsize=2]
@@ -2632,7 +2632,7 @@ Parametrické modely sú tvorené rôznymi operáciami, ktoré na seba nadväzuj
 \end{figure}
 
 \section*{Príklad 4 - Animácia motora}
-Najzložitejší model, ktorý som vytvoril pomocou tohoto systému, je model motora. Tento model je navrhnutý tak, aby sa dal animovať v čase a obsahuje rôzne parametre ako je veľkosť hlavy, rádius hriadeľa a aj rýchlosť motora.
+Najzložitejší model, ktorý som vytvoril pomocou tohoto systému, je model motora. Tento model je navrhnutý tak, aby sa dal animovať v~čase a obsahuje rôzne parametre ako je veľkosť hlavy, rádius hriadeľa a aj rýchlosť motora.
 
 \begin{figure}[H]
 	\centering
@@ -2648,7 +2648,7 @@ Najzložitejší model, ktorý som vytvoril pomocou tohoto systému, je model mo
 	\caption{Animácia modelu motora}
 	\label{fig:motorAnimation}
 \end{figure}
-Tento model je vytvorený pomocou 93 operácií, ktoré sú zhrnuté v prílohe \ref{priloha:motor}.
+Tento model je vytvorený pomocou 93 operácií, ktoré sú zhrnuté v~prílohe \ref{priloha:motor}.
 
 % \section{Metrika}
 % Počet riadkov zdrojového kódu: ~7000 riadkov \\
@@ -2678,9 +2678,9 @@ Cieľom práce bolo navrhnúť a vytvoriť systém na tvorbu parametrických mod
 
 % \todo{Odpovedať na jednotlivé časti zo zadania, a zakomponovať to tak, aby to nebolo z~toho zjavné,že odpovedám na dané body.}
 
-Naštudoval som literatúru na tému parametrických modelov, existujúce riešenia a geometrické operácie. Výsledok tejto štúdie je v kapitole 2 a 3. 
+Naštudoval som literatúru na tému parametrických modelov, existujúce riešenia a geometrické operácie. Výsledok tejto štúdie je v~kapitole 2 a 3. 
 Navrhnutý systém obsahuje knižnicu na tvorbu parametrických modelov a aplikáciu využívajúcu vytvorenú knižnicu a uľahčujúcu návrh modelov.
-Vytvorená knižnica umožňuje vytváranie modelov pomocou geometrických operácií. Väzby medzi jednotlivými objektami sú vytvárané  priamo, teda operácie naviazané na iné objekty, alebo aj pomocou prepojenia vo výrazoch. Vytvorené modely je možné voľne upravovať, nastavovať parametre modelu, a tiež zobraziť v grafickom rozhraní. Demonštrácia implementovaného systému je v kapitole \ref{sec:zhodnotenie}.
+Vytvorená knižnica umožňuje vytváranie modelov pomocou geometrických operácií. Väzby medzi jednotlivými objektami sú vytvárané  priamo, teda operácie naviazané na iné objekty, alebo aj pomocou prepojenia vo výrazoch. Vytvorené modely je možné voľne upravovať, nastavovať parametre modelu, a tiež zobraziť v~grafickom rozhraní. Demonštrácia implementovaného systému je v~kapitole \ref{sec:zhodnotenie}.
 
 Výsledný softvér, ktorý som vytvoril, obsahuje 7000 riadkov, umožňuje spracovávať štyri druhy geometrických objektov a obsahuje 40 geometrických operácií. 
 % \todo{problemy, a postrehy prace}
