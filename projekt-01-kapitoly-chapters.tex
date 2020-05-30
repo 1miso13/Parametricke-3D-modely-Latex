@@ -35,6 +35,17 @@
          {Ů}{{\r{U}}}1    
 }
 
+
+\lstset {language=C++,
+basicstyle=\ttfamily,
+  columns=fullflexible,
+  breaklines=true,
+  %postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+  escapechar=\&
+  }
+
+\listoftodos[Todos]
+
 \chapter{Úvod}
 
 Objekty vo svete sú rôzne. Líšia sa tvarom aj veľkosťou. 
@@ -46,40 +57,36 @@ Počítače sa ale stále zdokonaľujú, a preto nie je prekvapením, že v~dne�
 
 
 
-Úlohou tejto práce je vytvoriť knižnicu na tvorbu trojrozmerných parametrických modelov a prácu s~nimi. Parametrické modelovanie využíva rôzne geometrické operácie na tvorbu modelov a umožňuje zmenu ich parametrov v~ľubovolnom čase. 
+Úlohou tejto práce je vytvoriť systém na tvorbu trojrozmerných parametrických modelov a prácu s~nimi. Parametrické modelovanie využíva rôzne geometrické operácie na tvorbu modelov a umožňuje zmenu ich parametrov v~ľubovoľnom čase. 
 
 
 
-Aplikácia by mala umožňovať prácu programátorského a grafického rozhrania. Programátorské rozhranie by malo slúžiť na~využitie parametrických modelov v~aplikáciach a na~nastavovanie hodnôt parametrov modelu. Grafické rozhranie by malo umožniť návrhárovi jednoduchú tvorbu modelov a tiež zobrazenie modelu a jeho animáciu v~čase. Hodnota u~parametrov v~parametrickom modeli sa musí dať ľubovoľnom čase meniť.
+Aplikácia by mala umožňovať prácu programátorského a grafického rozhrania. Programátorské rozhranie by malo slúžiť na~využitie parametrických modelov v~aplikáciach a na~nastavovanie hodnôt parametrov modelu. Grafické rozhranie by malo umožniť návrhárovi jednoduchú tvorbu modelov, a tiež zobrazenie modelu a jeho animáciu v~čase. Hodnota parametrov v~parametrickom modeli sa musí dať ľubovoľnom čase meniť.
 
 % osobny popis 
 
 % preco to moze byt uzitocne 
 
 Následujúca kapitola sa zaoberá parametrickými modelmi, ich tvorbou a ich históriou.
-V~tejto kapitole sú popísané existujúce programy, pre tvorbu parametrických modelov.
-
-
+V~tejto kapitole sú popísané existujúce programy pre tvorbu parametrických modelov.
 V~ďalšej, tretej kapitole sú opísané geometrické objekty a geometrické operácie. Tieto operácie sú rozdelené na štyri druhy, podľa toho aký typ objektu vytvárajú. Sú to bodové, úsečkové, plošné a objemové geometrické operácie. 
 %U jednotlivých geometrických operácií je uvedené ako dané objekty vytvárajú, parametre ktoré jednotlivé operácie potrebujú a formát zápisu, ktorý sa používa na ich vytvorenie a v ktorom sa tiež ukladajú. Parametre typu $Float$ (desatinné čísla) je možné pomenovať, a tak na ne vytvoriť odkaz pre nastavovanie parametrov. 
-
-
-V~štvrtej kapitole je opísaná analýza, koncept práce a návrh geometrických funkcií.
-
-Piata kapitola obsahuje realizačnú časť práce. Popis a postup vytvárania geometrických modelov pomocou skladania geometrických operácií a použitie rôznych možností pri zápise výrazu v~parametroch geometrických operácií. Táto kapitola tiež obsahuje príklady použitia navrhnutej knižnice.
-
-
+V~štvrtej kapitole je opísaná analýza, koncept práce a návrh skladania parametrických modelov.
+Piata kapitola obsahuje implementačnú časť práce. Popis a postup vytvárania geometrických modelov pomocou skladania geometrických operácií a použitie rôznych možností pri zápise výrazu v~parametroch geometrických operácií. Táto kapitola tiež obsahuje príklady použitia navrhnutej knižnice.
 %Kapitola pokračuje opisom grafického užívateľského rozhrania, ktoré umožňuje návrh geometrických modelov. Grafické užívateľské rozhranie zobrazuje internú štruktúru modelu, teda jednotlivé operácie, objekty a parametre a zároveň tento model vizualizuje. Tiež umožňuje pridanie, vloženie, úpravu aj zmazanie použitých geometrických operácií a upozorní užívateľa pri geometrickej operácii, ktorá má ako parameter nedostupný objekt (bol presunutý alebo odstránený). Grafické užívateľské rozhranie pozostáva z~dvoch okien. Jedno pre správu geometrických objektov a operácií, zobrazenie orientovaného grafu, ktorý operácie tvoria a samotné vykresľovanie modelu pomocou OpenGL a druhé dialógové okno na výber geometrickej operácie a nastavovanie jej parametrov. 
-
+V šiestej kapitole je popísané experimentálne vyhodnotenie vytvoreného riešenia.
 Posledná kapitola obsahuje zhrnutie práce a rôzne možnosti pre ďalšie rozšírenia a vylepšenia.
 
 \chapter{Parametrické trojrozmerné modely}
-Táto časť práce sa zaoberá parametrickými modelmi. Ich históriou a existujúcimi systémami určenými na tvorbu parametrických modelov.
+Táto časť práce sa zaoberá parametrickými modelmi. Obsahuje zhrnutie súčasného stavu problematiky parametrických trojrozmerných modelov.
+% V tejto práci je popísaných  niekoľko 
 
+\section{Kategorizácia parametrických nástrojov}
+Typickým návrhovým médiom je ceruzka a papier. Presnejšie je to ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idey. Dizajnéri tieto značky pridávajú, odoberajú a spájajú ich  \cite{woodbury2010elements}.
 
-Typickým návrhovým médiom je ceruzka a papier. Presnejšie je to ceruzka, guma a papier. Ceruzka pridáva a guma odoberá. Po pridaní niekoľkých nástrojov, ako pravítko, kružidlo a uhlomer sa kresby stanú presnejšími a precíznejšími modelmi navrhovanej idei. Dizajnéri tieto značky pridávajú, odoberajú a spájajú ich  \cite{woodbury2010elements}.
-
-Konvenčné návrhové systémy fungujú práve na tomto princípe. Parametrické modelovanie predstavuje zásadnú zmenu. Značky, ktoré sú základom návrhu spolu súvisia a vzájomne menia svoju pozíciu. Dizajnéri už nemusia iba pridávať a odoberať, ale môžu vytvárať medzi bodmi vzťahy a upravovať model, aby aj po zmazaní, časti závislé od zmazaných častí mohli závisieť od častí, ktoré zostali \cite{woodbury2010elements}. 
+Konvenčné návrhové systémy fungujú práve na tomto princípe. Parametrické modelovanie predstavuje zásadnú zmenu. Značky, ktoré sú základom návrhu spolu súvisia a vzájomne menia svoju pozíciu. Dizajnéri už nemusia iba pridávať a odoberať, ale môžu vytvárať medzi bodmi vzťahy a upravovať navrhnutý model
+% , aby aj po zmazaní niektorej časti, mohli  časti závislé od zmazaných častí mohli závisieť od častí, ktoré zostali
+\cite{woodbury2010elements}. 
 
 % Vďaka tomu, že sú parametrické modely vytvárané pomocou geometrických operácií. Keďže operácie sú závislé na výsledku inej operácie, pri zmene niektorého z~parametrov je potrebné model znova vytvoriť. Pre skrátenie času pre vytvorenie operácie je možné upravovať len operácie, ktoré boli touto zmenou dotknuté.
 
@@ -121,142 +128,181 @@ Moretti v~roku 1960 použil ako príklad dizajn štadióna \ref{fig:morretiStadi
 \begin{figure}[H]
     \centering
     \includegraphics[width = \linewidth]{obrazky-figures/moretti_1.jpg}
-    \caption{Model štadióna N od Luigi Moretti. Tento model bol vystavený na výstave parametrickej architektúry v~Twelfth Milan Triennial v~roku 1960. Parametrický model pozostávajúci z~devätnástich parametrov. Zdroj:  \cite{davis_2013}}
+    \caption{Model štadióna N od Luigi Moretti - parametrický model pozostáva z~devätnástich parametrov (tento model bol vystavený na výstave parametrickej architektúry v~Twelfth Milan Triennial v~roku 1960) \cite{davis_2013}}
     \label{fig:morretiStadion}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \linewidth]{obrazky-figures/watergate-complex.jpg}
-    \caption{Watergate Complex navrhnutý Luigi Morettim. Prvý veľký stavebný projekt, na ktorý boli využité parametrické modely. Zdroj: \cite{munger_2015}}
+    \caption{Watergate Complex navrhnutý Luigi Morettim - prvý veľký stavebný projekt, na ktorý boli využité parametrické modely \protect\footnote{Google Earth, earth.google.com/web/}}
     \label{fig:Watergate}
 \end{figure}
 
-
+\footnotetext{Google Earth, earth.google.com/web/}
 
 
 
 \section{Systémy pre tvorbu parametrických modelov} \label{sec:Existing_systems}
-Existuje niekoľko systémov pre tvorbu parametrických modelov. Zväčša sú platené, ale sú aj také, ktoré umožňujú vytváranie modelov zdarma. Väčšinou tieto parametrické modelovacie systémy nie sú navrhnuté pre domáceho používateľa ale skôr pre profesionálnych 3D dizajnérov. Táto časť je podľa blogu \cite{gaget_2018}.
+Existuje niekoľko systémov pre tvorbu parametrických modelov. Zväčša sú platené, ale sú aj také, ktoré umožňujú vytváranie modelov zdarma. Väčšinou tieto parametrické modelovacie systémy nie sú navrhnuté pre domáceho používateľa ale skôr pre profesionálnych 3D dizajnérov.
 
 
 \subsection*{Solidworks}
-Solidworks je jedným z~najlepších softvérov na tvorbu mechanických častí. Tento parametrický softvér je profesionálny nástroj pre inžinierov a dizajnérov. Umožňuje vykonať nad vytvoreným modelom aj rôzne simulácie, napríklad záťažové alebo tepelné ako je vidieť na obrázku \ref{fig:solidworks_simulations}.\nopagebreak
+Solidworks je jedným z~najlepších softvérov na tvorbu mechanických častí. Tento parametrický softvér je profesionálny nástroj pre inžinierov a dizajnérov. Umožňuje vykonať nad vytvoreným modelom aj rôzne simulácie, napríklad záťažové alebo tepelné ako je vidieť na obrázku \ref{fig:solidworks_simulations} \cite{gaget_2018}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.49\linewidth]{obrazky-figures/programs/solidworks_01.png}
     \includegraphics[width = 0.49\linewidth]{obrazky-figures/programs/solidworks, simulation.jpg}
-    \caption{Prostredie programu Solidworks. Vpravo je záťažová simulácia. Zdroj: \cite{solidworks_2017} \cite{ames_2017} }
+    \caption{Prostredie programu Solidworks - vpravo je záťažová simulácia \protect\footnotemark
+    % \cite{solidworks_2017} 
+    % \cite{ames_2017} 
+    }
     % je tepelná simulácia \cite{goengineer_2014}
     \label{fig:solidworks_simulations}
 \end{figure}
 
+\footnotetext{https://blogs.solidworks.com/solidworksblog/2017/02/solidworks-world-partner-pavilion-preview-part-v.html 
+
+https://hawkridgesys.com/blog/solidworks-simulation-package-right}
 
 \subsection*{Catia}
-Tento softvér je náročnejší pre menej zdatných užívateľov. Je to komplexný nástroj určený hlavne pre profesionálov a umožňuje množstvo pokročilejších nástrojov, ako je prevedenie dvojrozmerného obrázku do trojrozmerného modelu alebo generovanie organických tvarov, ktoré spĺňajú pevnostné požiadavky, ale sú od pôvodného modelu značne odľahčené \cite{technodat_cz_2017}.\nopagebreak
+Tento softvér je náročnejší pre menej zdatných užívateľov. Je to komplexný nástroj určený hlavne pre profesionálov a umožňuje množstvo pokročilejších nástrojov, ako je prevedenie dvojrozmerného obrázku do trojrozmerného modelu alebo generovanie organických tvarov, ktoré spĺňajú pevnostné požiadavky, ale sú od pôvodného modelu značne odľahčené \cite{gaget_2018}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.49\linewidth]{obrazky-figures/programs/Catia.jpg}
     \includegraphics[width = 0.49\linewidth]{obrazky-figures/programs/Catia2.png}
-    \caption{Prostredie programu Catia. Vpravo je ukážka prevodu z~2D obrázku do 3D modelu. Zdroj: \cite{technodat_cz_2017} }
+    \caption{Prostredie programu Catia -vpravo je ukážka prevodu z~2D obrázku do 3D modelu\protect\footnotemark
+    %\cite{technodat_cz_2017} 
+    }
     \label{fig:Catia}
 \end{figure}
+\footnotetext{https://www.youtube.com/watch?v=1NYHYrbqPZI}
 
 
 \subsection*{FreeCAD}
-FreeCad je voľne dostupný softvér s~intuitívnym grafickým rozhraním. Umožňuje množstvo podobných nástrojov ako Catia a SolidWorks. Je zameraný na strojárstvo a návrh výrobku~\cite{freecad_2018}.\nopagebreak
+FreeCad je voľne dostupný softvér s~intuitívnym grafickým rozhraním. Umožňuje množstvo podobných nástrojov ako Catia a SolidWorks. Je zameraný na strojárstvo a návrh výrobku~\cite{freecad_2015}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/Freecad_default.jpg}
-    \caption{Prostredie programu FreeCAD. Zdroj: \cite{freecad_2018}}
+    \caption{Prostredie programu FreeCAD \cite{freecad_2015}}
     \label{fig:FreeCAD}
 \end{figure}
 
 
 \subsection*{Creo Parametric}
-Jedná sa o~softvér pre priemyselný dizajn. Umožňuje vytvárať zložité trojrozmerné modely. Poskytuje veľa účinných nástrojov prispôsobených priemyselnému výrobnému prostrediu. Tento softvér sa často používa napríklad v~automobilovom priemysle.\nopagebreak
+Jedná sa o~softvér pre priemyselný dizajn. Umožňuje vytvárať zložité trojrozmerné modely. Poskytuje veľa účinných nástrojov prispôsobených priemyselnému výrobnému prostrediu. Tento softvér sa často používa napríklad v~automobilovom priemysle \cite{gaget_2018}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/Creo_Parametric.jpg}
-    \caption{Prostredie programu Creo Parametric Zdroj: \cite{ptc_2013} }
+    \caption{Prostredie programu Creo Parametric \protect\footnotemark }
     \label{fig:Creo}
 \end{figure}
 
+\footnotetext{https://www.youtube.com/watch?v=kQYCmq8EmNk}
 
 \subsection*{Rhino s~plugiom Grasshopper}
-Rhino je profesionálny 3D CAD softvér používaný v~množstve spoločností. Pre prácu s~parametrickými modelmi je potrebný plugin Grasshopper. 
+Rhino je profesionálny 3D CAD softvér používaný v~množstve spoločností. Pre prácu s~parametrickými modelmi je potrebný plugin Grasshopper \cite{gaget_2018}. 
 
 Grasshopper je vizuálny programovací jazyk, znázornený na obrázku \ref{fig:Grasshopper}.
 Umožňuje tvorbu parametrických modelov pre konštrukčné inžinierstvo, architektúru a výrobu.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/Grasshopper_MainWindow.png}
-    \caption{Prostredie programu Grasshopper Zdroj: \cite{rutten_2011} }
+    \caption{Prostredie programu Grasshopper \protect\footnotemark 
+    % \cite{rutten_2011} 
+    }
     \label{fig:Grasshopper}
 \end{figure}
-
+\footnotetext{https://en.wikipedia.org/wiki/Grasshopper\_3D}
 
 \subsection*{Fusion 360}
-Fusion 360 nie je iba  parametrický modelovací systém. Podporuje aj priame modelovanie a umožňuje prechod medzi týmito typmi modelovania. Keďže pri priamom modelovaní nie je model vytváraný pomocou stromu operácií, je tento strom pri prenose odstránený. Má dobré simulačné a modelovacie nástroje, ktoré pomáhajú pri návrhu.\nopagebreak
+Fusion 360 nie je iba  parametrický modelovací systém. Podporuje aj priame modelovanie a umožňuje prechod medzi týmito typmi modelovania. Keďže pri priamom modelovaní nie je model vytváraný pomocou stromu operácií, je tento strom pri prenose odstránený. Má dobré simulačné a modelovacie nástroje, ktoré pomáhajú pri návrhu \cite{gaget_2018}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/Fusion.jpg}
-    \caption{Fusion 360 Zdroj: \cite{gaget_2018} }
+    \caption{Prostredie systému Fusion 360  \cite{gaget_2018} }
     \label{fig:Fusion}
 \end{figure}
 
 \subsection*{Inventor}
-Inventor je rovnako ako Fusion 360 vytvorený spoločnosťou Autodesk. Tento program je často používaný v~strojárstve. Inventor ponúka množstvo parametrických možností, ktoré pomáhajú vytvárať 3D modely a hlavne mechanické konštrukcie.\nopagebreak
+Inventor je rovnako ako Fusion 360 vytvorený spoločnosťou Autodesk. Tento program je často používaný v~strojárstve. Inventor ponúka množstvo parametrických možností, ktoré pomáhajú vytvárať 3D modely a hlavne mechanické konštrukcie \cite{gaget_2018}.\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/Inventor.png}
-    \caption{Inventor Zdroj: \cite{cadline_2017} }
+    \caption{Prostredie systému Inventor \protect\footnotemark 
+    % \cite{cadline_2017}
+    }
     \label{fig:Inventor}
 \end{figure}
+\pagebreak
+\footnotetext{https://www.youtube.com/watch?v=KAeaonxJ5Es}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Existujúce knižnice na tvorbu trojrozmerných  modelov} \label{sec:existing_libraries}
 Existuje niekoľko knižníc, ktoré umožňujú vytváranie trojrozmerných modelov. V~tejto časti je opísaných niekoľko z~nich.\nopagebreak
-\subsection*{Libfive}
-Libfive je knižnica  a sada nástrojov na modelovanie pevných látok, zvlášť vhodná na parametrické a procedurálne navrhovanie. Jazyk, ktorý knižnica používa na modelovanie objektov, je podobný jazyku Lisp.\nopagebreak
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 0.9\linewidth]{obrazky-figures/programs/libfive.png}
-    \caption{Aplikácia Studio, používajúca knižnicu libfive. Zdroj: \cite{} }
-    \label{fig:Inventor}
-\end{figure}
-\todo{cite https://libfive.com/studio/}
 
 \subsection*{OpenSCAD}
+OpenSCAD je softvér na vytváranie solídnych trojrozmerných objektov. Je to bezplatný a multiplatformový softvér. Tento nástroj nie je vhodný na vytváranie veľmi komplikovaných objektov, aké umožňujú vytvárať vyššie spomenuté systémy, ale je vhodný na tvorbu trojrozmerných modelov častí strojov. OpenSCAD nie je interaktívny modelovací systém. Skôr je to 3D-kompilátor, ktorý číta skript opisujúci objekt a tento trojrozmerný model vykresľuje.  Týmto spôsobom má dizajnér úplnú kontrolu nad modelovacím procesom a umožňuje jeho jednoduchú úpravu. \cite{}
+
 \nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.9\linewidth]{obrazky-figures/programs/openSCAD.png}
-    \caption{Aplikácia Studio, používajúca knižnicu libfive. Zdroj: \cite{} }
-    \label{fig:Inventor}
+    \caption{Prostredie OpenSCAD\cite{} }
+    \label{fig:OpenSCAD}
 \end{figure}
 \todo{cite https://www.openscad.org/documentation.html}
 
 
+\subsection*{Libfive}
+Libfive je knižnica  a sada nástrojov na modelovanie pevných látok, zvlášť vhodná na parametrické a procedurálne navrhovanie. Tvorba modelov je podobná ako pri knižnici OpenSCAD. Jazyk, ktorý táto knižnica používa na modelovanie objektov má prefixovú notáciu, čím sa podobá jazyku lisp. Rovnako ako OpenSCAD je Libfive bezplatná  knižnica. Na zobrazovanie modelov využíva aplikáciu Studio, ktorá je zobrazená na obrázku \ref{fig:LibfiveStudio}. \cite{}\nopagebreak
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.9\linewidth]{obrazky-figures/programs/libfive.png}
+    \caption{Aplikácia Studio, používajúca knižnicu libfive \cite{} }
+    \label{fig:LibfiveStudio}
+\end{figure}
+\todo{cite https://libfive.com/studio/}
+
+
 \subsection*{Tigl}
-TiGL je knižnica, ktorá je určená hlavne pre geometrické modelovanie lietadiel a helikoptér. Je založená hlavne na vytváraní plôch pomocou kriviek NURBS.\nopagebreak
+TiGL je knižnica, ktorá je určená hlavne pre geometrické modelovanie lietadiel a helikoptér. 
+Je to spojenie medzi parametrami CPACS lietadla a simulačnými nástrojmi. 
+CPACS (The Common Parametric Aircraft Configuration Schema) je definícia údajov pre systém leteckej dopravy. TiGL počíta CAD modely z týchto parametrov.
+Tvorba modelu v knižnici Tigl je založená hlavne na vytváraní plôch pomocou kriviek NURBS. \cite{}\nopagebreak
 \begin{figure}[H]
     \centering
     \includegraphics[width = 0.5\linewidth]{obrazky-figures/programs/tigl.png}
-    \caption{Model vytvorený pomocou knižnice Tigl. Zdroj: \cite{} }
-    \label{fig:Inventor}
+    \caption{Model vytvorený pomocou knižnice Tigl \cite{} }
+    \label{fig:Tigl}
 \end{figure}
 \todo{cite https://dlr-sc.github.io/tigl/pages/showcase.html}
 
 \chapter{Geometrické objekty a operácie v~3D modelovaní}
 \label{chapt:Geometrické_tvary}
+Táto kapitola je súčasťou zhrnutia súčasného stavu. Sú v nej zhrnuté matematické a geometrické vlastnosti objektov a operácií ktorými sa práca zaoberá.
 
 Geometrické objekty môžeme rozdeliť do 4 kategórií podľa dimenzií. Body, úsečky, plochy a objemové objekty.
-Spájaním objektov z~nižších dimenzií, vznikajú zložitejšie objekty z~vyšších dimenzií. 
+Spájaním objektov z~nižších dimenzií, vznikajú zložitejšie objekty z~vyšších dimenzií. Táto kapitola opisuje jednotlivé geometrické objekty a operácie, ktoré ich vytvárajú, a to od jednoduchších až k~zložitejším.
 
-
-Táto kapitola opisuje jednotlivé geometrické objekty a operácie, ktoré ich vytvárajú, a to od jednoduchších až k~zložitejším.
-
-\section{Bod v~3D modelovaní}
+\section{Operácie vytvárajúce bod }
+%Bod v~3D modelovaní a operácie ktoré ho vytvárajú
 Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické útvary sa dajú definovať ako množina bodov. Je to bezrozmerný geometrický útvar, teda nemá šírku, výšku ani hrúbku. Jeho úlohou je označiť pozíciu v~priestore. Pozíciu bodu v~trojrozmernom priestore udáva vzdialenosť na jednotlivých osiach ortogonálneho súradnicového systému X, Y a Z. Táto pozícia môže byť v~absolútnom tvare, teda od stredu súradnicového systému alebo v~relatívnom tvare, kedy je závislá na pozícii iného bodu.
 
 
@@ -271,10 +317,6 @@ Bod je základnou stavebnou jednotkou všetkých objektov. Všetky geometrické 
 
 \subsection*{Lineárna interpolácia}
 Lineárna interpolácia umožňuje získať bod, ktorý je na rovnakej priamke ako dva zadané body. Na obrázku \ref{fig:PointLinearInterpolation} sú tieto body zobrazené modrou a zelenou farbou, výsledný bod je zobrazený žltou farbou. Pozícia bodu závisí od zadanej vzdia\-le\-nos\-ti od počiatočného bodu. Táto vzdia\-le\-nosť môže byť zadaná dĺžkou alebo percentuálne, kde 50\% vytvorí bod uprostred počiatočného a koncového bodu. 
-
-
-
-
 \begin{figure}[H]
 	\centering
 	%\subfloat{\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - Point Linear interpolation.pdf}}
@@ -282,8 +324,7 @@ Lineárna interpolácia umožňuje získať bod, ktorý je na rovnakej priamke a
 	\caption{Lineárna interpolácia medzi bodmi, kde \texttt{d} označuje vzdialenosť medzi zadanými bodmi a  \texttt{h} označuje vzdialenosť v~akej sa má vykonať interpolácia }
 	\label{fig:PointLinearInterpolation}
 \end{figure}
-
-Ak je zadaná vzdialenosť pomocou dĺžky, použije sa vzorec \ref{eq:LiearnInterpolation}. Pri percentuálnej vzdialenosti sa použije obdobný vzorec, ale vektor medzi bodmi bod1 a bod2 sa nenormalizuje.
+Ak je zadaná vzdialenosť pomocou dĺžky, použije sa vzorec \ref{eq:LiearnInterpolation}. Pri percentuálnej vzdialenosti sa použije obdobný vzorec, ale vektor medzi bodmi bod1 a bod2 sa nenormalizuje \cite{modernipocitacovagrafika}. 
 \begin{equation}
     bod = bod1 + norm(bod2 - bod1) * vzdialenos\check{t};
 	\label{eq:LiearnInterpolation}
@@ -292,7 +333,7 @@ Ak je zadaná vzdialenosť pomocou dĺžky, použije sa vzorec \ref{eq:LiearnInt
 
 \subsection*{Priesečník plochy a úsečky}
 
-Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úsečka ako priamka. Táto geometrická operácia vytvorí bod v~mieste, kde sa priamka pretína s~rovinou. 
+Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úsečka ako priamka. Táto geometrická operácia vytvorí bod v~mieste, kde sa priamka pretína s~rovinou \cite{bourke_Point_Line_Plane}. 
 
 
 \begin{figure}[H]
@@ -301,16 +342,14 @@ Pri tejto operácii sa používa ľubovolný plošný objekt ako rovina a úseč
 	\caption{Pretnutie plochy priamkou}
 	\label{fig:Intersection}
 \end{figure}
-
-
-Rovnica pre rovinu, ktorá je tvorená bodom \texttt{P\textsubscript{3}} nachádzajúcom sa na rovine a normálou N, sa dá zapísať ako \ref{eq:rovnicaPlochy_intersection} \cite{bourke_Point_Line_Plane}. 
+Rovnica pre rovinu, ktorá je tvorená bodom \texttt{P\textsubscript{3}} nachádzajúcom sa na rovine a normálou N, sa dá zapísať ako \ref{eq:rovnicaPlochy_intersection}. 
 \begin{equation}
     \textbf{N} \cdot (\textbf{P} - \textbf{P3}) = 0
 	\label{eq:rovnicaPlochy_intersection}
 \end{equation}
 Rovnica priamky \ref{eq:rovnicaPriamky_intersection}, ktorá je určená bodmi \texttt{P\textsubscript{1}} a \texttt{P\textsubscript{2}}
 \begin{equation}
-	\textup{P}=\textbf{P1}+u (\textbf{P2}-\textbf{P1})
+	\textbf{P}=\textbf{P1}+u (\textbf{P2}-\textbf{P1})
     \label{eq:rovnicaPriamky_intersection}
 \end{equation}
 Bod \texttt{P} označuje priesečník medzi rovinou a priamkou. Pomocou substitúcie získame rovnicu \ref{eq:rovnicaPriesecniku}.
@@ -325,66 +364,66 @@ Po vyriešení tejto rovnice dostaneme rovnicu \ref{eq:rovnicaPriesecnikuSolved}
 {\textbf{N} \cdot (\textbf{P2}-\textbf{P1})}
     \label{eq:rovnicaPriesecnikuSolved}
 \end{equation}
-
-
-Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto operácie sa vytvorí bod aj mimo zadaných objektov. Problém nastáva, ak je zadaná úsečka paralelná s~plochou, a teda je kolmá na normálu plochy $N$. Skalárny súčin v~menovateli je potom rovný 0. V~tomto prípade priesečník buď neexistuje, alebo je priesečníkov nekonečne veľa, ak úsečka leží na rovine.
+Ako je vidieť na obrázku \ref{fig:GraphIntersection_Plane_Line}, pomocou tejto operácie sa vytvorí bod aj mimo zadaných objektov. Problém nastáva, ak je zadaná úsečka paralelná s~plochou, a teda je kolmá na normálu plochy $N$. Skalárny súčin v~menovateli je potom rovný 0, teda úsečka je s plochou rovnobežná. V~tomto prípade priesečník buď neexistuje, alebo je priesečníkov nekonečne veľa, ak úsečka leží na rovine \cite{bourke_Point_Line_Plane}.
 
 \begin{figure}[H]
 	\centering
-%	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointIntersection PlaneLine.pdf}
+%	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Nxavrh operacii-0D - PointIntersection PlaneLine.pdf}
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/DP Navrh operacii-0D - PointIntersectionPlaneLine.pdf}
-	\caption{Priesečník plochy a priamky. Vpravo je zobrazený prípad, ak sa priesečník nachádza na rovine, ale je mimo plochy objektu}
+	\caption{Priesečník plochy a priamky, vpravo je zobrazený prípad, ak sa priesečník nachádza na rovine, ale je mimo plochy objektu}
 	\label{fig:GraphIntersection_Plane_Line}
 \end{figure}
 
-\subsection*{Stred plochy}
-Existuje množstvo možností ako získať stred objektu. Do tejto práce som vybral dve metódy a to metódu minimálneho štvorca a priemer všetkých bodov. %Pri týchto operáciách sa prevádza zadaná plocha z trojrozmerného priestoru  do dvojrozmerného.
+% \subsection*{Stred plochy}
+% Existuje množstvo možností ako získať stred objektu. Do tejto práce som vybral dve metódy a to metódu minimálneho štvorca a priemer všetkých bodov. %Pri týchto operáciách sa prevádza zadaná plocha z trojrozmerného priestoru  do dvojrozmerného.
 
 
-\subsubsection{Minimálny štvorec}
-Pri tejto operácii sa prejdú všetky body a zistí sa maximálna a minimálna hodnota v~jednotlivých osiach. Výsledný bod sa nachádza uprostred nich.
+% \subsubsection{Minimálny štvorec}
+% Pri tejto operácii sa prejdú všetky body a zistí sa maximálna a minimálna hodnota v~jednotlivých osiach. Výsledný bod sa nachádza uprostred nich.
 
-%//Create point on position of middle of entered surface
-%	//	Example:
-%	//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
-%	//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
-%	//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
-%	//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
+% %//Create point on position of middle of entered surface
+% %	//	Example:
+% %	//		SurfaceMiddle(PointName, Circle)	//- Create Point on center of Circle
+% %	//		SurfaceMiddle(PointName, Rectangle)	//- Create Point on middle of Rectangle
+% %	//		SurfaceCenter(PointName, Shape)		//- Create Point on middle of shape 
+% %	//		SurfaceMiddle(PointName, Shape)		//- Create Point on middle of shape - centroid (sum of points / count of points)
 
-\begin{figure}[H]
-	\centering
-%	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointMiddle of surface.pdf}
-	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/minimal square.pdf}
-	\caption{Stred plochy pomocou minimálneho štvorca }
-	\label{fig:PointMiddleofsurface}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% %	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Point/DP Navrh operacii-0D - PointMiddle of surface.pdf}
+% 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Diagram/Draw/1Points/minimal square.pdf}
+% 	\caption{Stred plochy pomocou minimálneho štvorca }
+% 	\label{fig:PointMiddleofsurface}
+% \end{figure}
 
 
 
-\subsubsection{Priemer všetkých bodov}
-Nájdenie aritmetického priemeru všetkých bodov polygónu.
-
-\begin{equation}
-    \frac{1}{n} \sum_{i=0}^{n} p_i   
-    \label{eq:aritPriemer}
-\end{equation}
+% \subsubsection{Priemer všetkých bodov}
+% Nájdenie aritmetického priemeru všetkých bodov polygónu.\todo{Priemer všetkých bodov}
+% \begin{equation}
+%     \frac{1}{n} \sum_{i=0}^{n} p_i   
+%     \label{eq:aritPriemer}
+% \end{equation}
 
 
 \subsubsection{Stred trojuholníka}
-Aj pre trojuholník existuje množstvo typov stredu. V~súčastnosti je podľa encyklopédie stredov trojuholníkov známych až 30 714 trojuholníkových centier \cite{kimberling_2019}. Tento počet každým dňom narastá. Pre porovnanie, v~roku 1994 bolo známych 101, v~roku 1998 bolo 360 a v~decembri 2004 bolo známych 3053 \cite{Kimberling_Center_2004}. Medzi najznámejšie patria ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N). Tieto body sú zaznačené na obrázku \ref{fig:TriangleCenters}.
+Aj pre trojuholník existuje množstvo typov stredu. V~súčastnosti je podľa encyklopédie stredov trojuholníkov známych až 30 714 trojuholníkových centier \cite{kimberling_2019}. Tento počet každým dňom narastá. Pre porovnanie, v~roku 1994 bolo známych 101, v~roku 1998 bolo 360 a v~decembri 2004 bolo známych 3053 \cite{Kimberling_Center_2004}.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{obrazky-figures/Trigonometric_centres.png}
-	\caption{Najznámejšie stredy trojuholníka sú ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N) \cite{triangle_center_2012}}
+	\caption{Najznámejšie stredy trojuholníka sú ťažisko (G), ortocentrum (H), stred vpísanej kružnice (I), opísanej kružnice (O) aj stred kružnice deviatich bodov (N) 
+% 	\cite{triangle_center_2012}
+    \protect\footnotemark
+    }
 	\label{fig:TriangleCenters}
 \end{figure}
 
+\footnotetext{\url{https://en.wikipedia.org/wiki/Triangle_center}}
+ Medzi najznámejšie patria ťažisko, ortocentrum, stred vpísanej kružnice, opísanej kružnice  aj stred kružnice deviatich bodov. Tieto body sú zaznačené na obrázku \ref{fig:TriangleCenters}.
 
- \mbox{} \\*
-\paragraph{Ťažisko (angl. Centroid)}\unskip \mbox{} \\*
-
+\subsubsection{Ťažisko (angl. Centroid)}
 Ťažisko trojuholníka sa nachádza v~priesečníku troch mediánov trojuholníka. Na nájdenie jeho pozície stačí vypočítať aritmetický priemer vrcholov trojuholníka v~jednotlivých osiach \ref{eq:triangleCentroid} \cite{Centroid_of_a_Triangle}.
 
 
@@ -394,8 +433,7 @@ Aj pre trojuholník existuje množstvo typov stredu. V~súčastnosti je podľa e
     \label{eq:triangleCentroid}
 \end{equation}
 
- \mbox{} \\*
-\paragraph{Stred vpísanej kružnice (angl. Incenter)}\unskip \mbox{} \\*
+\subsubsection{Stred vpísanej kružnice (angl. Incenter)}
 \label{sec:TriangleCenter}
 
 Z~každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách priam\-ky boli rovnaké. Táto priamka sa nazýva tiež bisektor \cite{angle_bisector_theorem}. Stred vpísanej kružnice je na priesečníku týchto priamok.
@@ -403,29 +441,25 @@ Z~každého bodu trojuholníka urobíme priamku tak, aby uhly na oboch stranách
 
 
 
-Stred vpísanej kružnice sa dá vypočítať aj pomocou vzorca \ref{eq:Incenter}, kde  $A$, $B$, $C$ sú vrcholy trojuholníka a $a$, $b$, $c$ sú dĺžky strán protiľahlých k~vrcholom $A$, $B$, $C$. \cite{Incenter_page_2011}.
+Stred vpísanej kružnice sa dá vypočítať aj pomocou vzorca \ref{eq:Incenter}, kde  $A$, $B$, $C$ sú vrcholy trojuholníka a $a$, $b$, $c$ sú dĺžky strán protiľahlých k~vrcholom $A$, $B$, $C$ \cite{Incenter_page_2011}.
 \begin{equation}
 O = \frac{a\ast A+b\ast  B +c \ast C}{a + b + c}
     \label{eq:Incenter}
 \end{equation}
 
 
- \mbox{} \\*
-\paragraph{Stred opísanej kružnice (angl. Circumcenter)}\unskip \mbox{} \\*
+\subsubsection{Stred opísanej kružnice (angl. Circumcenter)}
 
-U~jednotlivých strán trojuholníka zistíme stred a z~tohto bodu urobíme kolmice. Tam kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovoľnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká.
- \mbox{} \\*
+U~jednotlivých strán trojuholníka zistíme stred a z~tohto bodu urobíme kolmice. Tam kde sa tieto kolmice stretnú, vznikne stred vpísanej kružnice. Veľkosť kružnice je vzdialenosť od stredu k~ľubovoľnému vrcholu trojuholníka. Táto vzdialenosť je pre všetky vrcholy rovnaká \cite{kelley2013humongous}.
 
-\paragraph{Ortocentrum (angl. Orthocenter)}\unskip \mbox{} \\*
 
+\subsubsection{Ortocentrum (angl. Orthocenter)}
 Ortocentrum sa nachádza na priesečníku kolmíc, ktoré prechádzajú cez protiľahlý vrchol. Tieto kolmice sa tiež nazývajú výškou trojuholníka. 
 Ak je trojuholník tupý, ortocentrum sa nachádza mimo trojuholníka, ak je trojuholník v~niektorom vrchole kolmý, nachádza sa v~takomto vrchole aj ortocentrum trojuholníka.
+Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v~mieste, kde sa tieto kolmice pretínajú \cite{kelley2013humongous}. 
 
-Pre získanie pozície ortocentra zistíme aspoň dve kolmice pomocou operácie \ref{sec:najkratsiauseckaBP}. Pozícia ortocentra sa nachádza v~mieste, kde sa tieto kolmice pretínajú. 
 
-
- \mbox{} \\*
-\paragraph{Stred kružnice deviatich bodov (angl. NinePointCenter)}\unskip \mbox{} \\*
+\subsubsection{Stred kružnice deviatich bodov (angl. NinePointCenter)}
 
 Kružnica deviatich bodov, tiež známa ako Feuefbachova kružnica, po nemeckom matematikovi Karl Wilhelm Feuerbach, ktorý ako prvý dokázal, že sa kružnica deviatich bodov dotýka vpísanej kružnice a pripísaných kružníc \cite{NinePointTheorem}.
 
@@ -441,11 +475,13 @@ Nech ABC je všeobecný trojuholník, P,Q,R nech sú päty jeho výšok, K,L,M n
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{obrazky-figures/NinePointCircle.png}
-	\caption{Kružnica deviatich bodov. Modré body označujú stredy strán, žlté body označujú päty výšok a zelené sú stredy medzi vrcholmi a priesečníkom výšok\cite{katz_prakash_khim}}
+	\caption{Kružnica deviatich bodov - modré body označujú stredy strán, žlté body označujú päty výšok a zelené sú stredy medzi vrcholmi a priesečníkom výšok \protect\footnotemark
+% 	\cite{katz_prakash_khim}
+	}
 	\label{fig:TriangleCenters_ninePoints}
 \end{figure}
 
-
+\footnotetext{https://brilliant.org/wiki/nine-point-circle/}
 
 \subsection*{Stred objektu}
 %https://www.gamedev.net/forums/topic/468405-center-of-a-3d-object/
@@ -464,9 +500,9 @@ Pri tejto metóde sa prejdú všetky body a zoberie sa maximálna a minimálna h
 	\label{fig:PointMiddle of 3D object}
 \end{figure}
 
-\subsubsection{Ťažisko - Priemer všetkých bodov} 
-Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri veľké čísla, ktoré sa následne vydelia počtom bodov.
-
+% \subsubsection{Ťažisko - Priemer všetkých bodov} 
+% Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri veľké čísla, ktoré sa následne vydelia počtom bodov.
+% \todo{Ťažisko - Priemer všetkých bodov}
 
 % \begin{figure}[H]
 % 	\centering
@@ -483,14 +519,14 @@ Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri 
 
 
 
-\section{Úsečky v~3D modelovaní}
-Úsečka je časť priamky medzi dvoma koncovými bodmi. Aby bolo možné používať v~geometrických operáciách smerový vektor z~úsečky, môžeme tieto body označiť ako počiatočný a koncový, ako je zobrazené na obrázku \ref{fig:Navrh operacii-1D - Line}. 
+\section{Operácie vytvárajúce úsečky}
+Úsečka je časť priamky medzi dvoma koncovými bodmi. Aby bolo možné používať v~geometrických operáciách smerový vektor z~úsečky, môžeme tieto body označiť ako počiatočný a koncový, ako je zobrazené na obrázku \ref{fig:Navrh operacii-1D - Line} \cite{modernipocitacovagrafika}. 
 %Úsečka sa nachádza v mnohých operáciach ako parameter, kde zastupuje úlohu smerového vektoru.
 
 \begin{equation}
     P = P1 + u(P2-P1)
     \label{eq:priamka}
-\end{equation}. 
+\end{equation}
 
 \begin{figure}[H]
 	\centering
@@ -502,7 +538,7 @@ Pri tejto operácii sa sčítajú koordináty všetkých bodov. To vytvorí tri 
 
 
 \subsection*{Zmena dĺžky úsečky}
-Vytvorenie úsečky so zadanou dĺžkou. Dĺžka môže byť zadaná vzdialenosťou alebo percentuálne od veľkosti zadanej úsečky. Výsledná úsečka je v~rovnakom smere a začína v~rovnakom bode ako zadaná úsečka. V~prípade, ak veľkosť výslednej úsečky sa rovná jedna, táto geometrická operácia sa nazýva aj normalizácia.  
+Vytvorenie úsečky so zadanou dĺžkou. Dĺžka môže byť zadaná vzdialenosťou alebo percentuálne od veľkosti zadanej úsečky. Výsledná úsečka je v~rovnakom smere a začína v~rovnakom bode ako zadaná úsečka. V~prípade, ak veľkosť výslednej úsečky sa rovná jedna, táto geometrická operácia sa nazýva aj normalizácia \cite{modernipocitacovagrafika}.
 
 
 \begin{figure}[H]
@@ -520,22 +556,17 @@ Rovnica priamky je \ref{eq:MinlinePointLine_LineEq}.
     P = P1 + u(P2-P1)
     \label{eq:MinlinePointLine_LineEq}
 \end{equation}
-
 Na získanie najkratšej vzdialenosti je potrebné nájsť kolmicu od bodu $P3(x3,y3)$ na priamku. Z~toho vyplýva, že skalárny súčin medzi nimi musí byť rovný 0, tento vzťah je vidieť v~rovnici \ref{eq:MinlinePointLine_LinesEq}.
-
 \begin{equation}
     (P3-P)\cdot(P2-P1) =0 
     \label{eq:MinlinePointLine_LinesEq}
 \end{equation}
 Bod P označuje najbližší bod na priamke k~bodu $P3$.
-
 Substitúciou rovnice \ref{eq:MinlinePointLine_LineEq} do \ref{eq:MinlinePointLine_LinesEq} získame rovnicu \ref{eq:MinlinePointLine_subs}.
-
 \begin{equation}
 [P3 - P1 - u(P2-P1)] \cdot (P2 - P1) = 0
     \label{eq:MinlinePointLine_subs}
 \end{equation}
-
 Vyriešením tejto rovnice získame rovnicu \ref{eq:MinlinePointLine_subsSolved}, ktorú následne môžeme dosadiť do rovnice pre priamku \ref{eq:MinlinePointLine_LineEq} a získať pozíciu bodu $P$. Ak by sme chceli, aby sa bod vytváral iba na úsečke a nie mimo nej, bolo by potrebné testovať vzdialenosť $u$, či je v~rozmedzí (0,1). Ak je hodnota $u$ záporná alebo väčšia ako jedna,  najbližší bod na priamke k~bodu $P3$ sa nachádza mimo zadanej úsečky. 
 \begin{equation}
 u= \frac
@@ -559,7 +590,7 @@ Výsledná úsečka je tvorená bodmi $P$ a $P3$ \cite{bourke_Point_Line_Plane}.
 \end{figure}
 
 \subsection*{Najkratšia úsečka medzi dvomi priamkami}
-Keďže v~trojrozmernom priestore často nenastáva pretnutie dvoch úsečiek v~jednom bode, je práve najkratšia úsečka medzi dvoma priamkami používaná ako priesečník priamok v~trojrozmernom priestore.
+Keďže v~trojrozmernom priestore často nenastáva pretnutie dvoch úsečiek v~jednom bode, je práve najkratšia úsečka medzi dvoma priamkami používaná ako priesečník priamok v~trojrozmernom priestore \cite{bourke_Point_Line_Plane}.
 
 
 Hľadáme najkratšiu úsečku s~bodmi $P_a$ a $P_b$, kde $P_a$ leží na priamke definovanou bodmi $P_1$ a $P_2$, a $P_b$ leží na priamke, ktorá je definovaná bodmi $P_3$ a $P_4$.
@@ -610,7 +641,7 @@ Vyriešením týchto rovníc pre $u_a$ získame rovnicu \ref{eq:MinlineLL_dotabE
  {d_{2121} d_{4343} - d_{2143} d_{2143} }
     \label{eq:MinlineLL_dotabExpshortSolving}
 \end{equation}
-Keď už poznáme $u_a$, pomocou dosadenia do rovnice \ref{eq:MinlineLL_dotabExpshortSolved_ub} získame $u_b$ \cite{bourke_Point_Line_Plane}.
+Keď už poznáme $u_a$, pomocou dosadenia do rovnice \ref{eq:MinlineLL_dotabExpshortSolved_ub} získame $u_b$.
 \begin{equation}
 \begin{aligned}
 u_b  = \frac{d_{1321} + u_a d_{2121}}{d_{4321}}
@@ -639,13 +670,11 @@ Vzdialenosť medzi touto rovinou a bodom $P_b=(x_b,y_b,z_b)$ dostaneme pomocou v
  distance = (P_b - P_a) \cdot \overrightarrow{N}
     \label{eq:minlineSP}
 \end{equation}
-
 Bod $P$ získame vynásobením vektora $\overrightarrow{N}$ touto vzdialenosťou a následným odčítaním od bodu $P_b$ \ref{eq:minlineSP_P}.
 \begin{equation}
  P = P_b - (\overrightarrow{N} * distance)
     \label{eq:minlineSP_P}
 \end{equation}
-
 Výsledná úsečka má počiatočný bod na ploche a koncový bod $P_b$ \cite{bourke_Point_Line_Plane}.
 
 %Každý bod $P=(x,y,z)$ leží na rovine, ak splňuje \ref{eq:rovnicaPlochySP}.
@@ -668,7 +697,7 @@ Výsledná úsečka má počiatočný bod na ploche a koncový bod $P_b$ \cite{b
 
 \subsection*{Vektorový súčin}\label{subsec:crossproduct}
 Vektorový súčin (cross product) vytvára úsečku, ktorá je kolmá na dané úsečky (priamky). Zadané úsečky sa najprv prevedú na vektory ($koncov\acute{y}\_bod - za\check{c}iato\check{c}n\acute{y}\_bod$).
-Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla, ktorý zvierajú. 
+Veľkosť úsečky závisí od veľkosti zadaných úsečiek a od uhla, ktorý zvierajú \cite{modernipocitacovagrafika}. 
 
 \begin{equation}
  L_1 \times L_2 =  \{
@@ -713,13 +742,12 @@ Táto operácia sa často používa aj v~počítačovej grafike, kde sa použív
 % 	\label{fig:1}
 % \end{figure}
 
-\section{Plošné objekty v~3D modelovaní}
+\section{Operácie vytvárajúce plošné objekty}
 
 
 \subsection*{Kruh}
-Je viac metód ako zadávať kruh. Základným spôsobom pre vytvorenie kruhu je zadanie stredového bodu a priemeru. Keďže chceme aby bol kruh v~trojrozmernom priestore, je potrebné zadať aj normálu. 
-
-Ďalším spôsobom je zadanie troch bodov, kde jeden z~bodov označuje stred kruhu, druhý bod leží na obvode kruhu a tretí bod ležiaci na ploche kruhu tak, aby nebol s~ostatnými bodmi na jednej priamke, označuje natočenie kruhu.
+Je viac metód ako zadávať kruh. Základným spôsobom pre vytvorenie kruhu je zadanie stredového bodu a priemeru. Keďže chceme aby bol kruh v~trojrozmernom priestore, je potrebné zadať aj normálu .
+Ďalším spôsobom je zadanie troch bodov, kde jeden z~bodov označuje stred kruhu, druhý bod leží na obvode kruhu a tretí bod ležiaci na ploche kruhu tak, aby nebol s~ostatnými bodmi na jednej priamke, označuje natočenie kruhu \cite{modernipocitacovagrafika}.
 
 \begin{figure}[H]
 	\centering
@@ -744,7 +772,7 @@ Alternatívne môžeme vyjadriť kruh pomocou opísanej (Circumscribed) alebo vp
 
 
 \subsection*{Obdĺžnik}
-Často používaným geometrickým objektom v~modelovaní je aj obdĺžnik. Základnými parametrami obdĺžnikov je výška a šírka. Ďalším parametrom je často aj natočenie okolo normály. Keďže sa zaoberáme objektami v~trojrozmernom priestore, obdĺžnik musí definovať aj normála, ako je vidieť na obrázku \ref{fig:SurfaceCreate Rectangle}. 
+Často používaným geometrickým objektom v~modelovaní je aj obdĺžnik. Základnými parametrami obdĺžnikov je výška a šírka. Ďalším parametrom je často aj natočenie okolo normály. Keďže sa zaoberáme objektami v~trojrozmernom priestore, obdĺžnik musí definovať aj normála, ako je vidieť na obrázku \ref{fig:SurfaceCreate Rectangle}.
 
 
 \begin{figure}[H]
@@ -758,11 +786,9 @@ Alternatívne môžeme vyjadriť kruh pomocou opísanej (Circumscribed) alebo vp
 
 
 \subsection*{Polygón}
-Keďže v~reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z~množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov. 
+Keďže v~reálnom svete nie sú základom objektov len dokonalé objekty ako kruh, trojuholník alebo štvorec, zvolil som pre túto prácu aj tvorbu polygónov. Polygóny pozostávajú z~množiny bodov a množinou hrán, ktoré tieto body spájajú a vytvárajú obvod polygónu. Keďže polygón je plošný útvar, musí byť tvorený minimálne 3 bodmi. Táto operácia má ako jediná premenlivý počet bodov\cite{modernipocitacovagrafika}. 
 
-Všetky primitívne objekty, ako štvorec, kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v~tomto prípade veľmi jednoduchý. Stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}.
-
-
+Všetky primitívne objekty, ako štvorec, kruh alebo trojuholník, sú konvexné, teda všetky vnútorné uhly sú menšie alebo rovné 90 stupňov. Proces triangulácie je v~tomto prípade veľmi jednoduchý. Stačí spojiť jeden ľubovoľný bod so všetkými ostatnými bodmi. Pri zadávaní polygónov pomocou bodov sa ale môže stať, že niektorý vnútorný uhol polygónu bude tupý, teda väčší ako 90 stupňov. Klasická metóda triangulácie teda nepostačuje a je potrebné vybrať niektorú inú metódu, napríklad \textit{Ear clipping method}\cite{modernipocitacovagrafika}.
 
 
 
@@ -808,7 +834,9 @@ Všetky primitívne objekty, ako štvorec, kruh alebo trojuholník, sú konvexn�
 
 
 
-\section{Objemové objekty v~3D modelovaní}
+
+
+\section{Operácie vytvárajúce objemové objekty}
 Medzi základné geometrické objemové telesá patrí guľa, kváder, valec, a ihlan. Nad týmito geometrickými telesami je možné vykonávať rôzne geometrické operácie.
 
 
@@ -839,7 +867,7 @@ Medzi základné geometrické objemové telesá patrí guľa, kváder, valec, a 
 
 
 \subsection*{Extrudovanie} 
-Natiahne plochu do priestoru v~smere normály, čím získa na objeme. Pomocou tejto operácie sa dá vytvoriť aj napríklad kváder alebo valec, ak je základ štvorcového, respektívne kruhového tvaru. Táto operácia je zobrazená na obrázku \ref{fig:ObjectsExtrude}, kde je fialovým zobrazená počiatočná plocha a žltým je zobrazená extrudácia. Extrudáciu je možné spraviť tak, že sa vytvorí kópia zadanej plochy a posunie sa o~zadaný offset. Tieto dve plochy sa následne prepoja. Častou modifikáciou je extrudovanie po krivke a/alebo postupná zmena veľkosti. 
+Natiahne plochu do priestoru v~smere normály, čím získa na objeme. Pomocou tejto operácie sa dá vytvoriť aj napríklad kváder alebo valec, ak je základ štvorcového, respektívne kruhového tvaru. Táto operácia je zobrazená na obrázku \ref{fig:ObjectsExtrude}, kde je fialovým zobrazená počiatočná plocha a žltým je zobrazená extrudácia. Extrudáciu je možné spraviť tak, že sa vytvorí kópia zadanej plochy a posunie sa o~zadaný offset. Tieto dve plochy sa následne prepoja. Častou modifikáciou je extrudovanie po krivke a/alebo postupná zmena veľkosti \cite{modernipocitacovagrafika}. 
 
 
 
@@ -870,28 +898,26 @@ Natiahne plochu do priestoru v~smere normály, čím získa na objeme. Pomocou t
 
 \subsection*{Booleovské operácie nad objemovými telesami}
 \label{sec:CSG}
-Pre vytvorenie zložitejších objektov je potrebné jednoduché objekty skladať pomocou booleovských operácií ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Tieto operácie sú zobrazené aj na obrázku \ref{fig:BooleanOperation}, kde tvoria CSG (constructive solid geometry) strom. Keďže sú tieto operácie náročné na spracovanie, rozhodol som sa využiť niektorú z~voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z~nich je knižnica \texttt{libigl}\cite{libigl}.
+Pre vytvorenie zložitejších objektov je potrebné jednoduché objekty skladať pomocou booleovských operácií ako zjednotenie (union), prienik (intersection) a rozdiel medzi množinami (minus). Tieto operácie sú zobrazené aj na obrázku \ref{fig:BooleanOperation}, kde tvoria CSG (constructive solid geometry) strom. Keďže sú tieto operácie náročné na spracovanie, rozhodol som sa využiť niektorú z~voľne dostupných knižníc. Našiel som niekoľko dostupných knižníc, ktoré by sa dali použiť. Jednou z~nich je knižnica \texttt{libigl}.
 %https://stackoverflow.com/questions/24694845/c-library-for-mesh-to-mesh-intersection-what-is-available
 %https://libigl.github.io/tutorial/#boolean-operations-on-meshes
-
-Knižnica libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
-Obľúbená je hlavne pre svoju jednoduchosť. Pre tvorbu booleovských operácií nad mesh stačí zavolať funkciu \texttt{mesh\_boolean}.
-Táto funkcia pracuje s~bodmi (V) a trojuholníkmi (F). Na výpočet zjednotenia (typ \\ \texttt{MESH\_BOOLEAN\_TYPE\_UNION}) pre mesh $A=(VA,FA)$ a mesh $B=(VB,FB)$ je nasledovná funkcia. Výsledok tejto funkcie sa uloží do mesh $C=(VC,FC)$,
-
-\begin{lstlisting}
-igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
-\end{lstlisting}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{obrazky-figures/cube-sphere-cylinders-csg-tree.jpg}
-	\caption{Skladanie objektov pomocou booleovských operácii. Zdroj  \cite{libigl}}
+	\caption{Skladanie objektov pomocou booleovských operácii \cite{libigl}}
 	\label{fig:BooleanOperation}
 \end{figure}
+Knižnica libigl je používaná aj veľkými spoločnosťami ako je Activision, EA, Adobe, Google, Epic Games, Microsoft, Pixar, UBISOFT a ďalšie. Táto knižnica je distribuovaná pod licenciou Mozilla Public License (MPL).
+Obľúbená je hlavne pre svoju jednoduchosť. Pre tvorbu booleovských operácií nad mesh stačí zavolať funkciu \texttt{mesh\_boolean}.
+Táto funkcia pracuje s~bodmi (V) a trojuholníkmi (F). Na výpočet zjednotenia (typ \\ \texttt{MESH\_BOOLEAN\_TYPE\_UNION}) pre mesh $A=(VA,FA)$ a mesh $B=(VB,FB)$ je nasledovná funkcia. Výsledok tejto funkcie sa uloží do mesh $C=(VC,FC)$ \cite{libigl}:
+
+\begin{lstlisting}[breaklines=false]
+igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
+\end{lstlisting}
 
 
 
-\todo{Pridat aj výpočet obsahu, obvodu, povrchu a objemu?}
+% \todo{Pridat aj výpočet obsahu, obvodu, povrchu a objemu?}
 
 
 
@@ -1813,53 +1839,48 @@ igl::copyleft::cgal::mesh_boolean(VA,FA,VB,FB,MESH_BOOLEAN_TYPE_UNION,VC,FC);
 
 
 \chapter{Analýza a koncept práce}
+Touto kapitolou začína popis vlastnej práce.
+Táto kapitola obsahuje analýzu a koncept práce. Tiež obsahuje aj návrh, ako sa budú geometrické objekty vytvárať.
 
 \section{Analýza súčasného stavu vo svete}
-Existuje niekoľko systémov a knižníc pre tvorbu trojrozmerných modelov. Niekoľko z~nich je opísaných v~časti \ref{sec:Existing_systems} a \ref{sec:existing_libraries}. Systémy opísané v~časti \ref{sec:Existing_systems} umožňujú návrh rôznych komplexných modelov. Tieto modelovacie systémy sú veľmi kvalitné a často používané aj profesionálnymi grafickými dizajnérmi. Tieto systémy vytvárajú modely pomocou rôznych geometrických operácii. 
+Existuje niekoľko systémov a knižníc pre tvorbu trojrozmerných modelov. Niekoľko z~nich je opísaných v~časti \ref{sec:Existing_systems} a \ref{sec:existing_libraries}. Systémy opísané v~časti \ref{sec:Existing_systems} umožňujú návrh rôznych komplexných modelov. Tieto modelovacie systémy sú veľmi kvalitné a často používané aj profesionálnymi grafickými dizajnérmi. Tieto systémy vytvárajú modely pomocou skladania rôznych geometrických operácií. 
 
-Ak ale užívateľ chce prepojiť takýto parametrický model s~programovacím jazykom, napríklad kvôli nastaveniu parametrov z~výsledkov simulácie  alebo jeho dynamickú úpravu, má často iba obmedzené možnosti. Niektoré modelovacie systémy obsahujú aplikačné programovacie rozhranie (API). Modelovacie systémy zväčša umožňujú prácu s~modelmi iba pomocou skriptov alebo je potrebné pridať doplnky (angl. add-in), na prepojenie modelovacích systémov s~externou aplikáciou. 
+Ak ale užívateľ chce prepojiť takýto parametrický model s~programovacím jazykom, napríklad kvôli nastaveniu parametrov z~výsledkov simulácie  alebo na jeho dynamickú ú\-pravu, má často iba obmedzené možnosti. Niektoré modelovacie systémy obsahujú aplikačné pro\-gramovacie rozhranie (API). Modelovacie systémy zväčša umožňujú prácu s~modelmi iba pomocou skriptov alebo je potrebné pridať doplnky (angl. add-in), na prepojenie modelovacích systémov s~externou aplikáciou.
  Rozhranie takéhoto systému je ale často veľmi komplikované na používanie. 
- 
- 
-Pri použití knižnice na tvorbu trojrozmerných modelov sa nerozširuje komplexný modelovací systém, ale sa rozširuje programovací jazyk o~možnosť tvorby geometrických modelov. Existujúce knižnice, ktoré umožňujú tvorbu grafických modelov sú opísané v~časti \ref{sec:existing_libraries}.
-Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ich rozhranie podstatne jednoduchšie.
+
 
 
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c|c|c| }
  \hline
- Názov & Typ & API & Cena \\
+ Názov &  & API & Cena \\
  \hline
  \hline
- Solidworks & Systém & Add-in & \$4k-\$8k \\ 
+ Solidworks &  & Add-in & \$4k-\$8k \\ 
   \hline
- Catia & Systém & Skripty & \$11k \\  
+ Catia &  & Skripty & \$11k \\  
   \hline
- FreeCAD & Systém & Skripty & Zadarmo \\  
+ FreeCAD &  & Skripty & Zadarmo \\  
   \hline
- Creo Parametric & Systém & ? &  \$2,200 \\
+ Creo Parametric &  & ? &  \$2,200 \\
   \hline
- Rhino s~Grasshopper & Systém  & Skripty & \$995 \\
+ Rhino s~Grasshopper &   & Skripty & \$995 \\
   \hline
- Fusion 360 & Systém & Skripty a Add-in & Zadarmo - \$1,500 \\
+ Fusion 360 & & Skripty a Add-in & Zadarmo - \$1,500 \\
   \hline
- Inventor & Systém & iLogic add-in & 15,000 \euro  \\
-  \hline
- Libfive & Knižnica & & Zadarmo \\
-  \hline
- OpenSCAD & Knižnica & & Zadarmo \\
-  \hline
- Tigl & Knižnica & & Zadarmo \\
+ Inventor &  & iLogic add-in & 15,000 \euro  \\
   \hline
 \end{tabular}
-\caption{Parametre modelu - kváder s~kruhovým výrezom}
- \label{tab:homeModel}
+\caption{Tabuľka vlastností existujúcich systémov}
+ \label{tab:systemsAndLibs}
 \end{table}
 
 
 
 
+Pri použití knižnice na tvorbu trojrozmerných modelov sa nerozširuje komplexný modelovací systém, ale sa rozširuje programovací jazyk o~možnosť tvorby geometrických modelov. Existujúce knižnice, ktoré umožňujú tvorbu geometrických modelov sú opísané v~časti \ref{sec:existing_libraries}.
+Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ich rozhranie podstatne jednoduchšie.
 
 
 
@@ -1870,16 +1891,30 @@ Tieto knižnice nie sú také komplexné ako modelovacie systémy, a preto je ic
 % \todo{TODO}
 
 \section{Koncept práce}
-Z~vykonanej analýzy vyplýva, že 
-\todo{TODO cele prerobit}
-+motivacia
+Z~vykonanej analýzy vyplýva, že existujúce systémy pre tvorbu parametrických modelov, buď umožňujú pripojenie s externými systémami pomocou API (Application Programming Interface), ktoré sú ale zväčša komplikované na používanie alebo obsahujú iba skripty, ktoré sú určené len na tvorbu modelov, ale neumožňujú pripojenie k externým systémom. Preto som sa rozhodol vytvoriť systém, ktorý bude obsahovať knižnicu, ktorá bude mať jednoduché rozhranie pre tvorbu a nastavovanie modelu a aplikáciu, ktorá bude využívať túto knižnicu a uľahčovať ich tvorbu. 
 
 
+% Z~vykonanej analýzy vyplýva, že knižníc, ktoré umožňujú modelovanie telies, nie je veľa. Preto som sa rozhodol vytvoriť ďalšiu knižnicu, ktorá bude umožňovať parametrické modelovanie a bude týmto knižniciam konkurovať.  \todo{Blbost}
 
-umožňujú vytváranie modelu hlavne pomocou vytvárať dostatočne dynamický model, ktorý je možné v~ľubovolný čas . 
+% Vytvorené riešenie by malo obsahovať knižnicu a aplikáciu na tvorbu parametrických modelov. 
+ Takáto knižnica by mala byť založená na vytváraní objektov pomocou geometrických operácií, ktoré na seba budú nadväzovať.
+Tiež by mala mať jednoduché rozhranie pre tvorbu modelov a umožňovať ich vykresľovanie do grafického okna aplikácie. 
+Súčasťou realizačnej časti musí byť aj vytvorenie grafického rozhrania, pre návrh parametrických modelov v trojrozmernom priestore. Návrh základnej koncepcie rozhrania je uvedené na obrázku \ref{fig:GUI_draft}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.5\textwidth]{obrazky-figures/Examples/mockup.pdf}
+	\caption{Návrh grafického užívateľského rozhrania}
+	\label{fig:GUI_draft}
+\end{figure}
+
+Takéto grafické užívateľské rozhranie by malo umožňovať zobrazenie modelu, nastavovanie jednotlivých parametrov, a tiež pridávanie a úpravu jednotlivých operácií, ktoré vytvárajú parametrický model.
+
+Rozhranie knižnice by malo umožňovať aj ukladanie takéhoto modelu do súboru a jeho opätovné načítanie. 
 
 
-\section{Technické parametre realizačnej časti}
+Rozhodol som sa, že táto knižnica bude využívať externú knižnicu libigl, ktorá bude použitá na konštruktívnu geometriu a knižnice, na ktorých je knižnica libigl závislá.
+
+\section{Technické parametre vytváranej knižnice}
 Na základe analýzy a koncepcie  by mala knižnica zahrňovať tieto vlastnosti:
 \begin{itemize}
 \item vytváranie objektov pomocou geometrických operácií, ktoré sú závislé od iných objektov,
@@ -1889,18 +1924,30 @@ Na základe analýzy a koncepcie  by mala knižnica zahrňovať tieto vlastnosti
 \item ukladanie modelu v~parametrickom súborovom formáte,
 \item ukladanie objektu v~polygonálnom formáte  OBJ,
 \item animácie modelu v~čase,
-\item dynamický model,
+\item dynamické modelovanie,
 \item možnosť získavania hodnôt z~objektov,
 \item knižnica napísaná v~jazyku C++.
 \end{itemize}
 
 
-\section{Návrh geometrických funkcií}
-Vytváranie trojrozmerných parametrických modelov je založené na skladaní rôznych operácií. Návrh skladanie operácii je zobrazené v~nasledujúcich  príkladoch. 
+\section{Návrh vytvárania geometrických objektov} \label{sec:navrhOperacii}
+Vytváranie trojrozmerných parametrických modelov musí byť založené na skladaní rôznych operácií. 
+%Tvorba geometrických objektov je zobrazená v~nasledujúcich  príkladoch. 
+Knižnica musí byť schopná spracovať následujúce príklady úloh.
 
+\subsection*{Príklad 1. Vytvorenie kvádra s~kruhovým výrezom}
+Cieľovým objektom tohoto príkladu je kváder s kruhovým výrezom, viď. obrázok \ref{fig:A4First}. Základné parametre tohoto útvaru sú zhrnuté v tabuľke \ref{tab:blockWithCircleHole}  a sú zobrazené na obrázku \ref{fig:A4First}.
 
-\subsection*{Kváder s~kruhovým výrezom}
-
+\begin{minipage}[b]{\textwidth}
+\begin{minipage}[b]{0.49\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.49\textwidth]{obrazky-figures/Examples/A4.pdf}
+	\caption{Ukážka vytvoreného kvádra s kruhovým výrezom}
+	\label{fig:A4First}
+\end{figure}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c| }
@@ -1918,8 +1965,11 @@ Vytváranie trojrozmerných parametrických modelov je založené na skladaní r
   \hline
 \end{tabular}
 \caption{Parametre modelu - kváder s~kruhovým výrezom}
- \label{tab:homeModel}
+ \label{tab:blockWithCircleHole}
 \end{table}
+
+\end{minipage}
+\end{minipage}
 
 Počiatočný bod, od ktorého bude model vytváraný. Na pozícii tohoto bodu závisí pozícia celého objektu.\nopagebreak
 \begin{figure}[H]
@@ -1949,7 +1999,7 @@ Rozdielom kruhu od kvádra vznikne kváder s~kruhovou dierou.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4.pdf}
-	\caption{Pretnutie plochy priamkou}
+	\caption{Vytvorený obdĺžnik s kruhovým výrezom}
 	\label{fig:A4}
 \end{figure}
 
@@ -1964,12 +2014,27 @@ Rozdielom týchto objektov vznikne následný objekt:\nopagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4x.pdf}
-	\caption{Obdĺžnik s~kruhovým prierezom}
+	\caption{Obdĺžnik s~kruhovým výrezom}
 	\label{fig:A4x}
 \end{figure}
 
-\subsection*{Model domu}
-Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre tohto parametrického modelu sú uvedené v~tabuľke \ref{tab:homeModel}.\nopagebreak
+\subsection*{Príklad 2 - Vytvorenie modelu domu}
+Cieľovým objektom tohoto príkladu je model domu, viď obrázok \ref{fig:B4First}. Základné parametre tohoto útvaru sú zhrnuté v tabuľke \ref{tab:homeModel}  a sú zobrazené na obrázku \ref{fig:B4First}
+% Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre tohto parametrického modelu sú uvedené v~tabuľke \ref{tab:homeModel}
+\label{sec:homeModel}.
+\nopagebreak
+
+
+\begin{minipage}[b]{\textwidth}
+\begin{minipage}[b]{0.49\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.49\textwidth]{obrazky-figures/Examples/B4.pdf}
+	\caption{Ukážka modelu domu}
+	\label{fig:B4First}
+\end{figure}
+\end{minipage}
+\begin{minipage}[b]{0.49\textwidth}
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c| }
@@ -1986,10 +2051,12 @@ Ukážka vytvárania modelu domu pomocou geometrických operácií. Parametre to
  d & Výška strechy  \\
   \hline
 \end{tabular}
-\caption{Parametre modelu - Dom}
+\caption{Parametre modelu - dom}
  \label{tab:homeModel}
 \end{table}
 
+\end{minipage}
+\end{minipage}
 
 Ako prvé je potrebné  stanoviť počiatočný bod, z~ktorého sa bude model domu vytvárať. Na tomto bode je závislá pozícia domu. Keďže z~tohto bodu sa bude vytvárať aj strecha, jeho výška je stanovená parametrom $c$.\nopagebreak
 \begin{figure}[H]
@@ -2012,29 +2079,29 @@ Pridaním výšky k~rovine sa vytvorí blok domu. Z~roviny vytvorenej v~predchá
 	\caption{Vľavo: Strecha domu. Vpravo: Kváder domu}
 	\label{fig:B3}
 \end{figure}
-Spojením týchto objektov, kvádra domu a strechy domu, vznikne kompletný model domu.\nopagebreak
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/B4.pdf}
 	\caption{Model domu}
-	\label{fig:Intersection}
+	\label{fig:B4}
 \end{figure}
+Spojením týchto objektov, kvádra domu a strechy domu, vznikne kompletný model domu, zobrazený na obrázku \ref{fig:B4}.
 
 
-
-\chapter{Realizácia práce}
-V~tejto časti je opísaný stav práce, návrh možností previazania objektov v~parametrickom modely a implementácia knižnice určenej na tvorbu trojrozmerných parametrických modelov, kde sú tieto možnosti previazania implementované.  
+\chapter{Implementácia práce}
+V~tejto časti je opísaný spôsob implementácie softvéru, návrh možností previazania objektov v~parametrickom modely a implementácia knižnice určenej na tvorbu trojrozmerných parametrických modelov, kde sú tieto možnosti previazania implementované.  
 
 \section{Bloková schéma}
 
-Knižnica by mala mať jednoduché rozhranie, aby bola ľahko použiteľná pre používateľa. Toto rozhranie je vidieť aj na blokovom diagrame \ref{fig:blockDiagram}. Operácie by mali byť ukladané v~zozname operácií. Po zavolaní metódy pre vyskladanie objektu sa všetky operácie vyhodnotia a vytvoria objekt. Operácie môžu obsahovať aj hodnoty parametrov modelu a aj hodnoty objektov, ktoré boli vytvorené z~predchádzajúcich operácií. Výsledný model, by malo byť možné animovať. Na to je potrebné zahrnúť pri vyhodnocovaní operácií aj časovú premennú. Tú by sa malo dať ľubovoľne nastavovať a aj pozastaviť. Objekty sa majú ukladať do zoznamu objektov a ak užívateľ chce, malo by sa dať vytvorený model aj vizualizovať. 
-
+Knižnica by mala mať jednoduché rozhranie, aby bola ľahko použiteľná pre používateľa. Toto rozhranie je vidieť aj na blokovom diagrame \ref{fig:blockDiagram}. Operácie by mali byť ukladané v~zozname operácií. Po zavolaní metódy pre vyskladanie objektu sa všetky operácie vyhodnotia a vytvoria objekt. Operácie môžu obsahovať aj hodnoty parametrov modelu a aj hodnoty objektov, ktoré boli vytvorené z~predchádzajúcich operácií. Výsledný model, by malo byť možné animovať. Na to je potrebné zahrnúť pri vyhodnocovaní operácií aj časovú premennú. Tú by sa malo dať ľubovoľne nastavovať a aj pozastaviť. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Diagram.png}
 	\caption{Bloková schéma knižnice }
 	\label{fig:blockDiagram}
 \end{figure}
+Vytvorené objekty sa budú ukladať do zoznamu objektov a ak užívateľ chce, malo by sa dať vytvorený model aj vizualizovať. 
 
 \section{Skladanie operácií}
 \label{sec:skladanie}
@@ -2050,7 +2117,14 @@ Tento názov sa zadáva za hodnotou parametra oddelený dvojbodkou.
 Jednotlivé operácie sa oddeľujú bodkočiarkou (\texttt{;}). 
 Táto textová podoba geometrických operácií sa používa pri vytváraní modelu a aj pre uloženie do súboru, a tiež jeho následné načítanie.
 
-Pre predstavu ako sa jednotlivé objekty vytvárajú, uvádzam príklad pre vytvorenie kužeľu s~kruhovou podstavou s~polomerom 5 a výškou 10:
+Pre predstavu ako sa jednotlivé objekty vytvárajú, uvádzam príklad pre vytvorenie kužeľu s~kruhovou podstavou s~polomerom 5 a výškou 10. Tento model je zobrazený na obrázku \ref{fig:Cone}
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/Cone.pdf}
+	\caption{Ukážka vytváraného kužeľa}
+	\label{fig:Cone}
+\end{figure}
+
 \begin{itemize}
     \item Na vytvorenie kužeľu je potrebné najprv vytvoriť bod na pozícii XYZ, napr. $\left [ 1, 2, 3 \right ]$, ktorý bude slúžiť ako stred kruhovej podstavy.
 	\begin{lstlisting}
@@ -2122,18 +2196,18 @@ Po zavolaní tejto metódy, sa do zoznamu operácií vloží operácia \texttt{E
 	\centering
 	\includegraphics[align=c,width=0.45\textwidth]{obrazky-figures/Examples/DP Navrh operacii-Page-AddOperation model.pdf}
 	\includegraphics[align=c,width=0.54\textwidth]{obrazky-figures/Examples/DP Navrh operacii-Page-AddOperation Graph.pdf}
-	\caption{Ukážka, ako sa zmení model a graf modelu, pri vkladaní operácie.}
+	\caption{Ukážka, ako sa zmení model a graf modelu, pri vkladaní operácie}
 	\label{fig:addOperation}
 \end{figure}
 
 
 
-Metóda \texttt{AddOperations} umožňuje pridanie množiny operácii, kde jednotlivé zápisy operácií sú oddelené znakom bodkočiarky~(;).  Operácie je tiež môžné zapísať aj v~tvare štruktúry \texttt{Operation}, kde sa zapisujú jednotlivé zložky operácie, ako sú typ operácie, názov vytváraného objektu a parametre operácie.
+Metóda \texttt{AddOperations} umožňuje pridanie množiny operácií, kde jednotlivé zápisy operácií sú oddelené znakom bodkočiarky~(;).  Operácie je tiež možné zapísať aj v~tvare štruktúry \texttt{Operation}, kde sa zapisujú jednotlivé zložky operácie, ako sú typ operácie, názov vytváraného objektu a parametre operácie.
 Pomocou metódy \texttt{InsertOperation} je možné vkladať operácie do už vytvoreného modelu na ľubovoľnú pozíciu, prípadne pomocou metódy \texttt{ReplaceOperation} nahradiť ľubovoľnú operáciu. 
 Metóda \texttt{RemoveOperation} umožňuje odstránenie jednej operácie na zadanej pozícii. Pre vymazanie celého modelu slúži metóda \texttt{DeleteModel}. 
 
 
-Knižnica tiež umožňuje uloženie parametrického modelu do  súboru a jeho následné načítanie. Aby bolo možné použiť vytvorený objekt aj v~iných aplikáciach, je možné tento objekt exportovať do súborového formátu OBJ, ktorý kvôli svojej jednoduchosti patrí medzi najviac podporované geometrické súborové formáty. Pre ukladanie a načítanie modelu slúžia metódy: \texttt{Save}, \texttt{Load} a \texttt{SaveOBJ}.
+Knižnica tiež umožňuje uloženie parametrického modelu do  súboru a jeho následné načítanie. Aby bolo možné použiť vytvorený objekt aj v~iných aplikáciach, je možné tento objekt exportovať do súborového formátu OBJ, ktorý kvôli svojej jednoduchosti patrí medzi najviac podporované geometrické súborové formáty. Pre ukladanie a načítanie modelu slúžia metódy \texttt{Save}, \texttt{Load} a \texttt{SaveOBJ}.
 % \lstset {language=C++}
 % \begin{lstlisting}
 % void Save(std::string filePath)
@@ -2141,25 +2215,20 @@ Knižnica tiež umožňuje uloženie parametrického modelu do  súboru a jeho n
 % void SaveOBJ(std::string filePath)
 % \end{lstlisting}
 
-Pre otestovanie, či v~zapísanom reťazci nie je chyba, či už syntaktická alebo sémantická, slúži testovanie. Na začiatku každého testovania je potrebné zavolať metódu \texttt{void resetTest()} a následne je možné pridávať operácie pomocou metódy \texttt{TestOperation}. 
+Pre otestovanie, či v~zapísanom reťazci nie je chyba, či už syntaktická alebo sémantická, slúži testovanie. Na začiatku každého testovania je potrebné zavolať metódu \texttt{resetTest} a následne je možné pridávať operácie pomocou metódy \texttt{TestOperation}. 
 % \lstset {language=C++}
 % \begin{lstlisting}
 % bool TestOperation(std::string s).
 % \end{lstlisting}
-Takto pridané operácie sa nezapisujú do samotného modelu a budú vymazané pri ďalšom zavolaní metódy \texttt{resetTest()}. Metóda TestOperation vracia hodnotu True, ak sa nevyskytla žiadna chyba, a je teda možné operáciu do modelu bezchybne vložiť.
+Takto pridané operácie sa nezapisujú do samotného modelu a budú vymazané pri ďalšom zavolaní metódy \texttt{resetTest}. Metóda TestOperation vracia hodnotu True, ak sa nevyskytla žiadna chyba, a je teda možné operáciu do modelu bezchybne vložiť.
 
 
 Aby sa urýchlil výpočet modelu, spracovanie sa nezačína hneď po každej úprave modelu, ale je potrebné, aby bola zavolaná metóda \texttt{BuildModel}.
 % \begin{lstlisting}
 % void BuildModel().
 % \end{lstlisting}
-
 % \todo{Odstranit problem}
 % Pri skladaní iba jednoduchých operácií stačilo celý model pred generovaním zahodiť a vytvoriť znova celý model od začiatku. Problém nastal, keď som sa rozhodol implementovať konštruktívnu geometriu. Keďže model je vytváraný v~polygonálnej forme, použil som už spomenutú knižnicu libigl (viac o~konštruktívnej geometrii je v~časti \ref{sec:CSG}), ktorá umožňuje jednoduchú prácu s~boolovskými operáciami nad polygonálnymi objektami. Výpočet boolovskej operácie trvá nejaký čas, a teda nemôžeme hovoriť o~real-timeovej operácii. Preto bolo potrebné prerobiť algoritmus tak, aby sa znova generovali iba objekty, ktoré sa nejakým spôsobom modifikovali, či už pridaním novej operácie alebo zmenou hodnoty niektorého parametra operácie, alebo ak sa zmenila niektorá operácia, na ktorej je táto operácia tvoriaca daný objekt závislá. Taktiež je potrebné kontrolovať, či niektorá premenná v~zadanom výraze nezmenila svoju hodnotu (napríklad časová premenná alebo parameter niektorého objektu - viac v~časti \ref{sec:vyrazy}) a je teda potrebné znovu vypočítať zadaný výraz a podľa nových hodnôt vytvoriť objekt. 
-
-
-
-
 Pri skladaní iba jednoduchých operácií stačilo celý model pred generovaním zahodiť a vytvoriť znova celý model od začiatku. Pri operáciach, ktoré trvajú niekoľko sekúnd, ako sú operácie konštruktívnej geometrie, je takýto postup generovania príliš pomalý.
 Preto som navrhol algoritmus tak, aby sa znova generovali iba objekty, ktoré sa nejakým spôsobom modifikovali, či už pridaním novej operácie alebo zmenou hodnoty niektorého parametra operácie, alebo ak sa zmenila niektorá operácia, na ktorej je táto operácia tvoriaca daný objekt závislá. Taktiež je potrebné kontrolovať, či niektorá premenná v~zadanom výraze nezmenila svoju hodnotu (napríklad časová premenná alebo parameter niektorého objektu - viac v~časti \ref{sec:vyrazy}) a je teda potrebné znovu vypočítať zadaný výraz a podľa nových hodnôt vytvoriť objekt. 
 
@@ -2175,20 +2244,18 @@ Táto optimalizácia je zobrazená aj na grafe \ref{fig:build optimization}. V~t
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{obrazky-figures/build optimalization.pdf}
-	\caption{Graf operácii, pri zmene jedného parametra.}
+	\caption{Graf operácii, pri zmene jedného parametra}
 	\label{fig:build optimization}
 \end{figure}
-Červenou farbou sú vyznačené operácie, ktorým sa zmenil parameter. Žltou farbou sú vyznačené operácie ktoré sú závislé od výsledku pozmenenej operácie. Tieto operácie je potrebné tiež znovu vyhodnotiť. Modrou farbou sú vyznačené operácie, ktorým sa žiadna hodnota nezmenila a nezmenila sa ani žiadna operácia na ktorej sú závislé. Výsledok týchto operácií by bol rovnaký, ako pred zmenou hodnoty parametra. Preto tieto operácie nie je potrebné znova spracovať, a tým sa dá ušetriť výpočtový čas na znovupostavenie modelu.
+Červenou farbou sú vyznačené operácie, ktorým sa zmenil parameter. Žltou farbou sú vyznačené operácie, ktoré sú závislé od výsledku pozmenenej operácie. Tieto operácie je potrebné tiež znovu vyhodnotiť. Modrou farbou sú vyznačené operácie, ktorým sa žiadna hodnota nezmenila a nezmenila sa ani žiadna operácia, na ktorej sú závislé. Výsledok týchto operácií by bol rovnaký, ako pred zmenou hodnoty parametra. Preto tieto operácie nie je potrebné znova spracovať, a tým sa dá ušetriť výpočtový čas na znovupostavenie modelu.
 
-\section{Výrazy}
+\section{Výrazy v operáciách}
 \label{sec:vyrazy}
 Zo začiatku umožňovala knižnica v~parametroch operácií iba číselnú hodnotu, s~presnosťou dátového typu \textit{double}. To ale často nebolo dostatočné, preto som sa rozhodol prerobiť túto hodnotu na výrazy so základnou aritmetikou a s~použitím aj iných hodnôt z~objektov. Neskôr som pridal aj trigonometrické operácie a zaokrúhľovanie. Pridal som aj  časové premenné, aby sa dal model animovať v~čase.
 Parametre operácií môžu byť zapísané v~tvare výrazu. Tieto výrazy sa počas zápisu overia a spracúvajú. Vyhodnocovanie prebieha až v~čase vytvárania modelu.
 
-
-Príklady zápisu rôznych výrazov v~operáciách vytvárajúcich body:
-
-
+\pagebreak
+Príklady zápisu rôznych výrazov v~operáciách vytvárajúcich body:\nopagebreak
 \lstset {language=C++}
 \begin{lstlisting}
 Point(P1,1+2:param1,0-5:param2,1.5:param3,FF0000FF);
@@ -2199,7 +2266,7 @@ Výrazy môžu obsahovať rôzne prvky. V~tejto knižnici sú podporované nasle
 \begin{itemize}
     \item  čísla (0; 1.5; -5.5)
     \item  parametre modelu
-    \item  hodnoty z~objektov \todo{TODO}
+    \item  hodnoty z~objektov
     \item  časové premenné
         \begin{itemize}
             \item  time - časová hodnota v~milisekundách
@@ -2238,7 +2305,7 @@ Výrazy môžu obsahovať rôzne prvky. V~tejto knižnici sú podporované nasle
 
 
 \subsection*{Precedenčná tabuľka}
-Na vyhodnocovanie výrazov je potrebná precedenčná tabuľka. Tá označuje, ktorá operácia má vyššiu prioritu pri výpočte. Zvislé popisky udávajú, aký znak je na vrchole zásobníka a vodorovné popisky udávajú, aký znak práve prišiel (vstupný token). Znak \$ na zásobníku určuje dno zásobníka a \$ na vstupe určuje koniec. Ak je výsledná hodnota z~precedenčnej tabuľky znak X, znamená to, že zadaný výraz je zapísaný v~chybej forme, a teda nie je možné takýto výraz ďalej riešiť.
+Pre vyhodnocovanie výrazov v realizovanom systéme je potrebné dbať na precedenciu operátorov. Preto je potrebná precedenčná tabuľka. Tá označuje, ktorá operácia má vyššiu prioritu pri výpočte. Zvislé popisky udávajú, aký znak je na vrchole zásobníka a vodorovné popisky udávajú, aký znak práve prišiel (vstupný token). Znak \$ na zásobníku určuje dno zásobníka a \$ na vstupe určuje koniec. Ak je výsledná hodnota z~precedenčnej tabuľky znak X, znamená to, že zadaný výraz je zapísaný v~chybej forme, a teda nie je možné takýto výraz ďalej riešiť.
 
 Pre vyhodnocovanie výrazov sa v~knižnici využíva nasledovná precedenčná tabuľka: \nopagebreak
 \begin{table}[H]
@@ -2261,7 +2328,7 @@ unary & > & > & > & > & > & < & < & > & > & > & >      \\
 \$ & < & < & < & < & < & < & < & X & < & < & O~\\
 \hline
 \end{tabular}
-\caption{\label{tab:precedenceTable}Precedenčná tabuľka.}
+\caption{\label{tab:precedenceTable}Precedenčná tabuľka}
 \end{table}
 
 
@@ -2283,30 +2350,37 @@ Tieto parametre pre geometrické objekty sa dajú zobraziť pomocou stromu dedi�
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.95\textheight]{obrazky-figures/Diagram/Draw/Parametric Sctructures Tree.pdf}
-	\caption{Štruktúry objektov vytvárajú strom dedičnosti. Pri každom objekte je uvedené, aké dáta uchováva. }
+	\caption{Štruktúry objektov vytvárajú strom dedičnosti (Pri každom objekte je uvedené, aké dáta uchováva)}
 	\label{fig:StromDedicnosti}
 \end{figure}
-Vo vytvorenej knižnici je možné pristupovať k~jednotlivým hodnotám objektom pomocou:\todo{TODOTODOTODO + Pridanie ukazky ako vybrat hodnotu z~objektu}.    
+Vo vytvorenej knižnici je možné pristupovať k~jednotlivým hodnotám objektom pomocou 
+% \todo{TODOTODOTODO + Pridanie ukazky ako vybrat hodnotu z~objektu}.    
+\texttt{GetObjectValue}. Použitie tejto metódy je vidieť na následujúcich príkladoch:
 \begin{lstlisting}
-double GetObjectValue(std::string s,bool* Err).
-\end{lstlisting}
-Alternatívne sa dá pristupovať k~štruktúram objektov priamo, pomocou funkcie: 
-\begin{lstlisting}
-Object::GeometricObject* GetObject(std::string objectName).
+GetObjectValue("Guľa.center.x") &\textrm{- Hodnota pozície stredu kruhu na ose X,}&
+GetObjectValue("Trojuhoľník.perimeter") &\textrm{- Obvod trujuhoľníka s názvom \newline"Trojuhoľník",}&
+GetObjectValue("Kužeľ.volume") &\textrm{- Objem kužeľa "Kužeľ".}&
 \end{lstlisting}
 
-\todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z~neho nejake parametre)}
+
+Alternatívne sa dá pristupovať k~štruktúram objektov priamo, pomocou funkcie \newline \texttt{GetObject}, ktorý berie ako argument názov požadovaného objektu.
+\begin{lstlisting}
+((Object::Sphere*) paramModel.GetObject("Guľa"))->center.Position.X&\newline \textrm{- Hodnota pozície stredu kruhu na ose X}&
+((Object::Triangle*) paramModel.GetObject("Trojuhoľník"))->GetPerimeter()&\newline\textrm{- Obvod trujuhoľníka s názvom "Trojuhoľník",}&
+((Object::Shape3D*) paramModel.GetObject("Kužeľ"))->GetVolume() &\newline\textrm{- Objem kužeľa "Kužeľ".}&
+\end{lstlisting}
+% \todo{pouzitie kniznice na vypocty (vytvorit lubovolny model a ziskat z~neho nejake parametre)}
 
 
 \subsubsection*{Časové premenné}
-Knižnica by mala umožňovať aj vytváranie animácií. Pri tvorbe modelu s~animáciou, je vhodné využiť časovú hodnotu a na tejto hodnote založiť operácie. Na obrázku \ref{fig:animation} je zobrazená annimácia skákajúcej guli, ktorej priemer sa mení podľa výšky. Čím je táto guľa vyššie, tým je jej priemer väčší.
+Knižnica by mala umožňovať aj vytváranie animácií. Pri tvorbe modelu s~animáciou, je vhodné využiť časovú hodnotu a na tejto hodnote založiť operácie. Na obrázku \ref{fig:animation} je zobrazená animácia skákajúcej guli, ktorej priemer sa mení podľa výšky. Čím je táto guľa vyššie, tým je jej priemer väčší.
 
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-Ball Animation.pdf}
-	\caption{Animácia skákajúcej guli, ktorej polomer sa mení podľa jej výšky.}
+	\caption{Animácia skákajúcej guli, ktorej polomer sa mení podľa jej výšky}
 	\label{fig:animation}
 \end{figure}
 
@@ -2317,45 +2391,34 @@ Pre možnosti animácie modelu som vytvoril časové premenné time a time\_seco
 % void setTime(unsigned long miliseconds).
 % \end{lstlisting}
 
-V~prípade ak užívateľ chce čas pozastaviť alebo preferuje nastavovanie času manuálne, je možné pozastaviť časovač pomocou nasledujúcej metódy \texttt{useManualTimer}
+V~prípade ak užívateľ chce čas pozastaviť alebo preferuje nastavovanie času manuálne, je možné pozastaviť časovač pomocou nasledujúcej metódy \texttt{useManualTimer}.
 % :\nopagebreak
 % \begin{lstlisting}
 % void useManualTimer(bool enable).
 % \end{lstlisting}
 
 \section{Grafické rozhranie}
-Na vytvorenie grafického rozhrania je potrebné vytvoriť okno a k~nemu grafický kontext. Na ukážku som vytvoril aplikácie, ktoré používajú túto knižnicu s~grafickým rozhraním a pre vytvorenie grafického kontextu používa jedna aplikácia knižnicu GLFW \footnote{https://www.glfw.org/} a druhá aplikácia používa knižnicu QT\footnote{https://www.qt.io/} s~použitím widgetu QOpenGLWidget. 
+Vytvorená knižnica umožňuje vytvorený model aj vizualizovať. Na to je potrebné vytvoriť okno, do ktorého sa bude model vykresľovať a k~nemu grafický kontext. Vytvorená knižnica neobsahuje metódy na vytvorenie grafického okna, ale iba metódy na vykresľovanie  pomocou GLEW\footnote{http://glew.sourceforge.net/}.
+% Na ukážku som vytvoril aplikácie, ktoré používajú túto knižnicu s~grafickým rozhraním a pre vytvorenie grafického kontextu používa jedna aplikácia knižnicu GLFW \footnote{https://www.glfw.org/} a druhá aplikácia používa knižnicu QT\footnote{https://www.qt.io/} s~použitím widgetu QOpenGLWidget. 
 
-\lstset {language=C++,
-basicstyle=\ttfamily,
-  columns=fullflexible,
-  breaklines=true,
-  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}}
-Pre použitie grafického rozhrania je potrebné, aby používateľ po vytvorení kontextu zavolal metódu: 
-\begin{lstlisting}
-void InitRenderer().
-\end{lstlisting}
+Pre použitie grafického rozhrania je potrebné, aby používateľ po vytvorení kontextu zavolal metódu \texttt{InitRenderer}.
 Táto metóda inicializuje GLEW a vytvorí program so shaderami.  Minimálna požiadavka pre spustenie grafického rozhrania je podpora OpenGL vo verzii 3.3, v~ktorom sú napísané shadery.
-Následne je potrebné volať vo vykresľovacej slučke metódu:  
-\begin{lstlisting}
-void Draw(int x, int y, float fov, int width, int height),
-\end{lstlisting}
-ktorá ako parameter berie pozíciu pre vykresľovanie, veľkosť zorného poľa a pomer strán okna, v~ktorom sa má vykresľovať.
+Následne je potrebné volať vo vykresľovacej slučke metódu Draw, ktorá ako parameter berie pozíciu pre vykresľovanie, veľkosť zorného poľa a pomer strán okna, v~ktorom sa má vykresľovať.
 
-Následne je pre prácu s~obrazom možné používať tieto metódy:
+Následne je pre prácu s~obrazom možné:
 \begin{itemize}
-\item pre nastavenie pozície kamery:
- \begin{lstlisting}
-void SetRendererCameraPosition(float X, float Y, float Z),
-\end{lstlisting}
-\item pre natočenie kamery:
- \begin{lstlisting}
-void SetRendererCameraRotation(float Pitch, float Yaw, float Roll),
-\end{lstlisting}
-\item nastavenie sýtosti ambientného osvetlenia v~rozmedzí <0;1> :
-\begin{lstlisting}
-void setRendererAmbientStrength(float ambientStrength).
-\end{lstlisting}
+\item nastavenie pozície kamery,
+%  \begin{lstlisting}
+% SetRendererCameraPosition,
+% \end{lstlisting}
+\item natočenie kamery,
+%  \begin{lstlisting}
+% SetRendererCameraRotation,
+% \end{lstlisting}
+\item nastavenie sýtosti ambientného osvetlenia v~rozmedzí <0;1>.
+% \begin{lstlisting}
+% setRendererAmbientStrength.
+% \end{lstlisting}
 \end{itemize}
 
 
@@ -2368,13 +2431,13 @@ void setRendererAmbientStrength(float ambientStrength).
 
  
 Práca obsahuje aj jednoduché grafické rozhranie, ktoré návrhárovi pomáha, pri vytváraní parametrického modelu a uľahčuje prácu s~geometrickými operáciami, a zároveň pri tom zobrazuje aj internú štruktúru modelu, teda jednotlivé operácie, objekty a parametre a zároveň tento model aj vizualizuje.
-Táto aplikácia je vytvorená pomocou knižnice QT a jej grafické rozhranie je zobrazené na obrázku \ref{fig:GraphicEditor}.
+Táto aplikácia je vytvorená pomocou knižnice QT\footnote{https://www.qt.io/} a jej grafické rozhranie je zobrazené na obrázku \ref{fig:GraphicEditor}.
 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{obrazky-figures/Parametric_editor.png}
-	\caption{Grafický editor na tvorbu parametrických trojrozmerných modelov.}
+	\caption{Grafický editor na tvorbu parametrických trojrozmerných modelov}
 	\label{fig:GraphicEditor}
 \end{figure}
 
@@ -2382,8 +2445,8 @@ Táto aplikácia je vytvorená pomocou knižnice QT a jej grafické rozhranie je
 
 %Jednotlivé geometrické operácie sú zobrazené v pravej časti aplikácie a pri dvojkiku vie ich ľubovolne upravovať a jednotlivé parametre operácií previazať s parametrami modelu.
  
-\subsubsection*{Zoznam geometrických operácií}
-Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geometrické operácie pridať, upraviť, mazať a aj vložiť na ľubovoľné miesto. Tieto operácie je tiež možné ľubovoľne presúvať. Operácie sú zoradené zhora dole v~poradí, v~akom sa vyhodnocujú. Parametre je možné zapisovať rovnako, ako v~programátorskej časti, teda aj vo forme výrazu s~odkazmi na hodnoty iných objektov a parametrov modelu. Keďže parametre operácií môžu odkazovať iba na skôr vytvorené objekty, je nutné pri upravovaní, presúvaní a mazaní tieto parametre kontrolovať. Grafické rozhranie následne zobrazí, v~ktorých operácií sa nachádzajú nevyhovujúce parametre a tieto objekty (a objekty na nich závislé) sa nebudú vykresľovať.
+% \subsubsection*{Zoznam geometrických operácií}
+Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geometrické operácie pridať, upraviť, mazať a aj vložiť na ľubovoľné miesto. Tieto operácie je tiež možné ľubovoľne presúvať. Operácie sú zoradené zhora dole v~poradí, v~akom sa vyhodnocujú. Parametre je možné zapisovať rovnako, ako v~programátorskej časti, teda aj vo forme výrazu s~odkazmi na hodnoty iných objektov a parametrov modelu. Keďže parametre operácií môžu odkazovať iba na skôr vytvorené objekty, je nutné pri upravovaní, presúvaní a mazaní tieto parametre kontrolovať. Grafické rozhranie následne zobrazí, v~ktorých operáciách sa nachádzajú nevyhovujúce parametre a tieto objekty (a objekty na nich závislé) sa nebudú vykresľovať.
 
 % \todo{Zobrazenie grafického rozhrania}
 
@@ -2392,40 +2455,139 @@ Aby bolo jednoduchšie vytvárať objekty, grafické rozhranie umožňuje geomet
 Dialógové okno umožňuje výber operácie,  ktorá sa má použiť, zo zoznamu geometrických operácií. V~zozname sa nachádza názov geometrickej operácie, parametre, ktoré operácia potrebuje a nápoveda, ktorá informuje užívateľa čo daná operácia robí.
 Po vybraní operácie zo zoznamu, sa zobrazia v~pravej časti dialógového okna parametre vybranej operácie. Ak je dialógové okno v~režime úpravy (okno sa zobrazilo po dvojkliku na zozname geometrických operácií), sú pri vybraní rovnakého typu operácie tieto parametre už predvyplnené hodnotami zvolenej operácie na úpravu.
 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{obrazky-figures/Dialog.png}
+	\caption{Dialógové okno na pridanie, vloženie a úpravu operácií (Ukážka pridania bodu s~názvom $Point_1$ s~jednou chybne zadanou hodnotou) }
+	\label{fig:dialogWindow}
+\end{figure}
+
 Ako prvý parameter je názov takto vytvoreného objektu, ktorý je pri novo vytváraných objektoch (režim okna pridanie alebo vloženie) predvyplnený, ale je možné ho upraviť na ľubovoľnú hodnotu.  
-Po názve objektu nasleduje viditeľnosť objektu, ktorá určuje, ako bude takto vytvorený objekt viditeľný. Pri hodnote viditeľnosti $\leq0$ je objekt neviditeľný a pri hodnote $\geq1$ je objekt plne viditeľný. Ak je táto hodnota v~rozmedzí (0-1) je tento objekt priehľadný. 
-Ďalej nasledujú samotné parametre operácie typu $Expression,  Point, Line, Surface$ a ďalšie. Parametrom typu $Expression$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nie je povinný a pre nereferencované parametre stačí nechať políčko prázdne. Parametre typu $Expression$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v~zozname referencovaných parametrov.
+Po názve objektu nasleduje farba objektu v tvare RRGGBBAA zapísaná hexadecimálne.
+Ďalej nasledujú samotné parametre operácie typu $Expression,  Point, Line,$ $ Surface$ a ďalšie. Parametrom typu $Expression$ sa dá nastaviť názov, podľa ktorého sa na ne bude odkazovať. Tento názov ale nie je povinný a pre parametre stačí nechať políčko prázdne. Parametre typu $Expression$, ktoré sú týmto názvom pomenované, sa následne zobrazia aj v~zozname parametrov modelu.
 V~poslednom stĺpci sa nachádza nápoveda k~danému parametru.
 
 Po zadaní hodnoty sa overuje, či je táto hodnota valídna pre daný parameter. To zahŕňa testovanie, či hodnota zadaná parametru $Expression$ je platný výraz a pri ostatných parametroch sa testuje, či existuje objekt s~rovnakým názvom ako bol zadaný, a či je tento objekt správnym typom prípadne podtypom (viac o~typoch objektov v~kapitole  \ref{chapt:Geometrické_tvary}). Tiež sa testuje aj názov objektu a názov referencovaného parametra na unikátnosť.
 Ak hodnota parametra nesplňuje niektorú požiadavku, je toto políčko označené červenou farbou pozadia, čo upozorňuje užívateľa na chybu. Ak je hodnota valídna, políčko sa označí zeleným pozadím. Prázdne políčko je označené bielym pozadím. 
 
+V~hlavnom okne aplikácie je možné zadať operácie v~textovej podobe. Tento text sa pri zadaní testuje a zafarbuje podľa validity, ako je vidno na obrázku \ref{fig:text}. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{obrazky-figures/Dialog.png}
-	\caption{Dialógové okno na pridanie, vloženie a úpravu operácií. Ukážka úpravy bodu s~názvom $p3$ s~jednou chybne zadanou hodnotou }
-	\label{fig:dialogWindow}
+	\includegraphics[width=0.7\textwidth]{obrazky-figures/operations text.png}
+	\caption{Textový zápis operácii, v hlavnom okne aplikácie}
+	\label{fig:text}
 \end{figure}
-V~hlavnom okne aplikácie je možné zadať operácie v~textovej podobe. Tento text sa pri zadaní testuje a zafarbuje podľa validity. Ak je zadaný text valídny, zafarbí sa na zeleno. Naopak ak je v~niektorej operácii chyba, či už syntaktická alebo sémantická, zafarbí sa na červeno. Viac o~možnostiach pridávania, úpravy a odoberanie objektov je v~časti \ref{sec:addAndRemoveObjects}.
-
-
-% \section{Animácia modelu}
-
-% \todo{metody na animaciu}
+Ak je zadaný text valídny, zafarbí sa na čierno. Naopak ak je v~niektorej operácii chyba, či už syntaktická alebo sémantická, zafarbí sa na červeno. Viac o~možnostiach pridávania, úpravy a odoberanie objektov je v~časti \ref{sec:addAndRemoveObjects}.
 
 
 
 
 
-\section{Príklady použitia knižnice}
-Okrem grafického editora, ktorý je popísaný v~časti \ref{sec:grafickyEditor}, som vytvoril aj ďalšie dve aplikácie znázorňujúce použitie tejto knižnice na tvorbu parametrických trojrozmerných modelov.  V~tejto časti sú tieto aplikácie opísané.
+\chapter{Vyhodnotenie vytvoreného riešenia}\label{sec:zhodnotenie}
+% Okrem grafického editora, ktorý je popísaný v~časti \ref{sec:grafickyEditor}, som vytvoril aj ďalšie dve aplikácie znázorňujúce použitie tejto knižnice na tvorbu parametrických trojrozmerných modelov.  V~tejto časti sú tieto aplikácie opísané. \todo{hlupost}
+
+Vytvorený systém bol testovaný na niekoľkých príkladoch. Základom pre tieto príklady boli návrhy geometrických objektov z časti \ref{sec:navrhOperacii}.
+
+\section*{Príklad 1 - Kváder s kruhovým výrezom}
+Základom pre tento príklad bol model kvádra s dierou, zobrazený aj na obrázku \ref{fig:A4vyhodnotenie}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.3\textwidth]{obrazky-figures/Examples/A4x.pdf}
+	\caption{Model kvádra s dierou}
+	\label{fig:A4vyhodnotenie}
+\end{figure}
+
+Výsledný model kvádra s dierou, vytvorený pomocou implementovaného systému je zobrazený na obrázku \ref{fig:qwerty7io}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s dierou1.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.30\textwidth]{obrazky-figures/Examples/kvader s dierou2.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.33\textwidth]{obrazky-figures/Examples/kvader s dierou3.png}
+	\caption{Model "kváder s dierou" pri rôznych hodnotách parametrov}
+	\label{fig:qwerty7io}
+\end{figure}
+
+Tento navrhnutý model je vytvorený pomocou nasledujúcej množiny operácii:\nopagebreak
+
+\vspace{10px}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[frame = {tb},numbers={left}]
+Point(center,0,0,0,00000000);
+Point(endPoint,0,0,1,00000000);
+Line(vector,center,endPoint,00000000);
+LinearInterpolationDist(centerWithOffset,center,endPoint,-0.5:offset,00000000);
+Circle(kruh,centerWithOffset,2.5:polomer kruhu,vector,00FF0000);
+Rectangle(stvorec,center,5,5,0,vector,FF000000);
+Extrude(kvader,stvorec,1:sirka,00000000);
+Extrude(diera,kruh,sirka-offset*2,00000000);
+BooleanMinus(kvader s kruhovou dierou,kvader,diera,0000FFFF);
+\end{lstlisting}
+\end{minipage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim=10 10 10 10,clip,width=0.50\textwidth]{obrazky-figures/Examples/kvader s dierou4.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.49\textwidth]{obrazky-figures/Examples/followUp.png}
+	\includegraphics[trim=10 10 10 10,clip,width=0.50\textwidth]{obrazky-figures/Examples/followup3.png}
+	\caption{Modifikácie vytvoreného modelu}
+	\label{fig:qwert}
+\end{figure}
+
+Navrhnutý model je možné ďalej modifikovať. Ďalšie vytvorené modifikácie sú zobrazené na obrázku \ref{fig:qwert}.
 
 
 
-\subsection*{Aplikácia s~použitím glfw}
+\newpage
+\subsection*{Príklad 2 - Model domu}\label{priklad2}
+Tento príklad je implementovaný na priloženom médiu a zobrazuje vytvorený model s použitím grafického okna vytvoreného pomocou knižnice glfw. Model použitý v tejto aplikácii je model domu, ktorý je navrhnutý v časti \ref{sec:homeModel}.
 
-\subsection*{Aplikácia s~použitím Qt}
-Táto ukážka zobrazuje použitie vytvorenej knižnice s~aplikáciou využívajúcou grafické rozhranie z~knižnice Qt. V~tejto aplikácii ...
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.24\textwidth]{obrazky-figures/Examples/B4.pdf}
+	\caption{Návrh modela domu}
+	\label{fig:homeModelnavrh}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.20\textwidth]{obrazky-figures/Examples/home.png}
+	\includegraphics[width=0.20\textwidth]{obrazky-figures/Examples/home1.png}
+	\includegraphics[width=0.20\textwidth]{obrazky-figures/Examples/home2.png}
+	\includegraphics[width=0.20\textwidth]{obrazky-figures/Examples/home3.png}
+	\caption{Model "Dom" pri rôznych hodnotách parametrov}
+	\label{fig:homeModel}
+\end{figure}
+
+V navrhnutej knižnici bolo dôležité, aby sa vytvorený model dal uložiť a po načítaní ďalej upravovať, napríklad pridávaním ďalších operácií. To je zobrazené na nasledovnej ukážke:\nopagebreak 
+\vspace{10pt}
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=C,frame=tb,numbers=left,emph={void,int,char,double,float,unsigned},emphstyle={\color{blue}},tabsize=2]
+	ParametricModel paramModel;
+
+	paramModel.AddOperations(R"(
+        Point(HouseTopCenter,0,2:houseHeight,0,00000000);
+        Point(PointUP,0,1,0,HouseTopCenter,00000000);
+        Line(LineUP,HouseTopCenter,PointUP,00000000);
+        Rectangle(Top,HouseTopCenter,3:houseX,2+sin(time/1500):houseY,&\newline&sin(time/1000)-0.2:rotation,LineUP,00000000);
+        Extrude(House,Top,0-houseHeight,00FF00FF))");
+	paramModel.BuildModel(); 
+	
+	paramModel.Save("Output.parammodel"); //model je možné uložiť 
+	paramModel.DeleteModel(); //model je možné zmazať
+	paramModel.Load("Output.parammodel"); //uložený model je možné znova &\newline&načítať 
+	paramModel.AddOperation("Cone(Roof,Top,2:roofHeight,FF0000FF)"); &\newline&//pridanie operácie do načítaného modelu
+	paramModel.BuildModel();
+\end{lstlisting}
+\end{minipage}
+Hore uvedený kód aplikácie ukazuje vytvorenie modelu, pridávanie operácií, uloženie a načítanie modelu. Vo vykresľovacej slučke sú následne volané metódy \texttt{BuildModel} a \texttt{Draw}.\newpage
+
+\subsection*{Príklad 3. Aplikácia s~použitím Qt}\label{priklad3}
+Táto ukážka zobrazuje použitie vytvorenej knižnice s~aplikáciou vytvárajúcou okno pomocou knižnice Qt. 
+% V~tejto aplikácii ...
 
 
 \begin{figure}[H]
@@ -2434,16 +2596,16 @@ Táto ukážka zobrazuje použitie vytvorenej knižnice s~aplikáciou využívaj
 	\includegraphics[width=0.49\textwidth]{obrazky-figures/Examples/head2.png}
 	\includegraphics[width=0.49\textwidth]{obrazky-figures/Examples/head3.png}
 	\includegraphics[width=0.49\textwidth]{obrazky-figures/Examples/head4.png}
-	\caption{Model "Hlava" pri rôznych hodnotách parametrov.}
-	\label{fig:GraphicEditor}
+	\caption{Model "Hlava" pri rôznych hodnotách parametrov}
+	\label{fig:headModel}
 \end{figure}
 
 
 
-Okno aplikácie obsahuje niekoľko sliderov na manipuláciu s~modelom. Pomocou týchto sliderov sa v~modele "Hlava", dá upravovať niekoľko parametrov hlavy. Dá sa upraviť napríklad veľkosť hlavy, veľkosť uší alebo veľkosť očí. Taktiež sa dá upravovať vzdialenosť medzi ušami alebo pozíciu očí. Oči modelu sú tiež pohyblivé, teda sa dá nastaviť pozíciu na ktorú sa bude model pozerať. To je v~aplikácii ovládané pomocou ťahu pravého tlačidla myši, po okne aplikácie.  
+Okno aplikácie obsahuje niekoľko sliderov na manipuláciu s~modelom. Pomocou týchto sliderov sa v~modele "Hlava", dá upravovať niekoľko parametrov hlavy. Dá sa upraviť napríklad veľkosť hlavy, veľkosť uší alebo veľkosť očí. Taktiež sa dá upravovať vzdialenosť medzi ušami alebo pozíciu očí. Oči modelu sú tiež pohyblivé, teda sa dá nastaviť pozíciu, na ktorú sa bude model pozerať. To je v~aplikácii ovládané pomocou ťahu pravého tlačidla myši, po okne aplikácie.  
 
-Grafické rozhranie Qt, je tvorené pomocou widgetov. V~kóde aplikácie, je v~inicializácii vykresľovacieho widgetu, volaná inicializácia \texttt{Rendereru} knižnice a nastavenie farby pozadia. 
-Pri každom snímu vykresľovania, sa model znovu postaví a nastaví sa pozícia kamery a jej natočenie okolo modelu. Následne je tento model vykreslený do grafického widgetu aplikácie.
+Grafické rozhranie Qt, je tvorené pomocou widgetov. V~kóde aplikácie, je v~inicializácii vykresľovacieho widgetu QOpenGLWidget, volaná inicializácia \texttt{Rendereru} knižnice a nastavenie farby pozadia. 
+Pri každom snímku vykresľovania, sa model znovu postaví a nastaví sa pozícia kamery a jej natočenie okolo modelu. Následne je tento model vykreslený do grafického widgetu aplikácie.
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=C,frame=tb,numbers=left,emph={void,int,char,double,float,unsigned},emphstyle={\color{blue}},tabsize=2]
@@ -2461,75 +2623,85 @@ void paintGL() {
 \end{lstlisting}
 \end{minipage}
 
-Parametrické modely sú tvorené rôznymi operáciami, ktoré na seba nadväzujú. Tieto operácie sa dajú zobraziť ja pomocou acyklického grafu operácií. Množina operácií, tvoriace model "Hlava", je v~prílohe \ref{mnozinaoperacii}. Grafové zobrazenie tohto modelu, je na obrázku \ref{fig:headGraph}.
+Parametrické modely sú tvorené rôznymi operáciami, ktoré na seba nadväzujú. Tieto operácie sa dajú zobraziť aj pomocou acyklického grafu operácií. Množina operácií, tvoriace model "Hlava", je v~prílohe \ref{mnozinaoperacii}. Grafové zobrazenie tohto modelu, je na obrázku \ref{fig:headGraph}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-Head - Graf.pdf}
+	\includegraphics[width=0.85\textwidth]{obrazky-figures/Diagram/DP Navrh operacii-Head - Graf.pdf}
 	\caption{Grafické zobrazenie operácii - Hlava}
 	\label{fig:headGraph}
 \end{figure}
 
+\section*{Príklad 4 - Animácia motora}
+Najzložitejší model, ktorý som vytvoril pomocou tohoto systému, je model motora. Tento model je navrhnutý tak, aby sa dal animovať v čase a obsahuje rôzne parametre ako je veľkosť hlavy, rádius hriadeľa a aj rýchlosť motora.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim=40 50 90 50,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=1.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=2.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=3.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=4.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=5.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=6.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=7.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=8.png}
+	\includegraphics[trim=40 40 80 40,clip,width=0.32\textwidth]{obrazky-figures/Examples/engine/engine t=9.png}
+	\caption{Animácia modelu motora}
+	\label{fig:motorAnimation}
+\end{figure}
+Tento model je vytvorený pomocou 93 operácií, ktoré sú zhrnuté v prílohe \ref{priloha:motor}.
+
+% \section{Metrika}
+% Počet riadkov zdrojového kódu: ~7000 riadkov \\
+% Počet geometrických operácii: 44
+% \begin{itemize}
+%     \item 16 bodových
+%     \item 10 čiarových
+%     \item 10 plošných
+%     \item 8 objemových
+% \end{itemize}
+% Použité externé knižnice:
+% \begin{itemize}
+%     \item GLEW - Vykresľovanie modelu do okna pomocou OpenGL
+%     \item GLM - Geometrické výpočty 
+%     \item Libigl - Operácie konštruktívnej geometrie nad trojrozmernými objektami
+% \end{itemize}
 
 
-\section{Metrika}
-Počet riadkov zdrojového kódu: ~7000 riadkov \\
-Počet geometrických operácii: 44
-\begin{itemize}
-    \item 16 bodových
-    \item 10 čiarových
-    \item 10 plošných
-    \item 8 objemových
-\end{itemize}
-Použité externé knižnice:
-\begin{itemize}
-    \item GLEW - Vykresľovanie modelu do okna pomocou OpenGL
-    \item GLM - Geometrické výpočty 
-    \item Libigl - Operácie konštruktívnej geometrie nad trojrozmernými objektami
-\end{itemize}
 
 
 
 
 
-
-% \chapter{Časový plán} - \todo{DELETE?}
-
-
-
-% Ako už bolo spomenuté vyššie, geometrické operácie vytvárajú acyklický orientovaný graf. Tento graf je vhodné užívateľovi zobraziť. Zobrazený je aj na obrázku \ref{fig:Sled_operácii_pomocou_orientovaného_grafu}. Vhodným nástrojom pre tvorbu grafov je knižnica GraphViz. Táto knižnica umožňuje rozmiestnenie jednotlivých vrcholov tak, aby sa hrany grafu príliš nekrížili. 
-
-
-% % \section{Vykreslovanie objektov v~grafickom rozhraní pomocou QOpenGLWidget}
-% %Následne je potrebné tento model vykresliť. Knižnica Qt, pomocou ktorej je vytvorené grafické užívateľské rozhranie,  umožňuje vykresľovať grafické modely pomocou OpenGL vo widgete QOpenGLWidget.
-
-% % \section{Pridanie textúry na objekt}
-% Aby neboli všetky objekty len jednej farby, je vhodné na jednotlivé objekty v~geometrickom modeli zvoliť farbu, prípadne textúru. Napríklad po dvojkliku v~zozname objektov by sa mohla otvoriť ponuka, pre úpravy objektu, medzi ktorými by mohlo byť zvolenie farby, nahratie textúry a rôzne ďalšie možnosti.
-
-
-
-% \todo{metriky (vytvorenie modelu s X operáciami (možno aj graf s tabuľkou))}
 
 \chapter{Záver}
-\todo{čo bolo cieľom práce - asi 10 slov. Ako sa mi to podarilo splniť, }"Ciel práce sa podarilo splniť." 
+Cieľom práce bolo navrhnúť a vytvoriť systém na tvorbu parametrických modelov. Tento cieľ práce sa podarilo splniť. 
 
-\todo{Odpovedať na jednotlivé časti zo zadania, a zakomponovať to tak, aby to nebolo z~toho zjavné,že odpovedám na dané body.}
+% \todo{Odpovedať na jednotlivé časti zo zadania, a zakomponovať to tak, aby to nebolo z~toho zjavné,že odpovedám na dané body.}
 
+Naštudoval som literatúru na tému parametrických modelov, existujúce riešenia a geometrické operácie. Výsledok tejto štúdie je v kapitole 2 a 3. 
+Navrhnutý systém obsahuje knižnicu na tvorbu parametrických modelov a aplikáciu využívajúcu vytvorenú knižnicu a uľahčujúcu návrh modelov.
+Vytvorená knižnica umožňuje vytváranie modelov pomocou geometrických operácií. Väzby medzi jednotlivými objektami sú vytvárané  priamo, teda operácie naviazané na iné objekty, alebo aj pomocou prepojenia vo výrazoch. Vytvorené modely je možné voľne upravovať, nastavovať parametre modelu, a tiež zobraziť v grafickom rozhraní. Demonštrácia implementovaného systému je v kapitole \ref{sec:zhodnotenie}.
 
-\todo{Opísať jednotlivo kapitoly/o čom sú dané kapitoly. - približne 15 riadkov}
-V~druhej kapitole práce som sa venoval parametrickým modelom, ich históriou a systémami, ktoré umožňujú v~súčasnom svete tvoriť parametrické modely.
+Výsledný softvér, ktorý som vytvoril, obsahuje 7000 riadkov, umožňuje spracovávať štyri druhy geometrických objektov a obsahuje 40 geometrických operácií. 
+% \todo{problemy, a postrehy prace}
 
-Tretia kapitola sa zaoberá geometrickými objektami a geometrickými operáciami, ktoré ich tvoria.
-
-
-
-
-\todo{Počet riadkov a súborov práce?}
-
-
-
-
-Do budúcna by som sa chcel zamerať na dorobenie priehľadnosti objektov. Táto možnosť je už z~časti implementovaná. Je možné jednotlivým objektom nastaviť farbu aj s~priehľadnosťou, ale pre zameranie práce na rôzne iné časti, zatiaľ nie sú tieto objekty vykresľované ako priehľadné.
+Do budúcna by som sa chcel zamerať na dorobenie priehľadnosti objektov. Táto možnosť je už z~časti implementovaná. Je možné jednotlivým objektom nastaviť farbu aj s~priehľadnosťou, ale pre zameranie práce na iné časti, zatiaľ nie sú tieto objekty vykresľované ako priehľadné.
 Tiež je vhodné pridanie textúr na vytvorené objekty.
-Ďalej by som chcel pridať nahrávanie animácie, kde by si užívateľ mohol nastaviť rôzne nastavenia, ako je rozmer, kódek alebo dĺžka nahrávania a tiež by mohol medzi jednotlivými snímkami nastavovať parametre modelu alebo model úplne prerobiť, pridaním alebo odobraním operácií.  
+Ďalej by som chcel pridať nahrávanie animácie, kde by si užívateľ mohol nastaviť rôzne nastavenia, ako je rozmer, kódek alebo dĺžka nahrávania, a tiež by mohol medzi jednotlivými snímkami nastavovať parametre modelu alebo model úplne prerobiť pridaním alebo odobraním operácií.  
+
+% \todo{Opísať jednotlivo kapitoly/o čom sú dané kapitoly. - približne 15 riadkov}
+% Začiatok práce sa zaoberá parametrickými modelmi, ich históriou, a taktiež sú tu opísané aj existujúce systémy a knižnice umožňujúce tvorbu parametrických modelov.
+
+% V tretej kapitole sú opísané rôzne geometrické objekty a operácie, ktoré táto knižnica zahrňuje.
+
+% V štvrtej kapitole som sa venoval analýze súčasného stavu, konceptu práce a návrhu skladania modelov.
+
+% Piata kapitola obsahuje realizačnú časť práce. Popis a postup vytvárania geometrických modelov pomocou skladania geometrických operácií a použitie rôznych možností pri zápise výrazu v parametroch geometrických operácií. Táto kapitola tiež obsahuje príklady použitia navrhnutej knižnice.
+
+
+
+
+
+
 
 

@@ -1,8 +1,84 @@
+ \renewcommand\labelitemii{$\square$}
+ \renewcommand\labelitemiii{$\circ$}
+\chapter{Obsah priloženého média}
+\begin{itemize}
+\item \textbf{Models/} - Vytvorené modely a obrázky
+\item \textbf{Release/} - Spustiteľné súbory
+\begin{itemize}
+    \item \textbf{ThesisLibrary/}
+    \begin{itemize}
+        \item \textbf{Thesis.lib} - Knižnica na tvorbu parametrických modelov
+    \end{itemize}
+    \item \textbf{ParametricModel\_Editor/...} - Aplikácia navrhnutá na tvorbu parametrických modelov
+    \item \textbf{GLFW\_Application/...} - Aplikácia s použitím glfw s modelom z príkladu 6.2
+    \item \textbf{QtProgram/...} - Aplikácia s použitím Qt z príkladu 6.3
+\end{itemize}  
+\item \textbf{Source/} - Zdrojové kódy
+\begin{itemize}
+    \item \textbf{ExternalLibraries/..} - Použité externé knižnice
+    \item \textbf{Thesis/..} - Zdrojový kód navrhnutého riešenia
+\end{itemize}
+\item \textbf{latex/...} Projekt textovej časti
+\item Parametricke\_3D\_modely.pdf
+\item README.txt
+\end{itemize}
 
+\chapter{Rozhranie navrhnutej knižnice}
+\begin{lstlisting}[numbers=left,language=c++]
+std::vector <Operation*> OperationsVec; //Operations stack 
+std::map<std::string, Operation*> OperationMap; //Map for easier acces to operations
+
+std::vector <Object::GeometricObject*> Objects; //Generated objects of parametric model
+std::map<std::string, Object::GeometricObject*> ObjectMap; // Map for objects of parametric model
+
+ParamRef paramRef //Model parameter referencies
+ParametricModel() //Constructor
+~ParametricModel() //Destructor
+
+Object::GeometricObject* GetObject(std::string objectName)
+void BuildModel() //Generate model objects from operations. Call this to apply modifications
+void RemoveOperation(size_t index) //Remove operation from specific index
+void AddOperation(Operation *c) //Add operation to model
+void InsertOperation(size_t index,Operation *c) //Insert operation to specific position
+void DeleteModel() //Reset model to default state
+bool AddOperations(std::string s) //Add multiple operations to model
+bool AddOperation(std::string s) //Add operation to model
+
+void resetTest() //Test initializer. Need to be called before every test 
+bool TestOperation(std::string s) //Test if operation is valid
+
+bool AddReferenceParam(std::string ParamRefName, std::string refObjectName, size_t paramIndex) //Add model parameter
+bool AddReferenceParamWithoutValidCheck(std::string ParamRefName, std::string refObjectName, size_t paramIndex) 
+bool TestRefParam(std::string ParamRefName, std::string refObjectName, size_t paramIndex) //Test if parameter can be added to object
+void RemoveReferenceParam(std::string ParamRefName) //Remove model parameter
+void RemoveReferenceParam(std::string refObjectName, size_t paramIndex) //Remove model parameter from specific object  
+void ReplaceOperation(size_t index, Operation *c) //Replace operation
+
+void SetRefValue(std::string ObjectName, size_t paramindex, std::string value) //Set value of operation parameter 
+void SetRefValue(std::string RefName,float value) //Set value of parameter
+
+double GetObjectValue(std::string s,bool* Err = NULL)  //Get value in string form
+
+void InitRenderer() //Initialize renderer
+void Draw(int x, int y, float fov, int width, int height) //Draw  with OpenGL
+
+void SetRendererCameraPosition(float X, float Y, float Z)
+void SetRendererCameraRotation(float Pitch, float Yaw, float 
+void setRendererAmbientStrength(float ambientStrength)
+
+void Save(std::string filePath) //Save parametric model to file
+bool Load(std::string filePath) //Load parametric model to file
+void SaveOBJ(std::string filePath) //Export model to OBJ file
+
+void setTime(unsigned long miliseconds) //Set timer to selected time
+void useManualTimer(bool enable) //Enable or disable timer
+void SetBackgroundColor(float R, float G, float B, float A) 
+void SetBackgroundColor(signed char R, signed char G, signed char B, signed char A)
+\end{lstlisting}
 
 \chapter{Zoznam geometrických operácií}
 \label{Priloha:zoznamGeometrickychOperacii}
-Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie, nasledované parametrami v~zátvorkách, ktoré sú oddelené čiarkou.
+Geometrické operácie, z~ktorých sa skladajú parametrické 3D modely. Tieto operácie sa začínajú názvom operácie, nasledované parametrami v~zátvorkách, ktoré sú oddelené čiarkou.
 
 \section*{Bodové operácie}
 \begin{itemize}
@@ -103,9 +179,9 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 
 \begin{itemize}
 
-\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Point pointOnSurface, type, RRGGBBAA color)}} - Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a bodu na ploche  %Create rectangle surface from line
+\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Point pointOnSurface, type, RRGGBBAA color)}} -~Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a bodu na ploche  %Create rectangle surface from line
 	
-\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Line normal, type, RRGGBBAA color)}} - Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a normály od plochy %Create rectangle surface from line by normal
+\item \textsc{\textbf{RectangleFromLine(string name, Line l, expression width, Line normal, type, RRGGBBAA color)}} -~Vytvorenie obdĺžniku podľa úsečky, šírky obdĺžniku a normály od plochy %Create rectangle surface from line by normal
 % //create Rectangle from Line l
 % /*type:
 % 	0 - width/2 to left, width/2 to right
@@ -116,49 +192,51 @@ Geometrické operácie z~ktorých sa skladajú parametrické 3D modely. Tieto op
 % 	//if normal vector is same direction as line normal, exception occure
 % 	//If surface point is not on line l, exception occure
 
-\item \textsc{\textbf{Circle(string name, Point center, expression radius, Line lineNormal, RRGGBBAA color)}} - Vytvorenie kruhu podľa zadaného stredu, priemeru a normály%Create circle by center, radius and normal vector
+\item \textsc{\textbf{Circle(string name, Point center, expression radius, Line lineNormal, \newline RRGGBBAA color)}} -~Vytvorenie kruhu podľa zadaného stredu, priemeru a normály%Create circle by center, radius and normal vector
 	
-\item \textsc{\textbf{Circle(string name, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)}} - Vytvorenie kruhu od stredu, bodu na okraji kruhu a bodu na ploche %Create circle by 3 points
+\item \textsc{\textbf{Circle(string name, Point center, Point outlinePoint, Point planePoint, RRGGBBAA color)}} -~Vytvorenie kruhu od stredu, bodu na okraji kruhu a bodu na ploche %Create circle by 3 points
 
-\item \textsc{\textbf{Triangle(string name, Line l, Point p, RRGGBBAA color)}} - Vytvorenie trojuholníku z~úsečky a bodu%Create triangle by line and point
+\item \textsc{\textbf{Triangle(string name, Line l, Point p, RRGGBBAA color)}} -~Vytvorenie trojuholníku z~úsečky a bodu%Create triangle by line and point
 	
-\item \textsc{\textbf{Triangle(string name, Point p1, Point p2, Point p3, RRGGBBAA color)}} -  Vytvorenie trojuholníku z~troch bodov%Create triangle by 3 points
+\item \textsc{\textbf{Triangle(string name, Point p1, Point p2, Point p3, RRGGBBAA color)}} -~Vytvorenie trojuholníku z~troch bodov%Create triangle by 3 points
 
 
 \item \textsc{\textbf{Rectangle(string name, Point center, expression X, expression Y, expression Roll
 % 	/*[0,360]*/
-    , Line normal, RRGGBBAA color)}} - Vytvorenie obdĺžniku%Create recangle
+    , Line normal, RRGGBBAA color)}} -~Vytvorenie obdĺžniku%Create recangle
 
-\item \textsc{\textbf{Polygon(string name, Point p1, Point p2, Point p3, ..., RRGGBBAA color)}} - Vytvorenie polygónu z~ľubovoľného počtu bodov%Create Polygon by connecting points, minimum 3 points.  Multiple points are divided by ';'
+\item \textsc{\textbf{Polygon(string name, Point p1, Point p2, Point p3, ..., RRGGBBAA color)}} -~Vytvorenie polygónu z~ľubovoľného počtu bodov%Create Polygon by connecting points, minimum 3 points.  Multiple points are divided by ';'
 
 
-\item \textsc{\textbf{Circumscribed(string name, Triangle t, RRGGBBAA color)}}  - Vytvorenie opísanej kružnice trojuholníka %Create circumscribed circle around triangle
+\item \textsc{\textbf{Circumscribed(string name, Triangle t, RRGGBBAA color)}}  -~Vytvorenie opísanej kružnice trojuholníka %Create circumscribed circle around triangle
 	
-\item \textsc{\textbf{Inscribed(string name, Triangle t, RRGGBBAA color)}} - Vytvorenie vpísanej kružnice trojuholníka %Create inscribed circle in triangle		
+\item \textsc{\textbf{Inscribed(string name, Triangle t, RRGGBBAA color)}} -~Vytvorenie vpísanej kružnice trojuholníka %Create inscribed circle in triangle		
 	
 \end{itemize}
 \section*{Objemové operácie}
 
 \begin{itemize}
-\item \textsc{\textbf{Cone(string name, Surface s, expression distance, RRGGBBAA color)}} - Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
+\item \textsc{\textbf{Cone(string name, Surface s, expression distance, RRGGBBAA color)}} \newline-~Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru so zadanou výškou%Create pyramid from surface and distance from center
 
-\item \textsc{\textbf{Cone(string name, Surface s, Point p, RRGGBBAA color)}} - Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
+\item \textsc{\textbf{Cone(string name, Surface s, Point p, RRGGBBAA color)}} -~Vytvorenie kužeľu s~podstavou z~ľubovoľného plošného útvaru a zadaným vrcholom%Create pyramid from surface and specific point
 
-\item \textsc{\textbf{Extrude(string name, Surface s, expression distance, RRGGBBAA color)}}  - Vysunutie plochy do priestoru%Enlarge surface to 3D with distance
+\item \textsc{\textbf{Extrude(string name, Surface s, expression distance, RRGGBBAA color)}}  -~Vysunutie plochy do priestoru%Enlarge surface to 3D with distance
 
 %\item SpericalCurvedSurface(string objectName, Surface s, expression distance, RRGGBBAA color)
 
-\item \textsc{\textbf{Sphere(string name, Point center, expression radius, RRGGBBAA color)}} - Guľa zo zadaného bodu a priemeru
+\item \textsc{\textbf{Sphere(string name, Point center, expression radius, RRGGBBAA color)}} -~Guľa zo zadaného bodu a priemeru
 
-\item \textsc{\textbf{BooleanUnion(string name, Object o1, Object o2, RRGGBBAA color)}} - Zjednotenie objektov
-\item \textsc{\textbf{BooleanIntersection(string name, Object o1, Object o2, RRGGBBAA color)}} - Prienik objektov%Intersection between objects
-\item \textsc{\textbf{BooleanMinus(string name, Object o1, Object o2, RRGGBBAA color)}} - Rozdiel objektov%First object minus second object
-\item \textsc{\textbf{BooleanXOR(string name, Object o1, Object o2, RRGGBBAA color)}} - Symetrická diferencia objektov%Symmetric difference between objects
+\item \textsc{\textbf{BooleanUnion(string name, Object o1, Object o2, RRGGBBAA color)}} \newline-~Zjednotenie objektov
+\item \textsc{\textbf{BooleanIntersection(string name, Object o1, Object o2, RRGGBBAA color)}} -~Prienik objektov%Intersection between objects
+\item \textsc{\textbf{BooleanMinus(string name, Object o1, Object o2, RRGGBBAA color)}} \newline-~Rozdiel objektov%First object minus second object
+\item \textsc{\textbf{BooleanXOR(string name, Object o1, Object o2, RRGGBBAA color)}} \newline-~Symetrická diferencia objektov%Symmetric difference between objects
 \end{itemize}
 
 
 \chapter{Množina operácii, tvoriace model hlavy.}
 \label{mnozinaoperacii}
+Z týchto operácii je tvorený model hlavy, ktorý je zobrazený na obrázku \ref{fig:headModel}.
+
 \begin{lstlisting}[language=C,frame=tb,numbers=left]
 Point(center,0,0,0,00000000);
 Sphere(head,center,2:headSize,00FF00FF);
@@ -195,3 +273,105 @@ Sphere(eyeDotL,eyeDotLCenter,eyeDotSize,FF0000FF);
 LinearInterpolationDist(eyeDotRCenter,rEyeCenter,LookAtPoint,eyeSize-eyeDotSize*eyeDotPopOut,00000000);
 Sphere(eyeDotR,eyeDotRCenter,eyeDotSize,FF0000FF);
 \end{lstlisting}{}
+
+
+
+
+\chapter{Operácie tvoriace model motora}
+\label{priloha:motor}
+
+\begin{lstlisting}[numbers=left]
+Point(parameters,1.7:offset,0.5:cylinder_height,0.75:cylinder_radius,00000000);
+Point(parameters1,2:piston_height,0.2:piston_radius,0,00000000);
+Point(parameters2,0.3:Upperdeadcenterpiston_height,2,0.5:A_radius, 00000000);
+Point(parameters3,50:speed,2:ASDF,0.15:circle,00000000);
+Point(parameters4,speed*(0-time)/10000:rotation,2,0,00000000);
+Point(base,0,-1,0,00000000);
+Point(pointUP,0,1,0,base,00000000);
+Line(lineUP,base,pointUP,00000000);
+Point(engine_cylinder0,offset*1.5,0,0,base,00000000);
+Point(engine_cylinder1,offset*0.5,0,0,base,00000000);
+Point(engine_cylinder2,offset*-0.5,0,0,base,00000000);
+Point(engine_cylinder3,offset*-1.5,0,0,base,00000000);
+Point(pointLeft0,piston_radius,0,0,engine_cylinder0,00000000);
+Point(pointRight0,0-piston_radius,0,0,engine_cylinder0,00000000);
+Point(pointLeft1,piston_radius,0,0,engine_cylinder1,00000000);
+Point(pointRight1,0-piston_radius,0,0,engine_cylinder1,00000000);
+Point(pointLeft2,piston_radius,0,0,engine_cylinder2,00000000);
+Point(pointRight2,0-piston_radius,0,0,engine_cylinder2,00000000);
+Point(pointLeft3,piston_radius,0,0,engine_cylinder3,00000000);
+Point(pointRight3,0-piston_radius,0,0,engine_cylinder3,00000000);
+Line(vectorRight,pointLeft0,base,00000000);
+Line(vectorLeft,base,pointLeft0,00000000);
+Circle(Base_circle0,pointLeft0,piston_height/2,vectorLeft,00000000);
+Circle(Base_circle1,pointLeft1,piston_height/2,vectorLeft,00000000);
+Circle(Base_circle2,pointLeft2,piston_height/2,vectorLeft,00000000);
+Circle(Base_circle3,pointLeft3,piston_height/2,vectorLeft,00000000);
+Circle(Base_circleR0,pointRight0,piston_height/2,vectorRight,00000000);
+Circle(Base_circleR1,pointRight1,piston_height/2,vectorRight,00000000);
+Circle(Base_circleR2,pointRight2,piston_height/2,vectorRight,00000000);
+Circle(Base_circleR3,pointRight3,piston_height/2,vectorRight,00000000);
+Extrude(BaseR0,Base_circle0, circle,00FFFFFF);
+Extrude(BaseR1,Base_circle1, circle,00FFFFFF);
+Extrude(BaseR2,Base_circle2, circle,00FFFFFF);
+Extrude(BaseR3,Base_circle3, circle,00FFFFFF);
+Extrude(BaseL0,Base_circleR0,circle,00FFFFFF);
+Extrude(BaseL1,Base_circleR1,circle,00FFFFFF);
+Extrude(BaseL2,Base_circleR2,circle,00FFFFFF);
+Extrude(BaseL3,Base_circleR3,circle,00FFFFFF);
+Point(wing0,0,cos(rotation)*(piston_height/2-piston_radius),sin(rotation)*(piston_height/2-piston_radius),engine_cylinder0,000000FF);
+Point(wing1,0,cos(rotation+3.141598)*(piston_height/2-piston_radius),sin(rotation+3.141598)*(piston_height/2-piston_radius),engine_cylinder1,000000FF);
+Point(wing2,0,cos(rotation+3.141598)*(piston_height/2-piston_radius),sin(rotation+3.141598)*(piston_height/2-piston_radius),engine_cylinder2,000000FF);
+Point(wing3,0,cos(rotation)*(piston_height/2-piston_radius),sin(rotation)*(piston_height/2-piston_radius),engine_cylinder3,000000FF);
+Point(CylinderBase0,0,(sqrt(piston_height^2-(wing0.Z-engine_cylinder0.Z)^2))+wing0.Y-engine_cylinder0.Y,0,engine_cylinder0,00FF00FF);
+Point(CylinderBase1,0,(sqrt(piston_height^2-(wing1.Z-engine_cylinder1.Z)^2))+wing1.Y-engine_cylinder1.Y,0,engine_cylinder1,00FF00FF);
+Point(CylinderBase2,0,(sqrt(piston_height^2-(wing2.Z-engine_cylinder2.Z)^2))+wing2.Y-engine_cylinder2.Y,0,engine_cylinder2,00FF00FF);
+Point(CylinderBase3,0,(sqrt(piston_height^2-(wing3.Z-engine_cylinder3.Z)^2))+wing3.Y-engine_cylinder3.Y,0,engine_cylinder3,00FF00FF);
+Circle(CylinderHead0_circle,CylinderBase0,cylinder_radius,lineUP,00000000);
+Circle(CylinderHead1_circle,CylinderBase1,cylinder_radius,lineUP,00000000);
+Circle(CylinderHead2_circle,CylinderBase2,cylinder_radius,lineUP,00000000);
+Circle(CylinderHead3_circle,CylinderBase3,cylinder_radius,lineUP,00000000);
+Extrude(CylinderHead0,CylinderHead0_circle,cylinder_height,FF00FFFF);
+Extrude(CylinderHead1,CylinderHead1_circle,cylinder_height,FF00FFFF);
+Extrude(CylinderHead2,CylinderHead2_circle,cylinder_height,FF00FFFF);
+Extrude(CylinderHead3,CylinderHead3_circle,cylinder_height,FF00FFFF);
+Line(piston_line0,wing0,CylinderBase0,00000000);
+Line(piston_line1,wing1,CylinderBase1,00000000);
+Line(piston_line2,wing2,CylinderBase2,00000000);
+Line(piston_line3,wing3,CylinderBase3,00000000);
+Circle(piston_circle0,wing0,piston_radius,piston_line0,00000000);
+Circle(piston_circle1,wing1,piston_radius,piston_line1,00000000);
+Circle(piston_circle2,wing2,piston_radius,piston_line2,00000000);
+Circle(piston_circle3,wing3,piston_radius,piston_line3,00000000);
+Extrude(piston0,piston_circle0,piston_height,FFFF00FF);
+Extrude(piston1,piston_circle1,piston_height,FFFF00FF);
+Extrude(piston2,piston_circle2,piston_height,FFFF00FF);
+Extrude(piston3,piston_circle3,piston_height,FFFF00FF);
+Point(crankshaft0__point,piston_radius+circle,0,0,wing0,00000000);
+Point(crankshaft1__point,piston_radius+circle,0,0,wing1,00000000);
+Point(crankshaft2__point,piston_radius+circle,0,0,wing2,00000000);
+Point(crankshaft3__point,piston_radius+circle,0,0,wing3,00000000);
+Circle(crankshaft0_circle,crankshaft0__point,piston_radius,vectorLeft,0000FF00);
+Circle(crankshaft1_circle,crankshaft1__point,piston_radius,vectorLeft,0000FF00);
+Circle(crankshaft2_circle,crankshaft2__point,piston_radius,vectorLeft,0000FF00);
+Circle(crankshaft3_circle,crankshaft3__point,piston_radius,vectorLeft,0000FF00);
+Extrude(crankshaft0_cylinder,crankshaft0_circle, 0-((piston_radius+circle)*2),00FFFFFF);
+Extrude(crankshaft1_cylinder,crankshaft1_circle, 0-((piston_radius+circle)*2),00FFFFFF);
+Extrude(crankshaft2_cylinder,crankshaft2_circle, 0-((piston_radius+circle)*2),00FFFFFF);
+Extrude(crankshaft3_cylinder,crankshaft3_circle, 0-((piston_radius+circle)*2),00FFFFFF);
+Point(blockCenter,0,piston_height/2,cylinder_radius,base,00000000);
+Rectangle(blockBase,blockCenter,offset*2.5,cylinder_radius,0,lineUP,00000000);
+Extrude(block,blockBase, cylinder_height+piston_height+Upperdeadcenterpiston_height*2,FFFFFF00);
+Circle(CutOff0_circle,engine_cylinder0,cylinder_radius,lineUP,00000000);
+Circle(CutOff1_circle,engine_cylinder1,cylinder_radius,lineUP,00000000);
+Circle(CutOff2_circle,engine_cylinder2,cylinder_radius,lineUP,00000000);
+Circle(CutOff3_circle,engine_cylinder3,cylinder_radius,lineUP,00000000);
+Extrude(CutOff0,CutOff0_circle,cylinder_height+piston_height*1.5+Upperdeadcenterpiston_height,00000000);
+Extrude(CutOff1,CutOff1_circle,cylinder_height+piston_height*1.5+Upperdeadcenterpiston_height,00000000);
+Extrude(CutOff2,CutOff2_circle,cylinder_height+piston_height*1.5+Upperdeadcenterpiston_height,00000000);
+Extrude(CutOff3,CutOff3_circle,cylinder_height+piston_height*1.5+Upperdeadcenterpiston_height,00000000);
+BooleanUnion(union01,CutOff0,CutOff1,00000000);
+BooleanUnion(union23,CutOff2,CutOff3,00000000);
+BooleanUnion(union0123,union01,union23,0000FF00);
+BooleanMinus(blockMinus,block,union0123,888888FF);
+\end{lstlisting}
