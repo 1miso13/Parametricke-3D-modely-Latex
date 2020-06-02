@@ -23,7 +23,9 @@
 \item README.txt
 \end{itemize}
 
-\chapter{Rozhranie navrhnutej knižnice}
+\chapter{Rozhranie navrhnutého systému}
+
+Programátorské rozhranie navrhnutého systému:
 \begin{lstlisting}[numbers=left,language=c++]
 std::vector <Operation*> OperationsVec; //Operations stack 
 std::map<std::string, Operation*> OperationMap; //Map for easier acces to operations
@@ -279,7 +281,7 @@ Sphere(eyeDotR,eyeDotRCenter,eyeDotSize,FF0000FF);
 
 \chapter{Operácie tvoriace model motora}
 \label{priloha:motor}
-
+Z týchto operácii je tvorený model hlavy, ktorý je zobrazený na obrázku \ref{fig:motorAnimation}.
 \begin{lstlisting}[numbers=left]
 Point(parameters,1.7:offset,0.5:cylinder_height,0.75:cylinder_radius,00000000);
 Point(parameters1,2:piston_height,0.2:piston_radius,0,00000000);
